@@ -1,4 +1,8 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
+
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinCommonCompilation
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
+
 buildscript {
     repositories {
         google()
@@ -19,11 +23,15 @@ plugins {
 }
 
 allprojects {
-    tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class.java).configureEach {
-        kotlinOptions {
+    tasks.withType(KotlinCompilationTask::class.java).configureEach {
+        compilerOptions {
             if (project.findProperty("enableMultiModuleComposeReports") == "true") {
-                freeCompilerArgs += listOf("-P", "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + rootProject.buildDir.absolutePath + "/compose_metrics/")
-                freeCompilerArgs += listOf("-P", "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" + rootProject.buildDir.absolutePath + "/compose_metrics/")
+                freeCompilerArgs.addAll(
+                    listOf(
+                        "-P", "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${rootProject.layout.buildDirectory}/compose_metrics/",
+                        "-P", "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${rootProject.layout.buildDirectory}/compose_metrics/"
+                    )
+                )
             }
         }
     }
