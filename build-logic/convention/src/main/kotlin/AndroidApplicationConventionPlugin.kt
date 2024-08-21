@@ -5,13 +5,16 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
+                apply("org.jetbrains.kotlin.plugin.compose")
+                apply("com.android.application")
                 apply("ondosee.android.lint")
             }
 
@@ -20,7 +23,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 defaultConfig {
                     applicationId = "com.ohnalmwo.ondosee"
                     minSdk = 26
-                    targetSdk = 34
+                    targetSdk = 35
                     versionCode = 1
                     versionName = "1.0.0"
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -39,8 +42,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     }
                 }
 
-                composeOptions {
-                    kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
+                extensions.getByType<ComposeCompilerGradlePluginExtension>().apply {
+                    enableStrongSkippingMode.set(true)
+                    includeSourceInformation.set(true)
                 }
 
                 dependencies {
