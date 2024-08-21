@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("goms.android.core")
-    id("goms.android.compose")
+    id("ondosee.android.core")
+    id("ondosee.android.compose")
 }
 
 android {
@@ -9,7 +9,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:analytics"))
     implementation(project(":core:design-system"))
     implementation(project(":core:model"))
 

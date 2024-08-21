@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("goms.android.core")
-    id("goms.android.hilt")
+    id("ondosee.android.core")
+    id("ondosee.android.hilt")
 }
 
 android {

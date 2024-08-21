@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("goms.android.core")
-    id("goms.android.hilt")
+    id("ondosee.android.core")
+    id("ondosee.android.hilt")
     alias(libs.plugins.protobuf)
 }
 
