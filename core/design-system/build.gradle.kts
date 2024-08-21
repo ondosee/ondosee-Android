@@ -1,6 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("ondosee.android.core")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("ondosee.android.compose")
     id("ondosee.android.lint")
 }
