@@ -1,7 +1,7 @@
 [versions]
 #Define Versions
 accompanist = "0.35.1-alpha"
-androidGradlePlugin = "8.3.0"
+androidGradlePlugin = "8.5.2"
 androidxActivity = "1.9.1"
 androidxAppCompat = "1.7.0"
 androidxBrowser = "1.8.0"
