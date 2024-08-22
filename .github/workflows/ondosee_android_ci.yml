@@ -66,6 +66,7 @@ jobs:
           description: "온도도씨~"
           color: 00FF00
           url: "https://github.com/sarisia/actions-status-discord"
+          username: OhNalMwo CI 봇
           sender: "OhNalMwo CI 봇"
 
       - name: OhNalMwo Android CI Discord Notification
@@ -79,4 +80,6 @@ jobs:
           description: "오날뭐?"
           color: 00FF00
           url: "https://github.com/sarisia/actions-status-discord"
+          username: OhNalMwo CI 봇
           sender: "OhNalMwo CI 봇"
+
