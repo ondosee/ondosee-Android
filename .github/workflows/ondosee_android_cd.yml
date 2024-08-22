@@ -66,28 +66,28 @@ jobs:
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
 
-      - name: Goms Android CD Discord Notification
+      - name: OnNalMwo Android CD Discord Notification
         uses: sarisia/actions-status-discord@v1
         if: ${{ success() }}
         with:
-          title: ✅ Goms-Android-CD 성공! ✅
-          webhook: ${{ secrets.GOMS_DISCORD_WEBHOOK }}
+          title: ✅ Ondosee-Android-CD 성공! ✅
+          webhook: ${{ secrets.ONDOSEE_DISCORD_WEBHOOK }}
           status: ${{ job.status }}
           image: ${{ secrets.SUCCESS_IMAGE }}
           description: 드가자아!!!
           color: 00FF00
           url: "https://github.com/sarisia/actions-status-discord"
-          username: GOMS CD 봇
+          username: OnNalMwo CD 봇
 
-      - name: Goms Android CD Discord Notification
+      - name: OnNalMwo Android CD Discord Notification
         uses: sarisia/actions-status-discord@v1
         if: ${{ failure() }}
         with:
-          title: ❗️ Goms-Android-CD 실패! ❗️
-          webhook: ${{ secrets.GOMS_DISCORD_WEBHOOK }}
+          title: ❗️ Ondosee-Android-CD 실패! ❗️
+          webhook: ${{ secrets.ONDOSEE_DISCORD_WEBHOOK }}
           status: ${{ job.status }}
           image: ${{ secrets.FAIL_IMAGE }}
-          description: 까비요
+          description: 나가자..
           color: 00FF00
           url: "https://github.com/sarisia/actions-status-discord"
-          username: GOMS CD 봇
+          username: OnNalMwo CD 봇

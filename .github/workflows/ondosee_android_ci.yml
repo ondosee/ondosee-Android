@@ -56,7 +56,7 @@ jobs:
         if: ${{ success() }}
         with:
           title: ✅ Ondosee-Android-CI 성공! ✅
-          webhook: ${{ secrets.Ondosee_DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.ONDOSEE_DISCORD_WEBHOOK }}
           status: ${{ job.status }}
           image: ${{ secrets.SUCCESS_IMAGE }}
           description: "온도도씨~"
@@ -69,7 +69,7 @@ jobs:
         if: ${{ failure() }}
         with:
           title: ❗️ Ondosee-Android-CI 실패! ❗️
-          webhook: ${{ secrets.Ondosee_DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.ONDOSEE_DISCORD_WEBHOOK }}
           status: ${{ job.status }}
           image: ${{ secrets.FAILED_IMAGE }}
           description: "오날뭐?"
