@@ -13,6 +13,7 @@ jobs:
     strategy:
       matrix:
         sdk-version: [ 26, 35 ]
+      max-parallel: 2
 
     steps:
       - uses: actions/checkout@v3
