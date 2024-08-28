@@ -7,12 +7,7 @@ import androidx.compose.runtime.compositionLocalOf
 import com.goms.design_system.theme.ColorTheme
 import com.ohnalmwo.design_system.theme.color.DarkColor
 import com.ohnalmwo.design_system.theme.color.LightColor
-
-enum class ThemeType(val value: String, val kr: String) {
-    SYSTEM("System", "시스템 테마 설정"),
-    DARK("Dark", "다크(기본)"),
-    LIGHT("Light", "라이트")
-}
+import com.ohnalmwo.model.enum.ThemeType
 
 internal val LocalColorTheme = compositionLocalOf<ColorTheme> { error("No ColorTheme provided") }
 internal val LocalTypography = compositionLocalOf<OndoseeTypography> { error("No OndoseeTypography provided") }
