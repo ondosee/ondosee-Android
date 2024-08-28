@@ -14,14 +14,13 @@ internal val LocalTypography = compositionLocalOf<OndoseeTypography> { error("No
 
 @Composable
 fun OndoseeTheme(
-    themeMode: String = ThemeType.DARK.value,
+    themeMode: ThemeType = ThemeType.SYSTEM,
     content: @Composable () -> Unit
 ) {
     val theme = when (themeMode) {
-        ThemeType.SYSTEM.value -> isSystemInDarkTheme()
-        ThemeType.DARK.value -> true
-        ThemeType.LIGHT.value -> false
-        else -> true
+        ThemeType.SYSTEM -> isSystemInDarkTheme()
+        ThemeType.DARK -> true
+        ThemeType.LIGHT -> false
     }
 
     val colors = if (theme) DarkColor else LightColor

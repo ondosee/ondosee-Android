@@ -16,11 +16,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:model"))
+
     implementation(libs.coil.kt.compose)
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.immutable)
     implementation(libs.androidx.wear.compose)
     implementation(libs.lottie.compose)
-
-    implementation(project(":core:model"))
 }

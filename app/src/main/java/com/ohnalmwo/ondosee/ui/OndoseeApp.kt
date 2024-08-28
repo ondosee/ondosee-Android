@@ -14,7 +14,7 @@ import com.ohnalmwo.model.enum.ThemeType
 
 @Composable
 fun OndoseeApp() {
-    OndoseeTheme(themeMode = ThemeType.SYSTEM.value) {
+    OndoseeTheme(themeMode = ThemeType.SYSTEM) {
         CompositionLocalProvider {
             Box(
                 modifier = Modifier

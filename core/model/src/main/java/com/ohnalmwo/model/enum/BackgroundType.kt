@@ -1,6 +1,6 @@
 package com.ohnalmwo.model.enum
 
-enum class MainBackgroundColorType {
+enum class BackgroundType {
     RAIN,
     SNOW,
     THUNDER,
