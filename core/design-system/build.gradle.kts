@@ -21,4 +21,6 @@ dependencies {
     implementation(libs.kotlinx.immutable)
     implementation(libs.androidx.wear.compose)
     implementation(libs.lottie.compose)
+
+    implementation(project(":core:model"))
 }
