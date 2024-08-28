@@ -1,7 +1,6 @@
 package com.goms.design_system.theme
 
 import androidx.compose.ui.graphics.Color
-import com.ohnalmwo.design_system.theme.color.BackgroundColor
 
 abstract class ColorTheme {
     //System Colors
@@ -28,4 +27,6 @@ abstract class ColorTheme {
     abstract val WHITE: Color
 
     abstract val BACKGROUND: Color
+
+    abstract var MAIN_BACKGROUND: List<Color>
 }

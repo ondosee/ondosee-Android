@@ -2,7 +2,6 @@ package com.ohnalmwo.design_system.theme.color
 
 import androidx.compose.ui.graphics.Color
 import com.goms.design_system.theme.ColorTheme
-import com.ohnalmwo.design_system.theme.color.BackgroundColor
 
 object DarkColor : ColorTheme() {
     override val PRIMARY = Color(0xFF0095FF)
@@ -27,4 +26,10 @@ object DarkColor : ColorTheme() {
     override val WHITE = Color(0xFFFFFFFF)
 
     override var BACKGROUND = Color(0xFF171717)
+
+    override var MAIN_BACKGROUND: List<Color>
+        get() = MainBackgroundColor.mainBackground
+        set(value) {
+            MainBackgroundColor.mainBackground = value
+        }
 }
