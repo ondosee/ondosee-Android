@@ -16,6 +16,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:design-system"))
+    implementation(project(":core:model"))
+
     implementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext)
     implementation(libs.androidx.core.splashscreen)
