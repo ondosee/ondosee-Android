@@ -55,12 +55,14 @@ retrofit = "2.11.0"
 retrofitKotlinxSerializableJson = "1.0.0"
 room = "2.6.1"
 swiperefresh = "0.34.0"
+systemuicontroller = "0.31.0-alpha"
 turbine = "1.1.0"
 
 
 [libraries]
 #Define Library
 accompanist-permission = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
+accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "systemuicontroller" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "androidxBrowser" }
