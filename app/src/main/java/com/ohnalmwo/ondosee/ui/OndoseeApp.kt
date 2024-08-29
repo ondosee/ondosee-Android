@@ -1,6 +1,5 @@
 package com.ohnalmwo.ondosee.ui
 
-import android.annotation.SuppressLint
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -12,7 +11,7 @@ import com.ohnalmwo.model.enum.ThemeType
 import com.ohnalmwo.ondosee.navigation.OndoseeNavHost
 import dev.chrisbanes.haze.HazeState
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OndoseeApp() {
 
