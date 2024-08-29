@@ -24,4 +24,5 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.haze)
+    implementation(libs.accompanist.systemuicontroller)
 }
