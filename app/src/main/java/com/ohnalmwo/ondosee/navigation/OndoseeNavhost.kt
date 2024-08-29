@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -40,7 +41,8 @@ fun OndoseeNavHost(
                             colors = colors.BACKGROUND_RAIN
                         )
                     )
-            ) {
+                    .statusBarsPadding()
+                ) {
                 LazyColumn {
                     items(10) {
                         Box(
