@@ -1,4 +1,4 @@
-package com.ohnalmwo.design_system.component.bottombar
+package com.ohnalmwo.ui
 
 import com.ohnalmwo.design_system.R
 import com.ohnalmwo.model.enum.Route

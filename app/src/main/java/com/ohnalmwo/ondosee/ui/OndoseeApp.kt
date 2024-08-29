@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.rememberNavController
-import com.ohnalmwo.design_system.component.bottombar.BottomNavigationBar
+import com.ohnalmwo.ui.BottomNavigationBar
 import com.ohnalmwo.design_system.theme.OndoseeTheme
 import com.ohnalmwo.model.enum.ThemeType
 import com.ohnalmwo.ondosee.navigation.OndoseeNavHost

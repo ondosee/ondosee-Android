@@ -1,4 +1,4 @@
-package com.ohnalmwo.design_system.component.bottombar
+package com.ohnalmwo.ui
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -47,7 +47,7 @@ fun BottomNavigationBar(
     val bottomBarItems = listOf(
         BottomBarItem.Main,
         BottomBarItem.Weekly,
-        BottomBarItem.Setting
+        com.ohnalmwo.ui.BottomBarItem.Setting
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
