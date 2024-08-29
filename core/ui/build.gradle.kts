@@ -17,4 +17,5 @@ dependencies {
     implementation(libs.coil.kt.compose)
     implementation(libs.kotlinx.datetime)
     implementation(libs.accompanist.permission)
+    implementation(libs.haze)
 }
