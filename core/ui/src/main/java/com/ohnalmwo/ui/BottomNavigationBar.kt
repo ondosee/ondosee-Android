@@ -9,9 +9,14 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
@@ -47,7 +52,7 @@ fun BottomNavigationBar(
     val bottomBarItems = listOf(
         BottomBarItem.Main,
         BottomBarItem.Weekly,
-        com.ohnalmwo.ui.BottomBarItem.Setting
+        BottomBarItem.Setting
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -55,7 +60,7 @@ fun BottomNavigationBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(60.dp)
+            .height(100.dp)
             .hazeChild(
                 state = hazeState,
                 shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
@@ -72,6 +77,11 @@ fun BottomNavigationBar(
                     ),
                 ),
                 shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
+            )
+            .windowInsetsPadding(
+                WindowInsets
+                    .safeDrawing
+                    .only(WindowInsetsSides.Bottom)
             )
     ) {
         bottomBarItems.forEach { bottomBarItem ->
