@@ -66,6 +66,7 @@ fun BottomNavigationBar(
                 shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
                 style = HazeStyle(
                     tint = colors.WHITE.copy(.2f),
+                    blurRadius = 10.dp
                 )
             )
             .border(
