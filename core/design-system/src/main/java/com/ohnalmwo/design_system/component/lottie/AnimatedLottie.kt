@@ -17,11 +17,7 @@ fun AnimatedLottie (
 ) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(rawId))
 
-    val iterations = if (isInfiniteRepetition){
-        LottieConstants.IterateForever
-    } else {
-        1
-    }
+    val iterations = if (isInfiniteRepetition) LottieConstants.IterateForever else 1
 
     val progress by animateLottieCompositionAsState(
         composition = composition,
