@@ -17,8 +17,9 @@ android {
 
 dependencies {
     implementation(project(":core:design-system"))
-    implementation(project(":core:ui"))
     implementation(project(":core:model"))
+    implementation(project(":core:ui"))
+    implementation(project(":feature:main"))
 
     implementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext)
