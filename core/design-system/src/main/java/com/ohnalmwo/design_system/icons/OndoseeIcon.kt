@@ -31,3 +31,25 @@ fun CurrentLocationIcon(
         colorFilter = if (tint != Color.Unspecified) ColorFilter.tint(tint) else null
     )
 }
+
+@Composable
+fun CloudIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_cloud),
+        contentDescription = "구름 아이콘",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun RainIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_rain),
+        contentDescription = "비 아이콘",
+        modifier = modifier
+    )
+}
