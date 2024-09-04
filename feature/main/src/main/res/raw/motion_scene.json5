@@ -1,0 +1,108 @@
+{
+  ConstraintSets: {
+    start: {
+      significantWeatherText: {
+        width: 'wrap',
+        top: ['parent', 'top', 40],
+        start : ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+      },
+      animatedLottie: {
+        width : 200,
+        height : 200,
+        start: ['parent', 'start', 0],
+        top: ['parent', 'top', 90],
+        end: ['parent', 'end', 0],
+        alpha: 1
+      },
+      weatherConditionText: {
+        width: 'wrap',
+        height: 'wrap',
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['animatedLottie', 'bottom', 25],
+      },
+      weatherConditionDescriptionText: {
+        width: 'wrap',
+        height: 'wrap',
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['weatherConditionText', 'bottom', 4],
+      },
+      weatherForecastCardFirst: {
+        width: 'spread',
+        height: 'wrap',
+        start: ['parent', 'start', 20],
+        end: ['parent', 'end', 20],
+        top: ['weatherConditionDescriptionText', 'bottom', 32],
+      },
+      weatherForecastCardSecond: {
+        width: 'spread',
+        height: 'wrap',
+        start: ['parent', 'start', 20],
+        end: ['parent', 'end', 20],
+        top: ['weatherForecastCardFirst', 'bottom', 16],
+      }
+    },
+    end: {
+      significantWeatherText: {
+        top: ['parent', 'top'],
+        end: ['parent', 'end'],
+        scaleX: .6,
+        scaleY: .6
+      },
+      animatedLottie: {
+        width: 200,
+        height: 200,
+        start: ['parent', 'start', 0],
+        top: ['parent', 'top', 100],
+        end: ['parent', 'end', 0],
+        alpha: 0
+      },
+      weatherConditionText: {
+        width: 'spread',
+        height: 'wrap',
+        start: ['parent', 'start', 20],
+        top: ['significantWeatherText', 'top', 20],
+      },
+      weatherConditionDescriptionText: {
+        width: 'spread',
+        height: 'wrap',
+        start: ['parent', 'start', 20],
+        top: ['weatherConditionText', 'bottom', 4],
+        end: ['significantWeatherText', 'start', 0]
+      },
+      weatherForecastCardFirst: {
+        width: 'spread',
+        height: 'wrap',
+        start: ['parent', 'start', 20],
+        end: ['parent', 'end', 20],
+        top: ['weatherConditionDescriptionText', 'bottom', 24],
+      },
+      weatherForecastCardSecond: {
+        width: 'spread',
+        height: 'wrap',
+        start: ['parent', 'start', 20],
+        end: ['parent', 'end', 20],
+        top: ['weatherForecastCardFirst', 'bottom', 16],
+      }
+    }
+  },
+  Transitions: {
+    default: {
+      from: 'start',
+      to: 'end',
+      onSwipe: {
+        anchor: 'significantWeatherText',
+        direction: 'down',
+        side: 'top'
+      },
+      mode: 'spring',
+      spring: {
+        stiffness: 100,
+        dampingRatio: .5,
+        mass: 1
+      }
+    }
+  }
+}
