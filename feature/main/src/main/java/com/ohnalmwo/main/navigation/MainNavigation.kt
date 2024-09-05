@@ -8,16 +8,16 @@ import com.ohnalmwo.main.MainScreen
 import com.ohnalmwo.model.enum.Route
 import dev.chrisbanes.haze.HazeState
 
-fun NavController.navigateToLogin(navOptions: NavOptions? = null) {
+fun NavController.navigateToMain(navOptions: NavOptions? = null) {
     this.navigate(Route.Main, navOptions)
 }
 
-fun NavGraphBuilder.loginScreen(
-    hazeState: HazeState
+fun NavGraphBuilder.mainScreen(
+    hazeState: HazeState,
 ) {
     composable<Route.Main> {
         MainScreen(
-            hazeState = hazeState
+            hazeState = hazeState,
         )
     }
 }
