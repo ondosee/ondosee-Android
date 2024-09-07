@@ -6,7 +6,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.layoutId
@@ -19,6 +22,7 @@ import com.ohnalmwo.design_system.component.lottie.AnimatedLottie
 import com.ohnalmwo.design_system.component.topbar.OndoseeTopBar
 import com.ohnalmwo.design_system.icons.MenuIcon
 import com.ohnalmwo.main.component.SignificantWeatherText
+import com.ohnalmwo.main.component.TutorialDialog
 import com.ohnalmwo.main.component.WeatherConditionDescriptionText
 import com.ohnalmwo.main.component.WeatherConditionText
 import com.ohnalmwo.main.component.WeatherForecastCard
@@ -30,7 +34,7 @@ import dev.chrisbanes.haze.haze
 @OptIn(ExperimentalMotionApi::class)
 @Composable
 fun MainScreen(
-    hazeState: HazeState
+    hazeState: HazeState,
 ) {
     val context = LocalContext.current
     val motionScene = remember {
@@ -39,6 +43,7 @@ fun MainScreen(
             .readBytes()
             .decodeToString()
     }
+    var openDialog by remember { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
@@ -86,6 +91,16 @@ fun MainScreen(
                         "마스크를 가져가세요."
             )
         }
+    }
+
+    if (openDialog) {
+        TutorialDialog(
+            hazeState = hazeState,
+            openDialog = openDialog,
+            onStateChange = { openDialog = it },
+            onDismissClick = { openDialog = false },
+            onCheckClick = { openDialog = false }
+        )
     }
 }
 

@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.ohnalmwo.main.navigation.loginScreen
+import com.ohnalmwo.main.navigation.mainScreen
 import com.ohnalmwo.model.enum.Route
 import dev.chrisbanes.haze.HazeState
 
@@ -20,7 +20,9 @@ fun OndoseeNavHost(
         startDestination = Route.Main,
         modifier = modifier
     ) {
-        loginScreen(hazeState = hazeState)
+        mainScreen(
+            hazeState = hazeState,
+        )
         composable<Route.Weekly> {
 
         }
