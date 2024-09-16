@@ -1,9 +1,8 @@
 plugins {
-    id("java-library")
-    alias(libs.plugins.kotlin.jvm)
+    id("ondosee.android.feature")
+    id("ondosee.android.hilt")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+android {
+    namespace = "com.ohnalmwo.location"
 }
