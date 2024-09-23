@@ -42,11 +42,11 @@ fun SettingAlarmScreen(
     var minute by remember { mutableIntStateOf(0) }
     var amPm by remember { mutableStateOf("PM") }
     var isTimeSetting by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding()
-            .navigationBarsPadding()
             .background(color = colors.BACKGROUND),
     ) {
         SettingBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }
@@ -78,20 +78,21 @@ fun SettingAlarmScreen(
         OndoseeButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp, start = 8.dp, end = 8.dp),
+                .padding(top = 40.dp, start = 20.dp, end = 20.dp),
             text = "적용",
             style = typography.textLarge,
             fontWeight = FontWeight.Medium,
+            state = ButtonState.Primary
         ) {}
 
         OndoseeButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp),
+                .padding(top = 8.dp, start = 20.dp, end = 20.dp),
             text = "취소",
             style = typography.textLarge,
             fontWeight = FontWeight.Medium,
-            state = ButtonState.Transparent
+            state = ButtonState.NormalDark
         ) {}
     }
 }
@@ -116,7 +117,7 @@ private fun TimePickerSection(
             items = (1..12).toList(),
             initialItem = hour,
             textStyle = typography.titleLarge,
-            textColor = colors.TERTIARY.copy(.2f),
+            textColor = colors.BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
             onItemSelected = { _, item -> onHourChange(item) }
         )
@@ -126,7 +127,7 @@ private fun TimePickerSection(
             items = (0..59).map { "%02d".format(it) },
             initialItem = "%02d".format(minute),
             textStyle = typography.titleLarge,
-            textColor = colors.TERTIARY.copy(.2f),
+            textColor = colors.BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
             onItemSelected = { _, item -> onMinuteChange(item.toInt()) }
         )
@@ -136,7 +137,7 @@ private fun TimePickerSection(
             items = listOf("AM", "PM"),
             initialItem = amPm,
             textStyle = typography.titleLarge,
-            textColor = colors.TERTIARY.copy(.2f),
+            textColor = colors.BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
             numberOfDisplayedItems = 3,
             onItemSelected = { _, item -> onAmPmChange(item) }
