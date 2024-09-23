@@ -24,7 +24,6 @@ fun SettingFontScreen(
         modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding()
-            .navigationBarsPadding()
             .background(color = colors.BACKGROUND)
     ) {
         SettingBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }

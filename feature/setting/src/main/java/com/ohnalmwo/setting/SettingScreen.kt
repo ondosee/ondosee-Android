@@ -29,7 +29,6 @@ fun SettingScreen(
         modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding()
-            .navigationBarsPadding()
             .background(color = colors.BACKGROUND)
     ) {
         SettingTitle(modifier = Modifier.padding(top = 24.dp), title = "설정")
