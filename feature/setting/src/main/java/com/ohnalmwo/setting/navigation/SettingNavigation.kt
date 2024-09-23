@@ -4,7 +4,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
 import com.ohnalmwo.model.enum.Route
 import com.ohnalmwo.setting.SettingScreen
 import com.ohnalmwo.setting.SettingThemeScreen
@@ -19,6 +18,20 @@ fun NavGraphBuilder.settingScreen(
     composable<Route.Setting> {
         SettingScreen(
             onThemeClick = onThemeClick
+        )
+    }
+}
+
+fun NavController.navigateToSettingTheme(navOptions: NavOptions? = null) {
+    this.navigate(Route.SettingTheme, navOptions)
+}
+
+fun NavGraphBuilder.settingThemeScreen(
+    onBackClick: () -> Unit
+) {
+    composable<Route.SettingTheme> {
+        SettingThemeScreen(
+            onBackClick = onBackClick
         )
     }
 }
