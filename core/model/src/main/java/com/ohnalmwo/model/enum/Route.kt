@@ -7,6 +7,9 @@ sealed interface Route {
     data object Main : Route
 
     @Serializable
+    data object Location : Route
+
+    @Serializable
     data object Weekly : Route
 
     @Serializable
