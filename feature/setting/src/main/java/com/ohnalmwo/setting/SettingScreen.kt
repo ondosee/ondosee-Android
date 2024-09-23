@@ -22,6 +22,7 @@ import com.ohnalmwo.setting.component.SettingTitle
 @Composable
 fun SettingScreen(
     onThemeClick: () -> Unit,
+    onFontClick: () -> Unit,
     onAlarmClick: () -> Unit
 ) {
     Column(
@@ -40,7 +41,7 @@ fun SettingScreen(
         SettingButton(
             modifier = Modifier.padding(top = 32.dp),
             buttonType = SettingButtonType.Font
-        ) {}
+        ) { onFontClick() }
         SettingOptionTitle(modifier = Modifier.padding(top = 56.dp), optionName = "개인정보 설정")
         SettingButton(
             modifier = Modifier.padding(top = 24.dp),
@@ -59,6 +60,7 @@ fun SettingScreen(
 fun SettingScreenPrev() {
     SettingScreen(
         onThemeClick = {},
+        onFontClick = {},
         onAlarmClick = {}
     )
 }

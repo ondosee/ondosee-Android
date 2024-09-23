@@ -8,8 +8,10 @@ import androidx.navigation.compose.composable
 import com.ohnalmwo.main.navigation.mainScreen
 import com.ohnalmwo.model.enum.Route
 import com.ohnalmwo.setting.navigation.navigateToSettingAlarm
+import com.ohnalmwo.setting.navigation.navigateToSettingFont
 import com.ohnalmwo.setting.navigation.navigateToSettingTheme
 import com.ohnalmwo.setting.navigation.settingAlarmScreen
+import com.ohnalmwo.setting.navigation.settingFontScreen
 import com.ohnalmwo.setting.navigation.settingScreen
 import com.ohnalmwo.setting.navigation.settingThemeScreen
 import dev.chrisbanes.haze.HazeState
@@ -31,10 +33,15 @@ fun OndoseeNavHost(
 
         settingScreen(
             onThemeClick = navController::navigateToSettingTheme,
+            onFontClick = navController::navigateToSettingFont,
             onAlarmClick = navController::navigateToSettingAlarm
         )
 
         settingThemeScreen(
+            onBackClick = navController::popBackStack
+        )
+
+        settingFontScreen(
             onBackClick = navController::popBackStack
         )
 
