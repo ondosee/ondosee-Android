@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.ohnalmwo.model.enum.Route
+import com.ohnalmwo.setting.SettingAlarmScreen
 import com.ohnalmwo.setting.SettingScreen
 import com.ohnalmwo.setting.SettingThemeScreen
 
@@ -13,11 +14,13 @@ fun NavController.navigateToSetting(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.settingScreen(
-    onThemeClick: () -> Unit
+    onThemeClick: () -> Unit,
+    onAlarmClick: () -> Unit
 ) {
     composable<Route.Setting> {
         SettingScreen(
-            onThemeClick = onThemeClick
+            onThemeClick = onThemeClick,
+            onAlarmClick = onAlarmClick
         )
     }
 }
@@ -31,6 +34,20 @@ fun NavGraphBuilder.settingThemeScreen(
 ) {
     composable<Route.SettingTheme> {
         SettingThemeScreen(
+            onBackClick = onBackClick
+        )
+    }
+}
+
+fun NavController.navigateToSettingAlarm(navOptions: NavOptions? = null) {
+    this.navigate(Route.SettingAlarm, navOptions)
+}
+
+fun NavGraphBuilder.settingAlarmScreen(
+    onBackClick: () -> Unit
+) {
+    composable<Route.SettingAlarm> {
+        SettingAlarmScreen(
             onBackClick = onBackClick
         )
     }

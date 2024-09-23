@@ -21,7 +21,8 @@ import com.ohnalmwo.setting.component.SettingTitle
 
 @Composable
 fun SettingScreen(
-    onThemeClick: () -> Unit
+    onThemeClick: () -> Unit,
+    onAlarmClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -32,11 +33,23 @@ fun SettingScreen(
     ) {
         SettingTitle(modifier = Modifier.padding(top = 24.dp), title = "설정")
         SettingOptionTitle(modifier = Modifier.padding(top = 24.dp), optionName = "테마 설정")
-        SettingButton(modifier = Modifier.padding(top = 24.dp), buttonType = SettingButtonType.Theme) { onThemeClick() }
-        SettingButton(modifier = Modifier.padding(top = 32.dp), buttonType = SettingButtonType.Font) {}
+        SettingButton(
+            modifier = Modifier.padding(top = 24.dp),
+            buttonType = SettingButtonType.Theme
+        ) { onThemeClick() }
+        SettingButton(
+            modifier = Modifier.padding(top = 32.dp),
+            buttonType = SettingButtonType.Font
+        ) {}
         SettingOptionTitle(modifier = Modifier.padding(top = 56.dp), optionName = "개인정보 설정")
-        SettingButton(modifier = Modifier.padding(top = 24.dp), buttonType = SettingButtonType.Alarm) {}
-        SettingButton(modifier = Modifier.padding(top = 32.dp), buttonType = SettingButtonType.ClearAll) {}
+        SettingButton(
+            modifier = Modifier.padding(top = 24.dp),
+            buttonType = SettingButtonType.Alarm
+        ) { onAlarmClick() }
+        SettingButton(
+            modifier = Modifier.padding(top = 32.dp),
+            buttonType = SettingButtonType.ClearAll
+        ) {}
     }
 }
 
@@ -44,5 +57,8 @@ fun SettingScreen(
 @PreviewLightDark
 @Composable
 fun SettingScreenPrev() {
-    SettingScreen(onThemeClick = {})
+    SettingScreen(
+        onThemeClick = {},
+        onAlarmClick = {}
+    )
 }
