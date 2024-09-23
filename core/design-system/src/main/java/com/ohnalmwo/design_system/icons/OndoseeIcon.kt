@@ -73,6 +73,19 @@ fun CurrentLocationIcon(
 }
 
 @Composable
+fun ClockIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = Color.Unspecified
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_clock),
+        contentDescription = "현재 위치 아이콘",
+        modifier = modifier,
+        colorFilter = if (tint != Color.Unspecified) ColorFilter.tint(tint) else null
+    )
+}
+
+@Composable
 fun CloudIcon(
     modifier: Modifier = Modifier
 ) {
