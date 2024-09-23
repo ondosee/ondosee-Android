@@ -29,6 +29,6 @@ fun SettingFontScreen(
     ) {
         SettingBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }
         SettingTitle(modifier = Modifier.padding(top = 24.dp), title = "테마 설정")
-        SettingSelectComponent(modifier = Modifier.padding(horizontal = 20.dp), dropdownList = listOf("시스템 글꼴","프레젠테이 (기본글꼴)").toPersistentList(), selectedIndex = 1)
+        SettingSelectComponent(modifier = Modifier.padding(horizontal = 20.dp, vertical = 24.dp), dropdownList = listOf("시스템 글꼴","프레젠테이 (기본글꼴)").toPersistentList(), selectedIndex = 1)
     }
 }
