@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
@@ -24,11 +23,10 @@ import com.ohnalmwo.design_system.component.button.ButtonState
 import com.ohnalmwo.design_system.component.button.OndoseeButton
 import com.ohnalmwo.design_system.component.picker.InfiniteWheelPicker
 import com.ohnalmwo.design_system.component.picker.WheelPicker
-import com.ohnalmwo.design_system.icons.SettingBellIcon
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 import com.ohnalmwo.setting.component.SettingAlarmTimeButton
-import com.ohnalmwo.setting.component.SettingBackButton
+import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.setting.component.SettingSwitchButton
 import com.ohnalmwo.setting.component.SettingTitle
 
@@ -49,7 +47,7 @@ fun SettingAlarmScreen(
             .statusBarsPadding()
             .background(color = colors.BACKGROUND),
     ) {
-        SettingBackButton(
+        OndoseeBackButton(
             modifier = Modifier.padding(top = 24.dp)
         ) { onBackClick() }
         SettingTitle(

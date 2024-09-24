@@ -3,15 +3,13 @@ package com.ohnalmwo.setting
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
-import com.ohnalmwo.setting.component.SettingBackButton
+import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.setting.component.SettingOptionTitle
 import com.ohnalmwo.setting.component.SettingSelectComponent
 import com.ohnalmwo.setting.component.SettingTitle
@@ -27,7 +25,7 @@ fun SettingThemeScreen(
             .statusBarsPadding()
             .background(color = colors.BACKGROUND)
     ) {
-        SettingBackButton(
+        OndoseeBackButton(
             modifier = Modifier.padding(top = 24.dp)
         ) { onBackClick() }
         SettingTitle(

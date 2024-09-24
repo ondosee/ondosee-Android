@@ -1,4 +1,4 @@
-package com.ohnalmwo.setting.component
+package com.ohnalmwo.design_system.component.button
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -16,7 +16,7 @@ import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 
 @Composable
-fun SettingBackButton(
+fun OndoseeBackButton(
     modifier: Modifier = Modifier.height(48.dp),
     onClick: () -> Unit,
 ) {
