@@ -27,9 +27,21 @@ fun SettingThemeScreen(
             .statusBarsPadding()
             .background(color = colors.BACKGROUND)
     ) {
-        SettingBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }
-        SettingTitle(modifier = Modifier.padding(top = 16.dp), title = "테마 설정")
-        SettingOptionTitle(modifier = Modifier.padding(top = 24.dp), optionName = "기본 테마")
-        SettingSelectComponent(modifier = Modifier.padding(horizontal = 20.dp), dropdownList = listOf("시스템 테마 설정","다크","화이트").toPersistentList(), selectedIndex = 2)
+        SettingBackButton(
+            modifier = Modifier.padding(top = 24.dp)
+        ) { onBackClick() }
+        SettingTitle(
+            modifier = Modifier.padding(top = 16.dp),
+            title = "테마 설정"
+        )
+        SettingOptionTitle(
+            modifier = Modifier.padding(top = 24.dp),
+            optionName = "기본 테마"
+        )
+        SettingSelectComponent(
+            modifier = Modifier.padding(horizontal = 20.dp),
+            dropdownList = listOf("시스템 테마 설정", "다크", "화이트").toPersistentList(),
+            selectedIndex = 2
+        )
     }
 }

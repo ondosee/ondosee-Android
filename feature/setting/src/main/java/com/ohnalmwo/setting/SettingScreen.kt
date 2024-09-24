@@ -31,8 +31,14 @@ fun SettingScreen(
             .statusBarsPadding()
             .background(color = colors.BACKGROUND)
     ) {
-        SettingTitle(modifier = Modifier.padding(top = 24.dp), title = "설정")
-        SettingOptionTitle(modifier = Modifier.padding(top = 24.dp), optionName = "테마 설정")
+        SettingTitle(
+            modifier = Modifier.padding(top = 24.dp),
+            title = "설정"
+        )
+        SettingOptionTitle(
+            modifier = Modifier.padding(top = 24.dp),
+            optionName = "테마 설정"
+        )
         SettingButton(
             modifier = Modifier.padding(top = 24.dp),
             buttonType = SettingButtonType.Theme
@@ -41,7 +47,10 @@ fun SettingScreen(
             modifier = Modifier.padding(top = 32.dp),
             buttonType = SettingButtonType.Font
         ) { onFontClick() }
-        SettingOptionTitle(modifier = Modifier.padding(top = 56.dp), optionName = "개인정보 설정")
+        SettingOptionTitle(
+            modifier = Modifier.padding(top = 56.dp),
+            optionName = "개인정보 설정"
+        )
         SettingButton(
             modifier = Modifier.padding(top = 24.dp),
             buttonType = SettingButtonType.Alarm

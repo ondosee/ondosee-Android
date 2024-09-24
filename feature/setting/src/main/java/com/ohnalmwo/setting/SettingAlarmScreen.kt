@@ -49,8 +49,13 @@ fun SettingAlarmScreen(
             .statusBarsPadding()
             .background(color = colors.BACKGROUND),
     ) {
-        SettingBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }
-        SettingTitle(modifier = Modifier.padding(top = 24.dp), title = "푸시 알림 설정")
+        SettingBackButton(
+            modifier = Modifier.padding(top = 24.dp)
+        ) { onBackClick() }
+        SettingTitle(
+            modifier = Modifier.padding(top = 24.dp),
+            title = "푸시 알림 설정"
+        )
         SettingSwitchButton(
             modifier = Modifier
                 .fillMaxWidth()
