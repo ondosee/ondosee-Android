@@ -28,8 +28,8 @@ fun SettingScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
             .background(color = colors.BACKGROUND)
+            .statusBarsPadding()
     ) {
         SettingTitle(
             modifier = Modifier.padding(top = 24.dp),

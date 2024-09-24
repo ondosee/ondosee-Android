@@ -21,8 +21,8 @@ fun SettingFontScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
             .background(color = colors.BACKGROUND)
+            .statusBarsPadding()
     ) {
         OndoseeBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }
         SettingTitle(modifier = Modifier.padding(top = 24.dp), title = "테마 설정")
