@@ -44,7 +44,7 @@ fun SignificantWeatherText(
         text = text,
         brush = Brush.verticalGradient(
             colors = listOf(
-                colors.THEME_WHITE.copy(.3f),
+                colors.WHITE.copy(.3f),
                 Color(0xFFBFBFBF).copy(.1f)
             )
         ),

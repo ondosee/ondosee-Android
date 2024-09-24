@@ -16,7 +16,7 @@ fun WeatherConditionText(
         text = text,
         style = typography.titleLarge,
         fontWeight = FontWeight.Bold,
-        color = colors.THEME_WHITE,
+        color = colors.WHITE,
         modifier = modifier
     )
 }

@@ -96,7 +96,7 @@ private fun DialogContent(
                 state = hazeState,
                 shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
                 style = HazeStyle(
-                    tint = colors.THEME_BLACK.copy(.1f),
+                    tint = colors.BLACK.copy(.1f),
                     blurRadius = 10.dp
                 )
             )
@@ -143,7 +143,7 @@ private fun TitleText(text: String) {
             fontFamily = freesentation,
         ),
         fontWeight = FontWeight.Bold,
-        color = colors.THEME_WHITE
+        color = colors.WHITE
     )
 }
 
@@ -173,12 +173,12 @@ private fun TimeDisplay(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = colors.THEME_WHITE.copy(.1f),
+                color = colors.WHITE.copy(.1f),
                 shape = RoundedCornerShape(8.dp)
             )
             .border(
                 width = 1.dp,
-                color = colors.THEME_WHITE.copy(.05f),
+                color = colors.WHITE.copy(.05f),
                 shape = RoundedCornerShape(8.dp)
             )
             .padding(vertical = 10.dp),
@@ -223,7 +223,7 @@ private fun TimePickerSection(
             initialItem = hour,
             textStyle = typography.titleLarge,
             textColor = colors.TERTIARY.copy(.2f),
-            selectedTextColor = colors.THEME_WHITE,
+            selectedTextColor = colors.WHITE,
             onItemSelected = { _, item -> onHourChange(item) }
         )
         InfiniteWheelPicker(
@@ -233,7 +233,7 @@ private fun TimePickerSection(
             initialItem = "%02d".format(minute),
             textStyle = typography.titleLarge,
             textColor = colors.TERTIARY.copy(.2f),
-            selectedTextColor = colors.THEME_WHITE,
+            selectedTextColor = colors.WHITE,
             onItemSelected = { _, item -> onMinuteChange(item.toInt()) }
         )
         WheelPicker(
@@ -243,7 +243,7 @@ private fun TimePickerSection(
             initialItem = amPm,
             textStyle = typography.titleLarge,
             textColor = colors.TERTIARY.copy(.2f),
-            selectedTextColor = colors.THEME_WHITE,
+            selectedTextColor = colors.WHITE,
             numberOfDisplayedItems = 3,
             onItemSelected = { _, item -> onAmPmChange(item) }
         )
