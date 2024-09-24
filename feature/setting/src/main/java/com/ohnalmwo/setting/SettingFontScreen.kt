@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
@@ -18,6 +22,8 @@ import kotlinx.collections.immutable.toPersistentList
 fun SettingFontScreen(
     onBackClick: () -> Unit
 ) {
+    var selectedIndex by remember { mutableIntStateOf(0) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -29,7 +35,8 @@ fun SettingFontScreen(
         SettingSelectComponent(
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 24.dp),
             dropdownList = listOf("시스템 글꼴", "프레젠테이션 (기본글꼴)").toPersistentList(),
-            selectedIndex = 1
+            selectedIndex = selectedIndex,
+            onItemClick = { selectedIndex = it }
         )
     }
 }

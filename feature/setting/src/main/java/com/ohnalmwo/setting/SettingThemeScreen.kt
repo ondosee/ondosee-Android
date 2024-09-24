@@ -6,6 +6,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
@@ -19,6 +24,8 @@ import kotlinx.collections.immutable.toPersistentList
 fun SettingThemeScreen(
     onBackClick: () -> Unit
 ) {
+    var selectedIndex by remember { mutableIntStateOf(0) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +46,8 @@ fun SettingThemeScreen(
         SettingSelectComponent(
             modifier = Modifier.padding(horizontal = 20.dp),
             dropdownList = listOf("시스템 테마 설정", "다크", "화이트").toPersistentList(),
-            selectedIndex = 2
+            selectedIndex = selectedIndex,
+            onItemClick = { selectedIndex = it }
         )
     }
 }

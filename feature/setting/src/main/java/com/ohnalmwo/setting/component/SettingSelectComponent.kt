@@ -1,15 +1,11 @@
 package com.ohnalmwo.setting.component
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,11 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Popup
-import androidx.compose.ui.window.PopupProperties
 import com.ohnalmwo.design_system.icons.CheckIcon
 import com.ohnalmwo.design_system.theme.OndoseeTheme
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
@@ -42,9 +35,10 @@ fun SettingSelectComponent(
     modifier: Modifier,
     dropdownList: PersistentList<String>,
     selectedIndex: Int,
+    onItemClick: (Int) -> Unit
 ) {
     val scrollState = rememberScrollState()
-    var dropdownType: Boolean? by remember { mutableStateOf(null) }
+    var componentShape: Boolean? by remember { mutableStateOf(null) }
 
 
     Column(
@@ -55,7 +49,7 @@ fun SettingSelectComponent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         dropdownList.onEachIndexed { index, item ->
-            dropdownType = when (index) {
+            componentShape = when (index) {
                 0 -> true
                 dropdownList.size - 1 -> false
                 else -> null
@@ -65,7 +59,7 @@ fun SettingSelectComponent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(
-                        when (dropdownType) {
+                        when (componentShape) {
                             true -> RoundedCornerShape(
                                 topStart = 12.dp,
                                 topEnd = 12.dp
@@ -80,7 +74,8 @@ fun SettingSelectComponent(
                         }
                     )
                     .background(color = colors.BLACK.copy(alpha = 0.05f))
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .clickable { onItemClick(index) },
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -105,7 +100,8 @@ fun SettingSelectComponentPrev() {
         SettingSelectComponent(
             modifier = Modifier,
             dropdownList = listOf("1", "2", "3").toPersistentList(),
-            selectedIndex = 2
+            selectedIndex = 2,
+            onItemClick = {}
         )
     }
 }
