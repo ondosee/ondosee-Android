@@ -18,6 +18,6 @@ fun SettingTitle(
         text = title,
         style = OndoseeTheme.typography.titleMedium,
         fontWeight = FontWeight.Bold,
-        color = OndoseeTheme.colors.BLACK
+        color = OndoseeTheme.colors.THEME_BLACK
     )
 }

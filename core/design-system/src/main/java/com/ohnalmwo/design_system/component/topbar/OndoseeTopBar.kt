@@ -1,6 +1,5 @@
 package com.ohnalmwo.design_system.component.topbar
 
-import android.util.Log
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -82,7 +81,7 @@ fun OndoseeTopBar(
                 text = "광주광역시 광산구",
                 style = typography.titleSmall,
                 fontWeight = FontWeight.Bold,
-                color = colors.WHITE,
+                color = colors.THEME_WHITE,
                 modifier = modifier
             )
         }

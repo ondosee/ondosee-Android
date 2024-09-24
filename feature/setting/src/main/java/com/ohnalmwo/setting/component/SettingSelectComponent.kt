@@ -73,7 +73,7 @@ fun SettingSelectComponent(
                             else -> RoundedCornerShape(0.dp)
                         }
                     )
-                    .background(color = colors.BLACK.copy(alpha = 0.05f))
+                    .background(color = colors.THEME_BLACK.copy(alpha = 0.05f))
                     .padding(16.dp)
                     .clickable { onItemClick(index) },
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -82,7 +82,7 @@ fun SettingSelectComponent(
                 Text(
                     text = item,
                     style = typography.textMedium,
-                    color = if (index == selectedIndex) colors.PRIMARY else colors.BLACK,
+                    color = if (index == selectedIndex) colors.PRIMARY else colors.THEME_BLACK,
                     fontWeight = FontWeight.Normal
                 )
                 if (index == selectedIndex) {

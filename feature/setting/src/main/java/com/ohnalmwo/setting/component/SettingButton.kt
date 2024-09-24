@@ -57,21 +57,21 @@ internal fun SettingButton(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 when(buttonType) {
-                    SettingButtonType.Theme -> SettingThemeIcon(tint = colors.BLACK)
-                    SettingButtonType.Font -> SettingFontIcon(tint = colors.BLACK)
-                    SettingButtonType.Alarm -> SettingBellIcon(tint = colors.BLACK)
+                    SettingButtonType.Theme -> SettingThemeIcon(tint = colors.THEME_BLACK)
+                    SettingButtonType.Font -> SettingFontIcon(tint = colors.THEME_BLACK)
+                    SettingButtonType.Alarm -> SettingBellIcon(tint = colors.THEME_BLACK)
                     SettingButtonType.ClearAll -> SettingDunghillIcon(tint = colors.WARNING)
                 }
                 Text(
                     text = text,
                     style = typography.textMedium,
                     fontWeight = FontWeight.SemiBold,
-                    color = if (buttonType != SettingButtonType.ClearAll) colors.BLACK else colors.WARNING
+                    color = if (buttonType != SettingButtonType.ClearAll) colors.THEME_BLACK else colors.WARNING
                 )
             }
 
             ChevronRightIcon(
-                tint = if (buttonType != SettingButtonType.ClearAll) colors.BLACK else colors.WARNING
+                tint = if (buttonType != SettingButtonType.ClearAll) colors.THEME_BLACK else colors.WARNING
             )
         }
     }

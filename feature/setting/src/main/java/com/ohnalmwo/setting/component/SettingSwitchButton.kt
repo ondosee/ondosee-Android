@@ -1,7 +1,6 @@
 package com.ohnalmwo.setting.component
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -30,11 +29,11 @@ fun SettingSwitchButton(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            SettingBellIcon(tint = colors.BLACK)
+            SettingBellIcon(tint = colors.THEME_BLACK)
             Text(
                 text = text,
                 style = typography.textLarge,
-                color = colors.BLACK,
+                color = colors.THEME_BLACK,
                 fontWeight = FontWeight.Normal
             )
         }

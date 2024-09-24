@@ -120,7 +120,7 @@ private fun TimePickerSection(
             items = (1..12).toList(),
             initialItem = hour,
             textStyle = typography.titleLarge,
-            textColor = colors.BLACK.copy(.2f),
+            textColor = colors.THEME_BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
             onItemSelected = { _, item -> onHourChange(item) }
         )
@@ -130,7 +130,7 @@ private fun TimePickerSection(
             items = (0..59).map { "%02d".format(it) },
             initialItem = "%02d".format(minute),
             textStyle = typography.titleLarge,
-            textColor = colors.BLACK.copy(.2f),
+            textColor = colors.THEME_BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
             onItemSelected = { _, item -> onMinuteChange(item.toInt()) }
         )
@@ -140,7 +140,7 @@ private fun TimePickerSection(
             items = listOf("AM", "PM"),
             initialItem = amPm,
             textStyle = typography.titleLarge,
-            textColor = colors.BLACK.copy(.2f),
+            textColor = colors.THEME_BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
             numberOfDisplayedItems = 3,
             onItemSelected = { _, item -> onAmPmChange(item) }

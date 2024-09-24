@@ -27,7 +27,7 @@ fun WeatherForecastCard(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .background(color = colors.WHITE.copy(alpha = .2f))
+            .background(color = colors.THEME_WHITE.copy(alpha = .2f))
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
@@ -41,7 +41,7 @@ fun WeatherForecastCard(
             text = description,
             style = typography.textMedium,
             fontWeight = FontWeight.Medium,
-            color = colors.WHITE
+            color = colors.THEME_WHITE
         )
         LazyRow(
             modifier = Modifier.padding(top = 12.dp),
