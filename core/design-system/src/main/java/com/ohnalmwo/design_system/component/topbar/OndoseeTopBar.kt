@@ -32,7 +32,8 @@ import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 @Composable
 fun OndoseeTopBar(
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
+    onClick: () -> Unit
 ) {
     var currentLocation by rememberSaveable { mutableIntStateOf(0) }
 
@@ -86,7 +87,7 @@ fun OndoseeTopBar(
                 modifier = modifier
             )
         }
-        IconButton(onClick = {}) {
+        IconButton(onClick = onClick) {
             content()
         }
     }
