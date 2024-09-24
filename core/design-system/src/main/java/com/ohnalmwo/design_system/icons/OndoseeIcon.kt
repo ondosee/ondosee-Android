@@ -53,3 +53,91 @@ fun RainIcon(
         modifier = modifier
     )
 }
+
+@Composable
+fun VeryGoodIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_very_good),
+        contentDescription = "매우 좋은 아이콘",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun SoGoodIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_so_good),
+        contentDescription = "더 좋은 아이콘",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun GoodIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_good),
+        contentDescription = "좋은 아이콘",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun SosoIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_soso),
+        contentDescription = "그럭저럭 아이콘",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun BadIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_bad),
+        contentDescription = "안좋은 아이콘",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun SoBadIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_so_bad),
+        contentDescription = "더 안좋은 아이콘",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun TooBadIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_too_bad),
+        contentDescription = "매우 안좋은 아이콘",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun WorstIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_worst),
+        contentDescription = "최악 아이콘",
+        modifier = modifier
+    )
+}
