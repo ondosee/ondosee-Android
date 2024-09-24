@@ -32,8 +32,8 @@ object DarkColor : ColorTheme() {
     override val TOO_BAD = Color(0xFFFF794D)
     override val WORST = Color(0xFF262626)
 
-    override val BLACK = Color(0xFF000000)
-    override val WHITE = Color(0xFFFFFFFF)
+    override val BLACK = Color(0xFFFFFFFF)
+    override val WHITE = Color(0xFF000000)
 
     override var BACKGROUND = Color(0xFF171717)
 }
