@@ -20,6 +20,19 @@ fun MenuIcon(
 }
 
 @Composable
+fun HamburgerIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = Color.Unspecified
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_hamburger),
+        contentDescription = "햄버거 아이콘",
+        modifier = modifier,
+        colorFilter = if (tint != Color.Unspecified) ColorFilter.tint(tint) else null
+    )
+}
+
+@Composable
 fun CurrentLocationIcon(
     modifier: Modifier = Modifier,
     tint: Color = Color.Unspecified
