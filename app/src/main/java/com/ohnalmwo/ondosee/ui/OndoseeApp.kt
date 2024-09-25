@@ -21,17 +21,18 @@ fun OndoseeApp() {
     val navController = rememberNavController()
     val hazeState = remember { HazeState() }
 
+    val currentRoute by navController.currentBackStackEntryAsState()
+    val showBottomBar = remember(currentRoute) {
+        when (currentRoute?.destination?.route?.substringAfterLast('.')) {
+            Route.Main.toString(),
+            Route.Weekly.toString(),
+            Route.Setting.toString() -> true
+            else -> false
+        }
+    }
+
     OndoseeTheme(themeMode = ThemeType.SYSTEM) {
         CompositionLocalProvider {
-            val currentRoute by navController.currentBackStackEntryAsState()
-            val showBottomBar = remember(currentRoute) {
-                currentRoute?.destination?.route in setOf(
-                    Route.Main.toString(),
-                    Route.Weekly.toString(),
-                    Route.Setting.toString()
-                )
-            }
-
             Scaffold(
                 bottomBar = {
                     if (showBottomBar) {
