@@ -91,7 +91,7 @@ fun BottomNavigationBar(
             } == true
 
             CompositionLocalProvider(
-                LocalContentColor provides if (isSelected) colors.WHITE else colors.WHITE.copy(.5f)
+                LocalContentColor provides if (isSelected) colors.WHITE else colors.TERTIARY
             ) {
                 val alpha by animateFloatAsState(
                     targetValue = if (isSelected) 1f else .35f,
