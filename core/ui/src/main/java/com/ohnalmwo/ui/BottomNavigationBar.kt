@@ -65,7 +65,7 @@ fun BottomNavigationBar(
                 state = hazeState,
                 shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
                 style = HazeStyle(
-                    tint = colors.THEME_WHITE.copy(.2f),
+                    tint = colors.WHITE.copy(.25f),
                     blurRadius = 10.dp
                 )
             )
@@ -73,8 +73,8 @@ fun BottomNavigationBar(
                 width = Dp.Hairline,
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        colors.THEME_WHITE.copy(alpha = .8f),
-                        colors.THEME_WHITE.copy(alpha = .2f),
+                        colors.WHITE.copy(alpha = .8f),
+                        colors.WHITE.copy(alpha = .2f),
                     ),
                 ),
                 shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
@@ -91,7 +91,7 @@ fun BottomNavigationBar(
             } == true
 
             CompositionLocalProvider(
-                LocalContentColor provides if (isSelected) colors.THEME_WHITE else colors.THEME_WHITE.copy(.5f)
+                LocalContentColor provides if (isSelected) colors.WHITE else colors.WHITE.copy(.5f)
             ) {
                 val alpha by animateFloatAsState(
                     targetValue = if (isSelected) 1f else .35f,
@@ -129,7 +129,8 @@ fun BottomNavigationBar(
                     Text(
                         text = bottomBarItem.title,
                         style = typography.textSmall,
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.Medium,
+                        color = colors.WHITE
                     )
                 }
             }

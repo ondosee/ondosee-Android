@@ -81,7 +81,7 @@ fun OndoseeTopBar(
                 text = "광주광역시 광산구",
                 style = typography.titleSmall,
                 fontWeight = FontWeight.Bold,
-                color = colors.THEME_WHITE,
+                color = colors.WHITE,
                 modifier = modifier
             )
         }

@@ -189,13 +189,13 @@ private fun TimeDisplay(
             text = "$hour : ${"%02d".format(minute)}",
             style = typography.titleLarge,
             fontWeight = FontWeight.Bold,
-            color = if (isTimeSetting) colors.PRIMARY else colors.THEME_WHITE
+            color = if (isTimeSetting) colors.PRIMARY else colors.WHITE
         )
         Text(
             text = amPm,
             style = typography.titleSmall,
             fontWeight = FontWeight.Bold,
-            color = if (isTimeSetting) colors.PRIMARY else colors.THEME_WHITE,
+            color = if (isTimeSetting) colors.PRIMARY else colors.WHITE,
             modifier = Modifier.padding(start = 32.dp)
         )
     }
