@@ -22,7 +22,6 @@ import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun SettingFontScreen(
-    hazeState: HazeState,
     onBackClick: () -> Unit
 ) {
     var selectedIndex by remember { mutableIntStateOf(0) }
@@ -31,7 +30,6 @@ fun SettingFontScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colors.BACKGROUND)
-            .haze(state = hazeState)
             .statusBarsPadding()
     ) {
         OndoseeBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }

@@ -36,12 +36,10 @@ fun NavController.navigateToSettingTheme(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.settingThemeScreen(
-    hazeState: HazeState,
     onBackClick: () -> Unit
 ) {
     composable<Route.SettingTheme> {
         SettingThemeScreen(
-            hazeState = hazeState,
             onBackClick = onBackClick
         )
     }
@@ -52,12 +50,10 @@ fun NavController.navigateToSettingFont(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.settingFontScreen(
-    hazeState: HazeState,
     onBackClick: () -> Unit
 ) {
     composable<Route.SettingFont> {
         SettingFontScreen(
-            hazeState = hazeState,
             onBackClick = onBackClick
         )
     }
@@ -68,12 +64,10 @@ fun NavController.navigateToSettingAlarm(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.settingAlarmScreen(
-    hazeState: HazeState,
     onBackClick: () -> Unit
 ) {
     composable<Route.SettingAlarm> {
         SettingAlarmScreen(
-            hazeState = hazeState,
             onBackClick = onBackClick
         )
     }

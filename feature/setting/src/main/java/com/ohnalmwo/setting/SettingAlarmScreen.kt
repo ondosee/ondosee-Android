@@ -34,7 +34,6 @@ import dev.chrisbanes.haze.haze
 
 @Composable
 fun SettingAlarmScreen(
-    hazeState: HazeState,
     onBackClick: () -> Unit
 ) {
     var isAlarmOn by remember { mutableStateOf(true) }
@@ -48,7 +47,6 @@ fun SettingAlarmScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colors.BACKGROUND)
-            .haze(state = hazeState)
             .statusBarsPadding(),
     ) {
         OndoseeBackButton(

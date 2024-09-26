@@ -24,7 +24,6 @@ import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun SettingThemeScreen(
-    hazeState: HazeState,
     onBackClick: () -> Unit
 ) {
     var selectedIndex by remember { mutableIntStateOf(0) }
@@ -33,7 +32,6 @@ fun SettingThemeScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colors.BACKGROUND)
-            .haze(state = hazeState)
             .statusBarsPadding()
     ) {
         OndoseeBackButton(
