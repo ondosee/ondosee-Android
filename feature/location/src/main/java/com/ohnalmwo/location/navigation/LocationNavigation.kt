@@ -4,6 +4,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.ohnalmwo.location.AddLocationScreen
+import com.ohnalmwo.location.LocationManagementScreen
 import com.ohnalmwo.location.LocationScreen
 import com.ohnalmwo.model.enum.Route
 
@@ -11,8 +13,34 @@ fun NavController.navigateToLocation(navOptions: NavOptions? = null) {
     this.navigate(Route.Location, navOptions)
 }
 
-fun NavGraphBuilder.locationScreen() {
+fun NavGraphBuilder.locationScreen(
+    navigateToLocationManagement: () -> Unit,
+    navigateToAddLocation: () -> Unit
+) {
     composable<Route.Location> {
-        LocationScreen()
+        LocationScreen(
+            navigateToLocationManagement = navigateToLocationManagement,
+            navigateToAddLocation = navigateToAddLocation
+        )
+    }
+}
+
+fun NavController.navigateToLocationManagement(navOptions: NavOptions? = null) {
+    this.navigate(Route.LocationManagement, navOptions)
+}
+
+fun NavGraphBuilder.locationManagementScreen() {
+    composable<Route.LocationManagement> {
+        LocationManagementScreen()
+    }
+}
+
+fun NavController.navigateToAddLocation(navOptions: NavOptions? = null) {
+    this.navigate(Route.AddLocation, navOptions)
+}
+
+fun NavGraphBuilder.addLocationScreen() {
+    composable<Route.AddLocation> {
+        AddLocationScreen()
     }
 }

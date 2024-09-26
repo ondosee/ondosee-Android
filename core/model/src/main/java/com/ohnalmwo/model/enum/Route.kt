@@ -10,6 +10,12 @@ sealed interface Route {
     data object Location : Route
 
     @Serializable
+    data object LocationManagement : Route
+
+    @Serializable
+    data object AddLocation : Route
+
+    @Serializable
     data object Weekly : Route
 
     @Serializable
