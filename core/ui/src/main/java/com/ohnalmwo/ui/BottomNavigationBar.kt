@@ -62,7 +62,7 @@ fun BottomNavigationBar(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    val route = navController.currentDestination?.route?.removePrefix("com.ohnalmwo.model.enum.Route.")
+    val route = navController.currentDestination?.route?.substringAfterLast('.')
     val isSetting = route != Route.Setting.toString()
 
     @Composable
