@@ -33,6 +33,32 @@ fun HamburgerIcon(
 }
 
 @Composable
+fun CloseIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = Color.Unspecified
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_close),
+        contentDescription = "닫기 아이콘",
+        modifier = modifier,
+        colorFilter = if (tint != Color.Unspecified) ColorFilter.tint(tint) else null
+    )
+}
+
+@Composable
+fun SearchIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = Color.Unspecified
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_search),
+        contentDescription = "검색 아이콘",
+        modifier = modifier,
+        colorFilter = if (tint != Color.Unspecified) ColorFilter.tint(tint) else null
+    )
+}
+
+@Composable
 fun CurrentLocationIcon(
     modifier: Modifier = Modifier,
     tint: Color = Color.Unspecified
