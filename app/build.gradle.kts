@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:ui"))
     implementation(project(":feature:main"))
+    implementation(project(":feature:setting"))
 
     implementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext)

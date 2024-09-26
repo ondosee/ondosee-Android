@@ -7,6 +7,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.ohnalmwo.main.navigation.mainScreen
 import com.ohnalmwo.model.enum.Route
+import com.ohnalmwo.setting.navigation.navigateToSettingAlarm
+import com.ohnalmwo.setting.navigation.navigateToSettingFont
+import com.ohnalmwo.setting.navigation.navigateToSettingTheme
+import com.ohnalmwo.setting.navigation.settingAlarmScreen
+import com.ohnalmwo.setting.navigation.settingFontScreen
+import com.ohnalmwo.setting.navigation.settingScreen
+import com.ohnalmwo.setting.navigation.settingThemeScreen
 import dev.chrisbanes.haze.HazeState
 
 @Composable
@@ -23,10 +30,26 @@ fun OndoseeNavHost(
         mainScreen(
             hazeState = hazeState,
         )
-        composable<Route.Weekly> {
 
-        }
-        composable<Route.Setting> {
+        settingScreen(
+            hazeState = hazeState,
+            onThemeClick = navController::navigateToSettingTheme,
+            onFontClick = navController::navigateToSettingFont,
+            onAlarmClick = navController::navigateToSettingAlarm
+        )
+
+        settingThemeScreen(
+            onBackClick = navController::popBackStack
+        )
+
+        settingFontScreen(
+            onBackClick = navController::popBackStack
+        )
+
+        settingAlarmScreen(
+            onBackClick = navController::popBackStack
+        )
+        composable<Route.Weekly> {
 
         }
     }

@@ -32,17 +32,21 @@ fun OndoseeButton(
             width = 1.dp,
             color = when (state) {
                 ButtonState.Normal -> colors.WHITE.copy(.05f)
-                ButtonState.Transparent -> Color.Transparent
+                else -> Color.Transparent
             }
         ),
         colors = ButtonDefaults.buttonColors(
             containerColor = when (state) {
                 ButtonState.Normal -> colors.WHITE.copy(.2f)
                 ButtonState.Transparent -> Color.Transparent
+                ButtonState.Primary -> colors.PRIMARY
+                ButtonState.NormalDark -> colors.THEME_BLACK.copy(.25f)
             },
             contentColor = when (state) {
                 ButtonState.Normal -> colors.WHITE
                 ButtonState.Transparent -> colors.SECONDARY
+                ButtonState.Primary -> colors.WHITE
+                ButtonState.NormalDark -> colors.THEME_BLACK.copy(.5f)
             }
         ),
         onClick = onClick
@@ -50,7 +54,8 @@ fun OndoseeButton(
         Text(
             text = text,
             style = style,
-            fontWeight = fontWeight
+            fontWeight = fontWeight,
+            color = colors.WHITE
         )
     }
 }

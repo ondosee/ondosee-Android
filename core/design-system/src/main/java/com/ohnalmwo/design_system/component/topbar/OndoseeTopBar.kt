@@ -1,6 +1,5 @@
 package com.ohnalmwo.design_system.component.topbar
 
-import android.util.Log
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

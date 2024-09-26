@@ -63,7 +63,7 @@ fun ShadowedText(
             fontSize = 80.sp,
             fontFamily = freesentation,
             fontWeight = FontWeight.Black,
-            color = colors.BLACK.copy(.1f),
+            color = colors.THEME_BLACK.copy(.1f),
             letterSpacing = 1.2.sp,
         ),
         modifier = modifier.offset(0.dp, 5.dp)

@@ -4,6 +4,7 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,6 +43,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
+import com.ohnalmwo.model.enum.Route
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeStyle
 import dev.chrisbanes.haze.hazeChild
@@ -57,6 +62,14 @@ fun BottomNavigationBar(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
+    val route = navController.currentDestination?.route?.substringAfterLast('.')
+    val isSetting = route != Route.Setting.toString()
+
+    @Composable
+    fun isSettingColor(alpha: Float): Color {
+        return if(isSetting) colors.WHITE.copy(alpha = alpha) else colors.THEME_BLACK.copy(alpha = alpha)
+    }
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -65,7 +78,7 @@ fun BottomNavigationBar(
                 state = hazeState,
                 shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
                 style = HazeStyle(
-                    tint = colors.WHITE.copy(.2f),
+                    tint = isSettingColor(.25f),
                     blurRadius = 10.dp
                 )
             )
@@ -73,8 +86,8 @@ fun BottomNavigationBar(
                 width = Dp.Hairline,
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        colors.WHITE.copy(alpha = .8f),
-                        colors.WHITE.copy(alpha = .2f),
+                        isSettingColor(.8f),
+                        isSettingColor(.25f),
                     ),
                 ),
                 shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
@@ -124,12 +137,14 @@ fun BottomNavigationBar(
                 ) {
                     Image(
                         painter = painterResource(id = bottomBarItem.icon),
+                        colorFilter = ColorFilter.tint(color = isSettingColor(1f)),
                         contentDescription = "Navigation Icon"
                     )
                     Text(
                         text = bottomBarItem.title,
                         style = typography.textSmall,
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.Medium,
+                        color = isSettingColor(1f)
                     )
                 }
             }
