@@ -32,20 +32,24 @@ fun OndoseeNavHost(
         )
 
         settingScreen(
+            hazeState = hazeState,
             onThemeClick = navController::navigateToSettingTheme,
             onFontClick = navController::navigateToSettingFont,
             onAlarmClick = navController::navigateToSettingAlarm
         )
 
         settingThemeScreen(
+            hazeState = hazeState,
             onBackClick = navController::popBackStack
         )
 
         settingFontScreen(
+            hazeState = hazeState,
             onBackClick = navController::popBackStack
         )
 
         settingAlarmScreen(
+            hazeState = hazeState,
             onBackClick = navController::popBackStack
         )
         composable<Route.Weekly> {

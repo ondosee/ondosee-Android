@@ -16,10 +16,13 @@ import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.setting.component.SettingSelectComponent
 import com.ohnalmwo.setting.component.SettingTitle
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.haze
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun SettingFontScreen(
+    hazeState: HazeState,
     onBackClick: () -> Unit
 ) {
     var selectedIndex by remember { mutableIntStateOf(0) }
@@ -28,6 +31,7 @@ fun SettingFontScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colors.BACKGROUND)
+            .haze(state = hazeState)
             .statusBarsPadding()
     ) {
         OndoseeBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }

@@ -18,9 +18,12 @@ import com.ohnalmwo.setting.component.SettingButton
 import com.ohnalmwo.setting.component.SettingButtonType
 import com.ohnalmwo.setting.component.SettingOptionTitle
 import com.ohnalmwo.setting.component.SettingTitle
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.haze
 
 @Composable
 fun SettingScreen(
+    hazeState: HazeState,
     onThemeClick: () -> Unit,
     onFontClick: () -> Unit,
     onAlarmClick: () -> Unit
@@ -29,6 +32,7 @@ fun SettingScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colors.BACKGROUND)
+            .haze(hazeState)
             .statusBarsPadding()
     ) {
         SettingTitle(
@@ -60,15 +64,4 @@ fun SettingScreen(
             buttonType = SettingButtonType.ClearAll
         ) {}
     }
-}
-
-
-@PreviewLightDark
-@Composable
-fun SettingScreenPrev() {
-    SettingScreen(
-        onThemeClick = {},
-        onFontClick = {},
-        onAlarmClick = {}
-    )
 }
