@@ -21,6 +21,7 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":feature:main"))
     implementation(project(":feature:location"))
+    implementation(project(":feature:setting"))
 
     implementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext)

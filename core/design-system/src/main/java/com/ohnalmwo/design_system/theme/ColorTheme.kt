@@ -34,6 +34,9 @@ abstract class ColorTheme {
     abstract val TOO_BAD: Color
     abstract val WORST: Color
 
+    abstract val THEME_BLACK: Color
+    abstract val THEME_WHITE: Color
+
     abstract val BLACK: Color
     abstract val WHITE: Color
 
