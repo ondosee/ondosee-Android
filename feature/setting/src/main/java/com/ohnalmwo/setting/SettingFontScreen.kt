@@ -32,7 +32,7 @@ fun SettingFontScreen(
             .background(color = colors.BACKGROUND)
             .statusBarsPadding()
     ) {
-        OndoseeBackButton(modifier = Modifier.padding(top = 24.dp)) { onBackClick() }
+        OndoseeBackButton(modifier = Modifier.padding(top = 16.dp)) { onBackClick() }
         SettingTitle(modifier = Modifier.padding(top = 24.dp), title = "테마 설정")
         SettingSelectComponent(
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 24.dp),

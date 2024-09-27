@@ -50,7 +50,7 @@ fun SettingAlarmScreen(
             .statusBarsPadding(),
     ) {
         OndoseeBackButton(
-            modifier = Modifier.padding(top = 24.dp)
+            modifier = Modifier.padding(top = 16.dp)
         ) { onBackClick() }
         SettingTitle(
             modifier = Modifier.padding(top = 24.dp),
