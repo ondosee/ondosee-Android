@@ -19,9 +19,9 @@ import dev.chrisbanes.haze.haze
 @Composable
 fun SettingScreen(
     hazeState: HazeState,
-    onThemeClick: () -> Unit,
-    onFontClick: () -> Unit,
-    onAlarmClick: () -> Unit
+    navigateToSettingTheme: () -> Unit,
+    navigateToSettingFont: () -> Unit,
+    navigateToSettingAlarm: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -41,11 +41,11 @@ fun SettingScreen(
         SettingButton(
             modifier = Modifier.padding(top = 24.dp),
             buttonType = SettingButtonType.Theme
-        ) { onThemeClick() }
+        ) { navigateToSettingTheme() }
         SettingButton(
             modifier = Modifier.padding(top = 32.dp),
             buttonType = SettingButtonType.Font
-        ) { onFontClick() }
+        ) { navigateToSettingFont() }
         SettingOptionTitle(
             modifier = Modifier.padding(top = 56.dp),
             optionName = "개인정보 설정"
@@ -53,7 +53,7 @@ fun SettingScreen(
         SettingButton(
             modifier = Modifier.padding(top = 24.dp),
             buttonType = SettingButtonType.Alarm
-        ) { onAlarmClick() }
+        ) { navigateToSettingAlarm() }
         SettingButton(
             modifier = Modifier.padding(top = 32.dp),
             buttonType = SettingButtonType.ClearAll

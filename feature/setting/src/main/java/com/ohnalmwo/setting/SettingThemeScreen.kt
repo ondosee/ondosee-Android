@@ -21,7 +21,7 @@ import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun SettingThemeScreen(
-    onBackClick: () -> Unit
+    navigateToBack: () -> Unit
 ) {
     var selectedIndex by remember { mutableIntStateOf(0) }
 
@@ -33,7 +33,7 @@ fun SettingThemeScreen(
     ) {
         OndoseeBackButton(
             modifier = Modifier.padding(top = 16.dp)
-        ) { onBackClick() }
+        ) { navigateToBack() }
         SettingTitle(
             modifier = Modifier.padding(top = 16.dp),
             title = "테마 설정"

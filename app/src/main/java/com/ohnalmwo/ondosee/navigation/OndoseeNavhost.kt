@@ -38,18 +38,18 @@ fun OndoseeNavHost(
         }
         settingScreen(
             hazeState = hazeState,
-            onThemeClick = navController::navigateToSettingTheme,
-            onFontClick = navController::navigateToSettingFont,
-            onAlarmClick = navController::navigateToSettingAlarm
+            navigateToSettingTheme = navController::navigateToSettingTheme,
+            navigateToSettingFont = navController::navigateToSettingFont,
+            navigateToSettingAlarm = navController::navigateToSettingAlarm
         )
         settingThemeScreen(
-            onBackClick = navController::popBackStack
+            navigateToBack = navController::popBackStack
         )
         settingFontScreen(
-            onBackClick = navController::popBackStack
+            navigateToBack = navController::popBackStack
         )
         settingAlarmScreen(
-            onBackClick = navController::popBackStack
+            navigateToBack = navController::popBackStack
         )
     }
 }
