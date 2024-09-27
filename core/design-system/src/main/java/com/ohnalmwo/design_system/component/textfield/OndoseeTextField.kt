@@ -62,14 +62,14 @@ fun SearchTextField(
                     text = placeHolder,
                     style = typography.textLarge,
                     fontWeight = FontWeight.Medium,
-                    color = colors.SECONDARY
+                    color = colors.WHITE.copy(.75f)
                 )
             },
             modifier = modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester)
                 .clip(RoundedCornerShape(16.dp))
-                .background(colors.WHITE.copy(.2f))
+                .background(colors.THEME_BLACK.copy(.2f))
                 .onFocusChanged {
                     isFocused.value = it.isFocused
                 },

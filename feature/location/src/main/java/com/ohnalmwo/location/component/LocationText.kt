@@ -16,7 +16,7 @@ fun LocationText(
         text = text,
         style = typography.titleMedium,
         fontWeight = FontWeight.Bold,
-        color = colors.WHITE,
+        color = colors.THEME_BLACK,
         modifier = modifier
     )
 }

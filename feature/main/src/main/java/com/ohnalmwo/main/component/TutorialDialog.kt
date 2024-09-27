@@ -157,7 +157,7 @@ private fun DescriptionText(text: String) {
             fontFamily = freesentation,
         ),
         fontWeight = FontWeight.Medium,
-        color = colors.TERTIARY,
+        color = colors.WHITE.copy(.5f),
         modifier = Modifier.padding(bottom = 40.dp)
     )
 }
@@ -222,7 +222,7 @@ private fun TimePickerSection(
             items = (1..12).toList(),
             initialItem = hour,
             textStyle = typography.titleLarge,
-            textColor = colors.TERTIARY.copy(.2f),
+            textColor = colors.WHITE.copy(.2f),
             selectedTextColor = colors.WHITE,
             onItemSelected = { _, item -> onHourChange(item) }
         )
@@ -232,7 +232,7 @@ private fun TimePickerSection(
             items = (0..59).map { "%02d".format(it) },
             initialItem = "%02d".format(minute),
             textStyle = typography.titleLarge,
-            textColor = colors.TERTIARY.copy(.2f),
+            textColor = colors.WHITE.copy(.2f),
             selectedTextColor = colors.WHITE,
             onItemSelected = { _, item -> onMinuteChange(item.toInt()) }
         )
@@ -242,7 +242,7 @@ private fun TimePickerSection(
             items = listOf("AM", "PM"),
             initialItem = amPm,
             textStyle = typography.titleLarge,
-            textColor = colors.TERTIARY.copy(.2f),
+            textColor = colors.WHITE.copy(.2f),
             selectedTextColor = colors.WHITE,
             numberOfDisplayedItems = 3,
             onItemSelected = { _, item -> onAmPmChange(item) }

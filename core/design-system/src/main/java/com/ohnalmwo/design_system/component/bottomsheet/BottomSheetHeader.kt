@@ -32,11 +32,11 @@ fun BottomSheetHeader(
             text = title,
             style = typography.titleSmall,
             fontWeight = FontWeight.SemiBold,
-            color = colors.WHITE
+            color = colors.THEME_BLACK
         )
         IconButton(onClick = closeSheet) {
             CloseIcon(
-                tint = colors.WHITE
+                tint = colors.THEME_BLACK
             )
         }
     }

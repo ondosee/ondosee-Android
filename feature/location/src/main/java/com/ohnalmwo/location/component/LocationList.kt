@@ -44,7 +44,7 @@ fun LocationList(
             }
             HorizontalDivider(
                 modifier = Modifier.fillMaxWidth(),
-                color = colors.WHITE.copy(.15f)
+                color = colors.THEME_BLACK.copy(.15f)
             )
         }
     }

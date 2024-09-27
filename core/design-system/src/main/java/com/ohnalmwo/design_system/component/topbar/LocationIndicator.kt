@@ -44,7 +44,7 @@ fun LocationDot(
     isSelected: Boolean,
     isFirstDot: Boolean
 ) {
-    val color = if (isSelected) colors.PRIMARY else colors.SECONDARY
+    val color = if (isSelected) colors.PRIMARY else colors.WHITE.copy(.75f)
 
     Box(
         modifier = modifier,

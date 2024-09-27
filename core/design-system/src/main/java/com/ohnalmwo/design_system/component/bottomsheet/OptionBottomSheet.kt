@@ -34,7 +34,7 @@ fun OptionBottomSheet(
         onDismissRequest = closeSheet,
         sheetState = sheetState,
         shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
-        containerColor = colors.WORST
+        containerColor = colors.BACKGROUND
     ) {
         Column(
             modifier = modifier
@@ -85,7 +85,7 @@ fun OptionBottomSheetComponent(
         Text(
             text = text,
             style = typography.textMedium,
-            color = colors.WHITE,
+            color = colors.THEME_BLACK,
             fontWeight = FontWeight.SemiBold
         )
     }

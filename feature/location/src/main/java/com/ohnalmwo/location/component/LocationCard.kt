@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.ohnalmwo.design_system.component.lottie.AnimatedLottie
 import com.ohnalmwo.design_system.icons.CurrentLocationIcon
 import com.ohnalmwo.design_system.icons.HamburgerIcon
+import com.ohnalmwo.design_system.icons.SettingDunghillIcon
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 import com.ohnalmwo.model.enum.BackgroundType
@@ -63,7 +64,7 @@ fun LocationCard(
                         text = significant,
                         style = typography.textLarge,
                         fontWeight = FontWeight.Medium,
-                        color = colors.SECONDARY
+                        color = colors.WHITE.copy(.75f)
                     )
                 }
                 if (isCurrentLocation) {
@@ -99,7 +100,7 @@ fun LocationCard(
                     text = significant,
                     style = typography.textLarge,
                     fontWeight = FontWeight.Medium,
-                    color = colors.SECONDARY
+                    color = colors.WHITE.copy(.75f)
                 )
             }
         }
@@ -139,7 +140,7 @@ fun EditableLocationCard(
                 .padding(horizontal = 8.dp),
             contentAlignment = Alignment.Center
         ) {
-            HamburgerIcon(tint = colors.WHITE)
+            SettingDunghillIcon(tint = colors.WHITE)
         }
     }
 }
