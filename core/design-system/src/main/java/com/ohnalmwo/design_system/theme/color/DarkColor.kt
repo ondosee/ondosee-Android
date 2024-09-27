@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 import com.goms.design_system.theme.ColorTheme
 
 object DarkColor : ColorTheme() {
-    override val PRIMARY = Color(0xFF0095FF)
+    override val PRIMARY = Color(0xFF00BFFF)
     override val WARNING = Color(0xFFFF3333)
     override val ABLE = Color(0xFF26D926)
     override val DISABLE = Color(0xFFCCCCCC)
