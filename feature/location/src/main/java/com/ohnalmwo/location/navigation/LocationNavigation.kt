@@ -15,12 +15,14 @@ fun NavController.navigateToLocation(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.locationScreen(
     navigateToLocationManagement: () -> Unit,
-    navigateToAddLocation: () -> Unit
+    navigateToAddLocation: () -> Unit,
+    navigateToBack: () -> Unit
 ) {
     composable<Route.Location> {
         LocationScreen(
             navigateToLocationManagement = navigateToLocationManagement,
-            navigateToAddLocation = navigateToAddLocation
+            navigateToAddLocation = navigateToAddLocation,
+            navigateToBack = navigateToBack
         )
     }
 }
@@ -29,9 +31,11 @@ fun NavController.navigateToLocationManagement(navOptions: NavOptions? = null) {
     this.navigate(Route.LocationManagement, navOptions)
 }
 
-fun NavGraphBuilder.locationManagementScreen() {
+fun NavGraphBuilder.locationManagementScreen(
+    navigateToBack: () -> Unit
+) {
     composable<Route.LocationManagement> {
-        LocationManagementScreen()
+        LocationManagementScreen(navigateToBack = navigateToBack)
     }
 }
 
@@ -39,8 +43,10 @@ fun NavController.navigateToAddLocation(navOptions: NavOptions? = null) {
     this.navigate(Route.AddLocation, navOptions)
 }
 
-fun NavGraphBuilder.addLocationScreen() {
+fun NavGraphBuilder.addLocationScreen(
+    navigateToBack: () -> Unit
+) {
     composable<Route.AddLocation> {
-        AddLocationScreen()
+        AddLocationScreen(navigateToBack = navigateToBack)
     }
 }

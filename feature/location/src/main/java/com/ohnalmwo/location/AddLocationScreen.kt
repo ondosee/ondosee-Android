@@ -14,13 +14,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.design_system.component.textfield.SearchTextField
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.location.component.LocationList
 import com.ohnalmwo.location.component.LocationText
 
 @Composable
-fun AddLocationScreen() {
+fun AddLocationScreen(
+    navigateToBack: () -> Unit
+) {
     var location by remember { mutableStateOf("") }
 
     Column(
@@ -28,20 +31,28 @@ fun AddLocationScreen() {
             .fillMaxSize()
             .background(color = colors.BACKGROUND)
             .statusBarsPadding()
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp),
+            .padding(top = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        LocationText(text = "위치 추가하기")
-        SearchTextField(
-            placeHolder = "도시 또는 공항 검색",
-            setText = location,
-            singleLine = true
-        ) {
-            location = it
+        OndoseeBackButton {
+            navigateToBack()
         }
-        LocationList(
-            searchQuery = location,
-            locations = listOf("경기도 광주시", "광주광역시 동구", "광주광역시 남구", "광주광역시 광산구", "광주광역시 북구")
-        ) {}
+        Column(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+        ) {
+            LocationText(text = "위치 추가하기")
+            SearchTextField(
+                modifier = Modifier.padding(top = 16.dp),
+                placeHolder = "도시 또는 공항 검색",
+                setText = location,
+                singleLine = true
+            ) {
+                location = it
+            }
+            LocationList(
+                searchQuery = location,
+                locations = listOf("경기도 광주시", "광주광역시 동구", "광주광역시 남구", "광주광역시 광산구", "광주광역시 북구")
+            ) {}
+        }
     }
 }

@@ -5,14 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.ohnalmwo.location.navigation.addLocationScreen
-import com.ohnalmwo.location.navigation.locationManagementScreen
-import com.ohnalmwo.location.navigation.locationScreen
-import com.ohnalmwo.location.navigation.navigateToAddLocation
-import com.ohnalmwo.location.navigation.navigateToLocation
-import com.ohnalmwo.location.navigation.navigateToLocationManagement
+import com.ohnalmwo.location.navigation.*
 import com.ohnalmwo.main.navigation.mainScreen
 import com.ohnalmwo.model.enum.Route
+import com.ohnalmwo.setting.navigation.*
 import dev.chrisbanes.haze.HazeState
 
 @Composable
@@ -32,15 +28,28 @@ fun OndoseeNavHost(
         )
         locationScreen(
             navigateToLocationManagement = navController::navigateToLocationManagement,
-            navigateToAddLocation = navController::navigateToAddLocation
+            navigateToAddLocation = navController::navigateToAddLocation,
+            navigateToBack = navController::popBackStack
         )
-        locationManagementScreen()
-        addLocationScreen()
+        locationManagementScreen(navigateToBack = navController::popBackStack)
+        addLocationScreen(navigateToBack = navController::popBackStack)
         composable<Route.Weekly> {
 
         }
-        composable<Route.Setting> {
-
-        }
+        settingScreen(
+            hazeState = hazeState,
+            onThemeClick = navController::navigateToSettingTheme,
+            onFontClick = navController::navigateToSettingFont,
+            onAlarmClick = navController::navigateToSettingAlarm
+        )
+        settingThemeScreen(
+            onBackClick = navController::popBackStack
+        )
+        settingFontScreen(
+            onBackClick = navController::popBackStack
+        )
+        settingAlarmScreen(
+            onBackClick = navController::popBackStack
+        )
     }
 }
