@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:ui"))
     implementation(project(":feature:main"))
+    implementation(project(":feature:location"))
     implementation(project(":feature:setting"))
 
     implementation(libs.junit)

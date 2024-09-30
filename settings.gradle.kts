@@ -30,4 +30,5 @@ include(":core:design-system")
 
 include(":feature")
 include(":feature:main")
+include(":feature:location")
 include(":feature:setting")

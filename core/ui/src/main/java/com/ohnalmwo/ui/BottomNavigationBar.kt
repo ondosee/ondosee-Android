@@ -4,7 +4,6 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +18,6 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -104,7 +102,7 @@ fun BottomNavigationBar(
             } == true
 
             CompositionLocalProvider(
-                LocalContentColor provides if (isSelected) colors.WHITE else colors.WHITE.copy(.5f)
+                LocalContentColor provides if (isSelected) colors.WHITE else colors.TERTIARY
             ) {
                 val alpha by animateFloatAsState(
                     targetValue = if (isSelected) 1f else .35f,

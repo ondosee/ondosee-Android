@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -18,13 +17,11 @@ import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.setting.component.SettingOptionTitle
 import com.ohnalmwo.setting.component.SettingSelectComponent
 import com.ohnalmwo.setting.component.SettingTitle
-import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.haze
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun SettingThemeScreen(
-    onBackClick: () -> Unit
+    navigateToBack: () -> Unit
 ) {
     var selectedIndex by remember { mutableIntStateOf(0) }
 
@@ -35,8 +32,8 @@ fun SettingThemeScreen(
             .statusBarsPadding()
     ) {
         OndoseeBackButton(
-            modifier = Modifier.padding(top = 24.dp)
-        ) { onBackClick() }
+            modifier = Modifier.padding(top = 16.dp)
+        ) { navigateToBack() }
         SettingTitle(
             modifier = Modifier.padding(top = 16.dp),
             title = "테마 설정"

@@ -35,7 +35,7 @@ fun WeatherForecastCard(
             text = "시간 별 일기예보",
             style = typography.textSmall,
             fontWeight = FontWeight.Bold,
-            color = colors.SECONDARY
+            color = colors.WHITE.copy(.75f)
         )
         Text(
             text = description,
@@ -70,14 +70,14 @@ fun WeatherForecastCardItem(
             text = time,
             style = typography.caption,
             fontWeight = FontWeight.Bold,
-            color = colors.SECONDARY
+            color = colors.WHITE.copy(.75f)
         )
         CloudIcon()
         Text(
             text = content,
             style = typography.caption,
             fontWeight = FontWeight.Medium,
-            color = colors.SECONDARY
+            color = colors.WHITE.copy(.75f)
         )
     }
 }

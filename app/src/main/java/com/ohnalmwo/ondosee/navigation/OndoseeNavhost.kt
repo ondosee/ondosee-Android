@@ -5,15 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.ohnalmwo.location.navigation.*
 import com.ohnalmwo.main.navigation.mainScreen
 import com.ohnalmwo.model.enum.Route
-import com.ohnalmwo.setting.navigation.navigateToSettingAlarm
-import com.ohnalmwo.setting.navigation.navigateToSettingFont
-import com.ohnalmwo.setting.navigation.navigateToSettingTheme
-import com.ohnalmwo.setting.navigation.settingAlarmScreen
-import com.ohnalmwo.setting.navigation.settingFontScreen
-import com.ohnalmwo.setting.navigation.settingScreen
-import com.ohnalmwo.setting.navigation.settingThemeScreen
+import com.ohnalmwo.setting.navigation.*
 import dev.chrisbanes.haze.HazeState
 
 @Composable
@@ -29,28 +24,32 @@ fun OndoseeNavHost(
     ) {
         mainScreen(
             hazeState = hazeState,
+            navigateToLocation = navController::navigateToLocation
         )
-
-        settingScreen(
-            hazeState = hazeState,
-            onThemeClick = navController::navigateToSettingTheme,
-            onFontClick = navController::navigateToSettingFont,
-            onAlarmClick = navController::navigateToSettingAlarm
+        locationScreen(
+            navigateToLocationManagement = navController::navigateToLocationManagement,
+            navigateToAddLocation = navController::navigateToAddLocation,
+            navigateToBack = navController::popBackStack
         )
-
-        settingThemeScreen(
-            onBackClick = navController::popBackStack
-        )
-
-        settingFontScreen(
-            onBackClick = navController::popBackStack
-        )
-
-        settingAlarmScreen(
-            onBackClick = navController::popBackStack
-        )
+        locationManagementScreen(navigateToBack = navController::popBackStack)
+        addLocationScreen(navigateToBack = navController::popBackStack)
         composable<Route.Weekly> {
 
         }
+        settingScreen(
+            hazeState = hazeState,
+            navigateToSettingTheme = navController::navigateToSettingTheme,
+            navigateToSettingFont = navController::navigateToSettingFont,
+            navigateToSettingAlarm = navController::navigateToSettingAlarm
+        )
+        settingThemeScreen(
+            navigateToBack = navController::popBackStack
+        )
+        settingFontScreen(
+            navigateToBack = navController::popBackStack
+        )
+        settingAlarmScreen(
+            navigateToBack = navController::popBackStack
+        )
     }
 }

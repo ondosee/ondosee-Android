@@ -14,10 +14,12 @@ fun NavController.navigateToMain(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.mainScreen(
     hazeState: HazeState,
+    navigateToLocation: () -> Unit
 ) {
     composable<Route.Main> {
         MainScreen(
             hazeState = hazeState,
+            navigateToLocation = navigateToLocation
         )
     }
 }

@@ -35,6 +35,7 @@ import dev.chrisbanes.haze.haze
 @Composable
 fun MainScreen(
     hazeState: HazeState,
+    navigateToLocation: () -> Unit
 ) {
     val context = LocalContext.current
     val motionScene = remember {
@@ -56,8 +57,8 @@ fun MainScreen(
             .haze(state = hazeState)
             .statusBarsPadding()
     ) {
-        OndoseeTopBar {
-            MenuIcon()
+        OndoseeTopBar(content = { MenuIcon() }) {
+           navigateToLocation()
         }
         MotionLayout(
             modifier = Modifier.fillMaxWidth(),

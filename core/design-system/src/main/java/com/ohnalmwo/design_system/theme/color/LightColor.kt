@@ -4,12 +4,12 @@ import androidx.compose.ui.graphics.Color
 import com.goms.design_system.theme.ColorTheme
 
 object LightColor : ColorTheme() {
-    override val PRIMARY = Color(0xFF00BFFF)
+    override val PRIMARY = Color(0xFF0095FF)
     override val WARNING = Color(0xFFFF3333)
     override val ABLE = Color(0xFF26D926)
     override val DISABLE = Color(0xFFCCCCCC)
-    override val SECONDARY = Color(0xBFFFFFFF)
-    override val TERTIARY = Color(0x80FFFFFF)
+    override val SECONDARY = Color(0xBF000000)
+    override val TERTIARY = Color(0x80000000)
 
     override val BACKGROUND_RAIN: List<Color> = listOf(Color(0xFF7C8FA9), Color(0xFF2A3441))
     override val BACKGROUND_SNOW: List<Color> = listOf(Color(0xFFA6C5F1), Color(0xFF72ABF6))

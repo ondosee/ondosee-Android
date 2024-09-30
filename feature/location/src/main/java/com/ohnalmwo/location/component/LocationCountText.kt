@@ -1,4 +1,4 @@
-package com.ohnalmwo.main.component
+package com.ohnalmwo.location.component
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -8,15 +8,15 @@ import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 
 @Composable
-fun WeatherConditionDescriptionText(
+fun LocationCountText(
     modifier: Modifier = Modifier,
-    text: String,
+    size: Int
 ) {
     Text(
-        text = text,
+        text = "$size/5",
         style = typography.textLarge,
-        fontWeight = FontWeight.Medium,
-        color = colors.WHITE.copy(.75f),
+        fontWeight = FontWeight.Bold,
+        color = colors.TERTIARY,
         modifier = modifier
     )
 }

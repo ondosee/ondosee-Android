@@ -29,12 +29,10 @@ import com.ohnalmwo.setting.component.SettingAlarmTimeButton
 import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.setting.component.SettingSwitchButton
 import com.ohnalmwo.setting.component.SettingTitle
-import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.haze
 
 @Composable
 fun SettingAlarmScreen(
-    onBackClick: () -> Unit
+    navigateToBack: () -> Unit
 ) {
     var isAlarmOn by remember { mutableStateOf(true) }
 
@@ -50,8 +48,8 @@ fun SettingAlarmScreen(
             .statusBarsPadding(),
     ) {
         OndoseeBackButton(
-            modifier = Modifier.padding(top = 24.dp)
-        ) { onBackClick() }
+            modifier = Modifier.padding(top = 16.dp)
+        ) { navigateToBack() }
         SettingTitle(
             modifier = Modifier.padding(top = 24.dp),
             title = "푸시 알림 설정"
