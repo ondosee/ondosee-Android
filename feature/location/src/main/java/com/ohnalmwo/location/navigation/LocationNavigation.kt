@@ -28,25 +28,25 @@ fun NavGraphBuilder.locationScreen(
 }
 
 fun NavController.navigateToLocationManagement(navOptions: NavOptions? = null) {
-    this.navigate(Route.LocationManagement, navOptions)
+    this.navigate(Route.Location.LocationManagement, navOptions)
 }
 
 fun NavGraphBuilder.locationManagementScreen(
     navigateToBack: () -> Unit
 ) {
-    composable<Route.LocationManagement> {
+    composable<Route.Location.LocationManagement> {
         LocationManagementScreen(navigateToBack = navigateToBack)
     }
 }
 
 fun NavController.navigateToAddLocation(navOptions: NavOptions? = null) {
-    this.navigate(Route.AddLocation, navOptions)
+    this.navigate(Route.Location.AddLocation, navOptions)
 }
 
 fun NavGraphBuilder.addLocationScreen(
     navigateToBack: () -> Unit
 ) {
-    composable<Route.AddLocation> {
+    composable<Route.Location.AddLocation> {
         AddLocationScreen(navigateToBack = navigateToBack)
     }
 }
