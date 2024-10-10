@@ -27,14 +27,14 @@ abstract class BaseViewModel<State : Reducer.ViewState, Event : Reducer.ViewEven
     private val _effects = Channel<Effect>(capacity = Channel.CONFLATED)
     val effect = _effects.receiveAsFlow()
 
-    fun setEvent(event: Event) {
+    fun sendEvent(event: Event) {
         val (newState, effect) = reducer.reduce(state.value, event)
         _state.value = newState
 
-        effect?.let { setEffect(it) }
+        effect?.let { sendEffect(it) }
     }
 
-    fun setEffect(effect: Effect) {
+    fun sendEffect(effect: Effect) {
         _effects.trySend(effect)
     }
 }
