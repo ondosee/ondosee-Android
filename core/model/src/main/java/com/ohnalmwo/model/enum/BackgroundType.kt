@@ -1,5 +1,8 @@
 package com.ohnalmwo.model.enum
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 enum class BackgroundType {
     RAIN,
     SNOW,

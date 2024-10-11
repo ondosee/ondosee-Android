@@ -1,5 +1,8 @@
 package com.ohnalmwo.model.enum
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 enum class Significant {
     HEAT_WAVE, // 폭염
     COLD_WAVE, // 한파
