@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,6 +19,8 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.constraintlayout.compose.ExperimentalMotionApi
 import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ohnalmwo.design_system.component.lottie.AnimatedLottie
 import com.ohnalmwo.design_system.component.topbar.OndoseeTopBar
 import com.ohnalmwo.design_system.icons.MenuIcon
@@ -26,10 +29,44 @@ import com.ohnalmwo.main.component.TutorialDialog
 import com.ohnalmwo.main.component.WeatherConditionDescriptionText
 import com.ohnalmwo.main.component.WeatherConditionText
 import com.ohnalmwo.main.component.WeatherForecastCard
+import com.ohnalmwo.main.viewmodel.MainScreenReducer.*
+import com.ohnalmwo.main.viewmodel.MainViewModel
 import com.ohnalmwo.model.enum.BackgroundType
 import com.ohnalmwo.ui.getBackgroundColors
+import com.ohnalmwo.ui.rememberFlowWithLifecycle
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
+
+@Composable
+fun MainRoute(
+    hazeState: HazeState,
+    navigateToLocation: () -> Unit,
+    viewModel: MainViewModel = hiltViewModel()
+) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val effect = rememberFlowWithLifecycle(viewModel.effect)
+
+    LaunchedEffect(Unit) {
+        viewModel.getWeatherSignificant(x = 5.1, y = 4.2)
+    }
+
+    LaunchedEffect(effect) {
+        effect.collect { action ->
+            when (action) {
+                is MainEffect.NavigateToLocation -> navigateToLocation()
+            }
+        }
+    }
+
+    if (state.isLoading) {
+
+    } else {
+        MainScreen(
+            hazeState = hazeState,
+            navigateToLocation = { viewModel.sendEffect(MainEffect.NavigateToLocation) }
+        )
+    }
+}
 
 @OptIn(ExperimentalMotionApi::class)
 @Composable
