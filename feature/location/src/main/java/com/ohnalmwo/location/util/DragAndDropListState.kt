@@ -87,15 +87,8 @@ class DragAndDropListState(
 			val endOffset = it.offsetEnd + draggingDistance
 
 			return@let when {
-				draggingDistance > 0 -> {
-					(endOffset - lazyListState.layoutInfo.viewportEndOffset).takeIf { diff -> diff > 0 }
-
-				}
-
-				draggingDistance < 0 -> {
-					(startOffset - lazyListState.layoutInfo.viewportStartOffset).takeIf { diff -> diff < 0 }
-				}
-
+				draggingDistance > 0 -> (endOffset - lazyListState.layoutInfo.viewportEndOffset).takeIf { diff -> diff > 0 }
+				draggingDistance < 0 -> (startOffset - lazyListState.layoutInfo.viewportStartOffset).takeIf { diff -> diff < 0 }
 				else -> null
 			}
 		} ?: 0f
