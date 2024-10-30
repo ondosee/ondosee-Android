@@ -24,7 +24,7 @@ class MainScreenReducer : Reducer<MainScreenReducer.MainState, MainScreenReducer
         companion object {
             fun initial() = MainState(
                 isLoading = true,
-                significant = Weather(weathers = emptyList())
+                significant = Weather.default()
             )
         }
     }
@@ -33,7 +33,7 @@ class MainScreenReducer : Reducer<MainScreenReducer.MainState, MainScreenReducer
         previousState: MainState,
         event: MainEvent
     ): Pair<MainState, MainEffect?> =
-        when(event) {
+        when (event) {
             is MainEvent.GetWeatherSignificant -> {
                 previousState.copy(
                     isLoading = event.isLoading,
