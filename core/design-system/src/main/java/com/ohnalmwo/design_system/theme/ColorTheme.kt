@@ -12,6 +12,7 @@ abstract class ColorTheme {
     abstract val TERTIARY: Color
 
     //Background Colors
+    abstract val BACKGROUND_CLEAR: List<Color>
     abstract val BACKGROUND_RAIN: List<Color>
     abstract val BACKGROUND_SNOW: List<Color>
     abstract val BACKGROUND_THUNDER: List<Color>
