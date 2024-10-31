@@ -35,7 +35,7 @@ data class TimeZoneInfo(
 ) {
     companion object {
         fun default() = TimeZoneInfo(
-            time = LocalTime(0, 0),
+            time = LocalTime(0, 0, 0),
             value = ""
         )
     }
