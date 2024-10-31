@@ -12,6 +12,6 @@ class WeatherRepositoryImpl @Inject constructor(
     private val remoteWeatherDataSource: WeatherDataSource
 ) : WeatherRepository {
     override fun getWeatherSignificant(x: Double, y: Double): Flow<Weather> = flow {
-        remoteWeatherDataSource.getWeatherSignificant(x = x, y = y).toDomain()
+        emit(remoteWeatherDataSource.getWeatherSignificant(x = x, y = y).toDomain())
     }
 }
