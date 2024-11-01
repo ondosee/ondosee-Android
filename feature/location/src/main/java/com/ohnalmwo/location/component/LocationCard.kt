@@ -25,7 +25,7 @@ import com.ohnalmwo.design_system.icons.HamburgerIcon
 import com.ohnalmwo.design_system.icons.SettingDunghillIcon
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
-import com.ohnalmwo.model.enum.BackgroundType
+import com.ohnalmwo.model.enum.Significant
 import com.ohnalmwo.ui.getBackgroundColors
 
 @Composable
@@ -42,7 +42,7 @@ fun LocationCard(
             .clip(RoundedCornerShape(8.dp))
             .background(
                 brush = Brush.verticalGradient(
-                    colors = getBackgroundColors(type = BackgroundType.RAIN)
+                    colors = Significant.RAIN.getBackgroundColors()
                 )
             )
             .padding(16.dp),
