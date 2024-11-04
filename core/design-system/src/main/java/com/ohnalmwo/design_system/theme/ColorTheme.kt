@@ -22,6 +22,7 @@ abstract class ColorTheme {
     abstract val BACKGROUND_MISE_BAD: List<Color>
     abstract val BACKGROUND_HEAT_WAVE: List<Color>
     abstract val BACKGROUND_HEAVE_SNOW: List<Color>
+    abstract val BACKGROUND_LOADING: List<Color>
 
     //Component Colors
     abstract val RAIN: Color
