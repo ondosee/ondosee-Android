@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.ohnalmwo.main.MainScreen
+import com.ohnalmwo.main.MainRoute
 import com.ohnalmwo.model.enum.Route
 import dev.chrisbanes.haze.HazeState
 
@@ -17,7 +17,7 @@ fun NavGraphBuilder.mainScreen(
     navigateToLocation: () -> Unit
 ) {
     composable<Route.Main> {
-        MainScreen(
+        MainRoute(
             hazeState = hazeState,
             navigateToLocation = navigateToLocation
         )
