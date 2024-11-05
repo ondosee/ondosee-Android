@@ -27,7 +27,7 @@ import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
 
 @Composable
-fun LoadingMainComponent(
+fun LoadingComponent(
     modifier: Modifier = Modifier,
     hazeState: HazeState
 ) {
