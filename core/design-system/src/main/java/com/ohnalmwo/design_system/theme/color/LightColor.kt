@@ -21,6 +21,7 @@ object LightColor : ColorTheme() {
     override val BACKGROUND_MISE_BAD: List<Color> = listOf(Color(0xFFE0BD52), Color(0xFF806000))
     override val BACKGROUND_HEAT_WAVE: List<Color> = listOf(Color(0xFFF5883D), Color(0xFF993F00))
     override val BACKGROUND_HEAVE_SNOW: List<Color> = listOf(Color(0xFFA6C5F1), Color(0xFF72ABF6))
+    override val BACKGROUND_LOADING: List<Color> = listOf(Color(0xFF808080), Color(0xFF262626))
 
     override val RAIN = Color(0xFF33CCFF)
     override val SNOW = Color(0xFFFFFFFF)
