@@ -19,12 +19,13 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
+import com.ohnalmwo.model.LocationsInfo
 
 @Composable
 fun LocationList(
     modifier: Modifier = Modifier,
     searchQuery: String,
-    locations: List<String>,
+    locations: List<LocationsInfo>,
     onClick: (String) -> Unit
 ) {
     LazyColumn(
@@ -33,12 +34,12 @@ fun LocationList(
         items(
             items = locations,
             key = { data ->
-                data
+                data.title
             }
         ) {
             LocationListItem(
                 searchQuery = searchQuery,
-                location = it,
+                location = it.title,
             ) { location ->
                 onClick(location)
             }

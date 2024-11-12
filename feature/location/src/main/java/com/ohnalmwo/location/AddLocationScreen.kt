@@ -1,6 +1,5 @@
 package com.ohnalmwo.location
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,24 +7,55 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.design_system.component.textfield.SearchTextField
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.location.component.LocationList
 import com.ohnalmwo.location.component.LocationText
+import com.ohnalmwo.location.viewmodel.LocationScreenReducer.*
+import com.ohnalmwo.location.viewmodel.LocationViewModel
+import com.ohnalmwo.ui.rememberFlowWithLifecycle
+
+@Composable
+fun AddLocationRoute(
+    navigateToBack: () -> Unit,
+    viewModel: LocationViewModel = hiltViewModel()
+) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val effect = rememberFlowWithLifecycle(viewModel.effect)
+
+    val search by viewModel.search.collectAsStateWithLifecycle()
+
+    LaunchedEffect(effect) {
+        effect.collect { action ->
+            when (action) {
+                is LocationEffect.NavigateToBack -> navigateToBack()
+                else -> Unit
+            }
+        }
+    }
+
+    AddLocationScreen(
+        state = state,
+        search = search,
+        onSearchChange = viewModel::onSearchChange,
+        navigateToBack = { viewModel.sendEffect(LocationEffect.NavigateToBack) }
+    )
+}
 
 @Composable
 fun AddLocationScreen(
+    state: LocationState,
+    search: String,
+    onSearchChange: (String) -> Unit,
     navigateToBack: () -> Unit
 ) {
-    var location by remember { mutableStateOf("") }
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -44,14 +74,13 @@ fun AddLocationScreen(
             SearchTextField(
                 modifier = Modifier.padding(top = 16.dp),
                 placeHolder = "도시 또는 공항 검색",
-                setText = location,
-                singleLine = true
-            ) {
-                location = it
-            }
+                setText = search,
+                singleLine = true,
+                onValueChange = onSearchChange
+            )
             LocationList(
-                searchQuery = location,
-                locations = listOf("경기도 광주시", "광주광역시 동구", "광주광역시 남구", "광주광역시 광산구", "광주광역시 북구")
+                searchQuery = search,
+                locations = state.location.locations
             ) {}
         }
     }
