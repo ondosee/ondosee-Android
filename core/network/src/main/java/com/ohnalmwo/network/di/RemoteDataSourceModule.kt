@@ -1,5 +1,7 @@
 package com.ohnalmwo.network.di
 
+import com.ohnalmwo.network.datasource.location.LocationDataSource
+import com.ohnalmwo.network.datasource.location.LocationDataSourceImpl
 import com.ohnalmwo.network.datasource.weather.WeatherDataSource
 import com.ohnalmwo.network.datasource.weather.WeatherDataSourceImpl
 import dagger.Binds
@@ -16,4 +18,10 @@ abstract class RemoteDataSourceModule {
     abstract fun bindWeatherDataSource(
         weatherDataSourceImpl: WeatherDataSourceImpl
     ): WeatherDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindLocationDataSource(
+        locationDataSourceImpl: LocationDataSourceImpl
+    ): LocationDataSource
 }
