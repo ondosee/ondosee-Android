@@ -1,6 +1,8 @@
 package com.ohnalmwo.data.di
 
+import com.ohnalmwo.data.repository.LocationRepositoryImpl
 import com.ohnalmwo.data.repository.WeatherRepositoryImpl
+import com.ohnalmwo.domain.repository.LocationRepository
 import com.ohnalmwo.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
@@ -16,4 +18,10 @@ abstract class RepositoryModule {
     abstract fun bindWeatherRepository(
         weatherRepositoryImpl: WeatherRepositoryImpl
     ): WeatherRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindLocationRepository(
+        locationRepositoryImpl: LocationRepositoryImpl
+    ): LocationRepository
 }
