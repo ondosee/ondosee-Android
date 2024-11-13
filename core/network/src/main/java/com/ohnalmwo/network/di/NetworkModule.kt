@@ -2,6 +2,7 @@ package com.ohnalmwo.network.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.ohnalmwo.network.BuildConfig
+import com.ohnalmwo.network.api.LocationAPI
 import com.ohnalmwo.network.api.WeatherAPI
 import dagger.Module
 import dagger.Provides
@@ -63,4 +64,9 @@ object NetworkModule {
     @Singleton
     fun provideWeatherAPI(retrofit: Retrofit): WeatherAPI =
         retrofit.create(WeatherAPI::class.java)
+
+    @Provides
+    @Singleton
+    fun provideLocationAPI(retrofit: Retrofit): LocationAPI =
+        retrofit.create(LocationAPI::class.java)
 }
