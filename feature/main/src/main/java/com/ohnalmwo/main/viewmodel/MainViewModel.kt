@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.ohnalmwo.common.base.BaseViewModel
 import com.ohnalmwo.common.result.Result
 import com.ohnalmwo.common.result.asResult
-import com.ohnalmwo.domain.usecase.GetWeatherSignificantUseCase
+import com.ohnalmwo.domain.usecase.weather.GetWeatherSignificantUseCase
 import com.ohnalmwo.main.viewmodel.MainScreenReducer.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
