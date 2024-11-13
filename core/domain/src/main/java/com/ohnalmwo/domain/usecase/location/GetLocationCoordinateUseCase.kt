@@ -1,4 +1,4 @@
-package com.ohnalmwo.domain.usecase
+package com.ohnalmwo.domain.usecase.location
 
 import com.ohnalmwo.domain.repository.LocationRepository
 import com.ohnalmwo.model.Location
