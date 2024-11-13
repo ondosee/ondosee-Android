@@ -5,7 +5,7 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class Location(
     val page: PageInfo,
-    val locations: List<LocationsInfo>
+    val locations: List<LocationInfo>
 ) {
     companion object {
         fun default() = Location(
@@ -29,7 +29,7 @@ data class PageInfo(
 }
 
 @Immutable
-data class LocationsInfo(
+data class LocationInfo(
     val title: String,
     val x: String,
     val y: String,

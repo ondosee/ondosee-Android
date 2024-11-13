@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class LocationResponse(
     val page: PageInfoResponse,
-    val locations: List<LocationsInfoResponse>
+    val locations: List<LocationInfoResponse>
 )
 
 @Serializable
@@ -15,7 +15,7 @@ data class PageInfoResponse(
 )
 
 @Serializable
-data class LocationsInfoResponse(
+data class LocationInfoResponse(
     val title: String,
     val x: String,
     val y: String,
