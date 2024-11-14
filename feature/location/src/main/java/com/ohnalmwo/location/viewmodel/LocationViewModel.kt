@@ -1,13 +1,11 @@
 package com.ohnalmwo.location.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.ohnalmwo.common.base.BaseViewModel
 import com.ohnalmwo.common.result.Result
 import com.ohnalmwo.common.result.asResult
 import com.ohnalmwo.domain.usecase.location.GetLocationCoordinateUseCase
 import com.ohnalmwo.domain.usecase.location.GetSavedLocationsUseCase
-import com.ohnalmwo.domain.usecase.location.RemoveSavedLocationsUseCase
 import com.ohnalmwo.domain.usecase.location.SetSavedLocationsUseCase
 import com.ohnalmwo.location.viewmodel.LocationScreenReducer.*
 import com.ohnalmwo.model.LocationInfo
@@ -20,7 +18,6 @@ class LocationViewModel @Inject constructor(
     private val getLocationCoordinateUseCase: GetLocationCoordinateUseCase,
     private val getSavedLocationsUseCase: GetSavedLocationsUseCase,
     private val setSavedLocationsUseCase: SetSavedLocationsUseCase,
-    private val removeSavedLocationsUseCase: RemoveSavedLocationsUseCase,
 ) : BaseViewModel<LocationState, LocationEvent, LocationEffect>(
     initialState = LocationState.initial(),
     reducer = LocationScreenReducer()
