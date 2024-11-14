@@ -26,7 +26,7 @@ fun LocationList(
     modifier: Modifier = Modifier,
     searchQuery: String,
     locations: List<LocationInfo>,
-    onClick: (String) -> Unit
+    onClick: (LocationInfo) -> Unit
 ) {
     LazyColumn(
         modifier = modifier
@@ -39,7 +39,7 @@ fun LocationList(
         ) {
             LocationListItem(
                 searchQuery = searchQuery,
-                location = it.title,
+                location = it,
             ) { location ->
                 onClick(location)
             }
@@ -55,14 +55,14 @@ fun LocationList(
 fun LocationListItem(
     modifier: Modifier = Modifier,
     searchQuery: String,
-    location: String,
-    onClick: (String) -> Unit
+    location: LocationInfo,
+    onClick: (LocationInfo) -> Unit
 ) {
     val highlightText = buildAnnotatedString {
         withStyle(style = SpanStyle(colors.SECONDARY)) {
-            append(location)
+            append(location.title)
         }
-        searchQuery.toRegex().findAll(location).forEach { result ->
+        searchQuery.toRegex().findAll(location.title).forEach { result ->
             addStyle(
                 style = SpanStyle(color = colors.PRIMARY),
                 start = result.range.first,
