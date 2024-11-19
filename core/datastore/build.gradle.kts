@@ -17,8 +17,8 @@ protobuf {
         artifact = libs.protobuf.protoc.get().toString()
     }
     generateProtoTasks {
-        all().forEach { task ->
-            task.builtins {
+        all().configureEach {
+            builtins {
                 register("java") {
                     option("lite")
                 }
