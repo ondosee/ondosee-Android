@@ -20,7 +20,9 @@ import com.ohnalmwo.location.component.LocationList
 import com.ohnalmwo.location.component.LocationText
 import com.ohnalmwo.location.viewmodel.LocationScreenReducer.*
 import com.ohnalmwo.location.viewmodel.LocationViewModel
+import com.ohnalmwo.model.LocationInfo
 import com.ohnalmwo.ui.rememberFlowWithLifecycle
+import kotlinx.coroutines.delay
 
 @Composable
 fun AddLocationRoute(
@@ -30,7 +32,14 @@ fun AddLocationRoute(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val effect = rememberFlowWithLifecycle(viewModel.effect)
 
-    val search by viewModel.search.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) {
+        viewModel.getSavedLocations()
+    }
+
+    LaunchedEffect(state.search) {
+        delay(300L)
+        if (state.search.isNotBlank()) viewModel.getLocationCoordinate(search = state.search)
+    }
 
     LaunchedEffect(effect) {
         effect.collect { action ->
@@ -43,8 +52,8 @@ fun AddLocationRoute(
 
     AddLocationScreen(
         state = state,
-        search = search,
-        onSearchChange = viewModel::onSearchChange,
+        onSearchValueChange = { viewModel.sendEvent(LocationEvent.OnSearchValueChange(it)) },
+        onListItemClick = viewModel::setSavedLocations,
         navigateToBack = { viewModel.sendEffect(LocationEffect.NavigateToBack) }
     )
 }
@@ -52,8 +61,8 @@ fun AddLocationRoute(
 @Composable
 fun AddLocationScreen(
     state: LocationState,
-    search: String,
-    onSearchChange: (String) -> Unit,
+    onSearchValueChange: (String) -> Unit,
+    onListItemClick: (LocationInfo) -> Unit,
     navigateToBack: () -> Unit
 ) {
     Column(
@@ -74,14 +83,15 @@ fun AddLocationScreen(
             SearchTextField(
                 modifier = Modifier.padding(top = 16.dp),
                 placeHolder = "도시 또는 공항 검색",
-                setText = search,
+                setText = state.search,
                 singleLine = true,
-                onValueChange = onSearchChange
+                onValueChange = onSearchValueChange
             )
             LocationList(
-                searchQuery = search,
-                locations = state.location.locations
-            ) {}
+                searchQuery = state.search,
+                locations = state.locations.locations,
+                onClick = onListItemClick
+            )
         }
     }
 }

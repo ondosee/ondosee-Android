@@ -1,10 +1,10 @@
 package com.ohnalmwo.network.mapper.todomain
 
 import com.ohnalmwo.model.Location
-import com.ohnalmwo.model.LocationsInfo
+import com.ohnalmwo.model.LocationInfo
 import com.ohnalmwo.model.PageInfo
 import com.ohnalmwo.network.dto.LocationResponse
-import com.ohnalmwo.network.dto.LocationsInfoResponse
+import com.ohnalmwo.network.dto.LocationInfoResponse
 import com.ohnalmwo.network.dto.PageInfoResponse
 
 fun LocationResponse.toDomain(): Location = Location(
@@ -17,7 +17,7 @@ fun PageInfoResponse.toDomain(): PageInfo = PageInfo(
     current = this.current
 )
 
-fun LocationsInfoResponse.toDomain(): LocationsInfo = LocationsInfo(
+fun LocationInfoResponse.toDomain(): LocationInfo = LocationInfo(
     title = this.title,
     x = this.x,
     y = this.y

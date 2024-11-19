@@ -1,4 +1,4 @@
-package com.ohnalmwo.domain.usecase
+package com.ohnalmwo.domain.usecase.weather
 
 import com.ohnalmwo.domain.repository.WeatherRepository
 import com.ohnalmwo.model.Weather

@@ -19,14 +19,14 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
-import com.ohnalmwo.model.LocationsInfo
+import com.ohnalmwo.model.LocationInfo
 
 @Composable
 fun LocationList(
     modifier: Modifier = Modifier,
     searchQuery: String,
-    locations: List<LocationsInfo>,
-    onClick: (String) -> Unit
+    locations: List<LocationInfo>,
+    onClick: (LocationInfo) -> Unit
 ) {
     LazyColumn(
         modifier = modifier
@@ -39,7 +39,7 @@ fun LocationList(
         ) {
             LocationListItem(
                 searchQuery = searchQuery,
-                location = it.title,
+                location = it,
             ) { location ->
                 onClick(location)
             }
@@ -55,14 +55,14 @@ fun LocationList(
 fun LocationListItem(
     modifier: Modifier = Modifier,
     searchQuery: String,
-    location: String,
-    onClick: (String) -> Unit
+    location: LocationInfo,
+    onClick: (LocationInfo) -> Unit
 ) {
     val highlightText = buildAnnotatedString {
         withStyle(style = SpanStyle(colors.SECONDARY)) {
-            append(location)
+            append(location.title)
         }
-        searchQuery.toRegex().findAll(location).forEach { result ->
+        searchQuery.toRegex().findAll(location.title).forEach { result ->
             addStyle(
                 style = SpanStyle(color = colors.PRIMARY),
                 start = result.range.first,

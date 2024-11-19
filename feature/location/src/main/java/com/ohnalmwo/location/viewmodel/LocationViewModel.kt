@@ -1,51 +1,53 @@
 package com.ohnalmwo.location.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.ohnalmwo.common.base.BaseViewModel
 import com.ohnalmwo.common.result.Result
 import com.ohnalmwo.common.result.asResult
-import com.ohnalmwo.domain.usecase.GetLocationCoordinateUseCase
+import com.ohnalmwo.domain.usecase.location.GetLocationCoordinateUseCase
+import com.ohnalmwo.domain.usecase.location.GetSavedLocationsUseCase
+import com.ohnalmwo.domain.usecase.location.SetSavedLocationsUseCase
 import com.ohnalmwo.location.viewmodel.LocationScreenReducer.*
+import com.ohnalmwo.model.LocationInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LocationViewModel @Inject constructor(
     private val getLocationCoordinateUseCase: GetLocationCoordinateUseCase,
-    private val savedStateHandle: SavedStateHandle
+    private val getSavedLocationsUseCase: GetSavedLocationsUseCase,
+    private val setSavedLocationsUseCase: SetSavedLocationsUseCase,
 ) : BaseViewModel<LocationState, LocationEvent, LocationEffect>(
     initialState = LocationState.initial(),
     reducer = LocationScreenReducer()
 ) {
-    var search = savedStateHandle.getStateFlow(key = SEARCH, initialValue = "")
-
-    init {
-        viewModelScope.launch {
-            search
-                .debounce(300L)
-                .filter { it.isNotEmpty() }
-                .flatMapLatest { keyword ->
-                    getLocationCoordinateUseCase(keyword = keyword, page = 1)
-                        .asResult()
+    fun getLocationCoordinate(search: String) = viewModelScope.launch {
+        getLocationCoordinateUseCase(keyword = search, page = 1)
+            .asResult()
+            .collect { result ->
+                when (result) {
+                    is Result.Loading -> sendEvent(event = LocationEvent.GetLocationCoordinate(isLoading = true, locations = currentState.locations))
+                    is Result.Success -> sendEvent(event = LocationEvent.GetLocationCoordinate(isLoading = false, locations = result.data))
+                    is Result.Error -> sendEvent(event = LocationEvent.GetLocationCoordinate(isLoading = false, locations = currentState.locations))
                 }
-                .collect { result ->
-                    when (result) {
-                        is Result.Loading -> sendEvent(event = LocationEvent.GetLocationCoordinate(isLoading = true, location = currentState.location))
-                        is Result.Success -> sendEvent(event = LocationEvent.GetLocationCoordinate(isLoading = false, location = result.data))
-                        is Result.Error -> sendEvent(event = LocationEvent.GetLocationCoordinate(isLoading = false, location = currentState.location))
-                    }
-                }
-        }
+            }
     }
 
-    fun onSearchChange(value: String) {
-        savedStateHandle[SEARCH] = value
+    fun getSavedLocations() = viewModelScope.launch {
+        getSavedLocationsUseCase()
+            .asResult()
+            .collect { result ->
+                when (result) {
+                    is Result.Loading -> sendEvent(event = LocationEvent.GetSavedLocations(isLoading = true, localLocations = currentState.localLocations))
+                    is Result.Success -> { sendEvent(event = LocationEvent.GetSavedLocations(isLoading = false, localLocations = result.data)) }
+                    is Result.Error -> { sendEvent(event = LocationEvent.GetSavedLocations(isLoading = false, localLocations = currentState.localLocations)) }
+                }
+            }
+    }
+
+    fun setSavedLocations(location: LocationInfo) = viewModelScope.launch {
+        setSavedLocationsUseCase(location = location)
+        sendEvent(event = LocationEvent.SetSavedLocations)
     }
 }
-
-private const val SEARCH = "search"

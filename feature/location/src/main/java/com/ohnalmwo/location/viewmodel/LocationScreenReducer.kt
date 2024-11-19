@@ -3,12 +3,16 @@ package com.ohnalmwo.location.viewmodel
 import androidx.compose.runtime.Immutable
 import com.ohnalmwo.common.base.Reducer
 import com.ohnalmwo.model.Location
+import com.ohnalmwo.model.LocationInfo
 
 class LocationScreenReducer : Reducer<LocationScreenReducer.LocationState, LocationScreenReducer.LocationEvent, LocationScreenReducer.LocationEffect> {
 
     @Immutable
     sealed class LocationEvent : Reducer.ViewEvent {
-        data class GetLocationCoordinate(val isLoading: Boolean, val location: Location) : LocationEvent()
+        data class GetLocationCoordinate(val isLoading: Boolean, val locations: Location) : LocationEvent()
+        data class GetSavedLocations(val isLoading: Boolean, val localLocations: List<LocationInfo>) : LocationEvent()
+        data object SetSavedLocations : LocationEvent()
+        data class OnSearchValueChange(val search: String) : LocationEvent()
     }
 
     @Immutable
@@ -21,12 +25,16 @@ class LocationScreenReducer : Reducer<LocationScreenReducer.LocationState, Locat
     @Immutable
     data class LocationState(
         val isLoading: Boolean,
-        val location: Location
+        val locations: Location,
+        val localLocations: List<LocationInfo>,
+        val search: String
     ) : Reducer.ViewState {
         companion object {
             fun initial() = LocationState(
                 isLoading = true,
-                location = Location.default()
+                locations = Location.default(),
+                localLocations = emptyList(),
+                search = ""
             )
         }
     }
@@ -39,7 +47,21 @@ class LocationScreenReducer : Reducer<LocationScreenReducer.LocationState, Locat
             is LocationEvent.GetLocationCoordinate -> {
                 previousState.copy(
                     isLoading = event.isLoading,
-                    location = event.location
+                    locations = event.locations
+                ) to null
+            }
+            is LocationEvent.GetSavedLocations -> {
+                previousState.copy(
+                    isLoading = event.isLoading,
+                    localLocations = event.localLocations
+                ) to null
+            }
+            is LocationEvent.SetSavedLocations -> {
+                previousState to LocationEffect.NavigateToBack
+            }
+            is LocationEvent.OnSearchValueChange -> {
+                previousState.copy(
+                    search = event.search
                 ) to null
             }
         }

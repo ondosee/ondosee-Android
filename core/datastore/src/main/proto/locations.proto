@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "com.ohnalmwo.datastore";
+option java_multiple_files = true;
+
+message Location {
+  string title = 1;
+  string x = 2;
+  string y = 3;
+}
+
+message Locations {
+  repeated Location location = 1;
+}

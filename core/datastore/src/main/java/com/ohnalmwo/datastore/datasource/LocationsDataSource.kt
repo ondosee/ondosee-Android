@@ -1,12 +1,9 @@
-package com.ohnalmwo.domain.repository
+package com.ohnalmwo.datastore.datasource
 
-import com.ohnalmwo.model.Location
 import com.ohnalmwo.model.LocationInfo
 import kotlinx.coroutines.flow.Flow
 
-interface LocationRepository {
-    fun getLocationCoordinate(keyword: String, page: Int): Flow<Location>
-
+interface LocationsDataSource {
     fun getLocations(): Flow<List<LocationInfo>>
 
     suspend fun setLocations(location: LocationInfo)
