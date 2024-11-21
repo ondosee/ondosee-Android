@@ -26,10 +26,12 @@ import androidx.wear.compose.material.rememberSwipeableState
 import androidx.wear.compose.material.swipeable
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
+import com.ohnalmwo.model.LocationInfo
 
 @OptIn(ExperimentalWearMaterialApi::class)
 @Composable
 fun OndoseeTopBar(
+    list: List<LocationInfo>,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
     onClick: () -> Unit
@@ -42,7 +44,9 @@ fun OndoseeTopBar(
     val screenWidthPx = with(density) { screenWidthDp.dp.toPx() }
 
     val swipeableState = rememberSwipeableState(currentLocation)
-    val anchors = mapOf(0f to 0, screenWidthPx to 1, 2 * screenWidthPx to 2)
+    val anchors = list.indices.associate { index ->
+        (index * screenWidthPx) to index
+    }
 
     LaunchedEffect(swipeableState.currentValue) {
         if (swipeableState.currentValue != currentLocation) {
@@ -75,11 +79,11 @@ fun OndoseeTopBar(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             LocationIndicator(
-                totalNumber = anchors.size,
+                totalNumber = list.size,
                 currentLocation = currentLocation,
             )
             Text(
-                text = "광주광역시 광산구",
+                text = list.getOrNull(currentLocation)?.title ?: "",
                 style = typography.titleSmall,
                 fontWeight = FontWeight.Bold,
                 color = colors.WHITE,

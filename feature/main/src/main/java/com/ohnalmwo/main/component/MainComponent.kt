@@ -19,6 +19,7 @@ import androidx.constraintlayout.compose.MotionScene
 import com.ohnalmwo.design_system.component.lottie.AnimatedLottie
 import com.ohnalmwo.design_system.component.topbar.OndoseeTopBar
 import com.ohnalmwo.design_system.icons.MenuIcon
+import com.ohnalmwo.main.viewmodel.MainScreenReducer.*
 import com.ohnalmwo.model.WeatherDetail
 import com.ohnalmwo.ui.getAnimationLottie
 import com.ohnalmwo.ui.getBackgroundColors
@@ -33,6 +34,7 @@ import dev.chrisbanes.haze.haze
 fun MainComponent(
     modifier: Modifier = Modifier,
     hazeState: HazeState,
+    state: MainState,
     weathers: List<WeatherDetail>,
     motionScene: String,
     navigateToLocation: () -> Unit
@@ -44,7 +46,10 @@ fun MainComponent(
             .haze(state = hazeState)
             .statusBarsPadding()
     ) {
-        OndoseeTopBar(content = { MenuIcon() }) {
+        OndoseeTopBar(
+            list = state.localLocations,
+            content = { MenuIcon() }
+        ) {
             navigateToLocation()
         }
         MotionLayout(

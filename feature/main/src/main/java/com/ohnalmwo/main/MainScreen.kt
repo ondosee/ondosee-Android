@@ -29,6 +29,7 @@ fun MainRoute(
 
     LaunchedEffect(Unit) {
         viewModel.getWeatherSignificant(x = 126.85250, y = 35.15944)
+        viewModel.getSavedLocations()
     }
 
     LaunchedEffect(effect) {
@@ -67,6 +68,7 @@ fun MainScreen(
     } else {
         MainComponent(
             hazeState = hazeState,
+            state = state,
             weathers = weathers,
             motionScene = motionScene,
             navigateToLocation = navigateToLocation
