@@ -18,9 +18,13 @@ class LocationsDataSourceImpl @Inject constructor(
 
     override suspend fun setLocations(location: LocationInfo) {
         locations.updateData {
-            it.toBuilder()
-                .addLocation(location.toData())
-                .build()
+            val builder = it.toBuilder()
+
+            if (builder.locationList.size < 4 && builder.locationList.none { it.toDomain() == location }) {
+                builder.addLocation(location.toData())
+            }
+
+            builder.build()
         }
     }
 

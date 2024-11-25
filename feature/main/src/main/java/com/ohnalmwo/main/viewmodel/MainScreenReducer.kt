@@ -2,6 +2,7 @@ package com.ohnalmwo.main.viewmodel
 
 import androidx.compose.runtime.Immutable
 import com.ohnalmwo.common.base.Reducer
+import com.ohnalmwo.model.LocationInfo
 import com.ohnalmwo.model.Weather
 
 class MainScreenReducer : Reducer<MainScreenReducer.MainState, MainScreenReducer.MainEvent, MainScreenReducer.MainEffect> {
@@ -9,6 +10,7 @@ class MainScreenReducer : Reducer<MainScreenReducer.MainState, MainScreenReducer
     @Immutable
     sealed class MainEvent : Reducer.ViewEvent {
         data class GetWeatherSignificant(val isLoading: Boolean, val significant: Weather) : MainEvent()
+        data class GetSavedLocations(val isLoading: Boolean, val localLocations: List<LocationInfo>) : MainEvent()
     }
 
     @Immutable
@@ -19,12 +21,14 @@ class MainScreenReducer : Reducer<MainScreenReducer.MainState, MainScreenReducer
     @Immutable
     data class MainState(
         val isLoading: Boolean,
-        val significant: Weather
+        val significant: Weather,
+        val localLocations: List<LocationInfo>
     ) : Reducer.ViewState {
         companion object {
             fun initial() = MainState(
                 isLoading = true,
-                significant = Weather.default()
+                significant = Weather.default(),
+                localLocations = emptyList()
             )
         }
     }
@@ -38,6 +42,12 @@ class MainScreenReducer : Reducer<MainScreenReducer.MainState, MainScreenReducer
                 previousState.copy(
                     isLoading = event.isLoading,
                     significant = event.significant
+                ) to null
+            }
+            is MainEvent.GetSavedLocations -> {
+                previousState.copy(
+                    isLoading = event.isLoading,
+                    localLocations = event.localLocations
                 ) to null
             }
         }
