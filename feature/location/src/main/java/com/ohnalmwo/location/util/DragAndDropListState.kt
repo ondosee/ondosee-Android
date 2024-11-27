@@ -11,11 +11,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 
 @Composable
-fun rememberDragAndDropListState(
+fun <T> rememberDragAndDropListState(
 	lazyListState: LazyListState,
+	key: List<T> = emptyList(),
 	onMove: (Int, Int) -> Unit
 ): DragAndDropListState {
-	return remember { DragAndDropListState(lazyListState, onMove) }
+	return remember(key) { DragAndDropListState(lazyListState, onMove) }
 }
 
 class DragAndDropListState(
