@@ -107,8 +107,10 @@ fun LocationScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 itemsIndexed(
-                    items = state.localLocations.distinct(),
-                    key = { index, item -> item.title }
+                    items = state.localLocations,
+                    key = { index, item ->
+                        item.title
+                    }
                 ) { index, item ->
                     LocationCard(
                         location = item.title,

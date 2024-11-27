@@ -1,5 +1,6 @@
 package com.ohnalmwo.location
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.scrollBy
@@ -12,8 +13,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -21,6 +22,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.location.component.EditableLocationCard
@@ -29,21 +32,57 @@ import com.ohnalmwo.location.component.LocationText
 import com.ohnalmwo.location.util.dragModifier
 import com.ohnalmwo.location.util.move
 import com.ohnalmwo.location.util.rememberDragAndDropListState
+import com.ohnalmwo.location.viewmodel.LocationScreenReducer.*
+import com.ohnalmwo.location.viewmodel.LocationViewModel
+import com.ohnalmwo.model.LocationInfo
+import com.ohnalmwo.ui.rememberFlowWithLifecycle
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @Composable
-fun LocationManagementScreen(
-    navigateToBack: () -> Unit
+fun LocationManagementRoute(
+    navigateToBack: () -> Unit,
+    viewModel: LocationViewModel = hiltViewModel()
 ) {
-    val list = remember { mutableStateListOf(1, 2, 3, 4, 5) }
-    val lazyListState = rememberLazyListState()
-    val dragAndDropListState =
-        rememberDragAndDropListState(lazyListState) { from, to ->
-            if (from != 0 && to != 0) {
-                list.move(from, to)
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val effect = rememberFlowWithLifecycle(viewModel.effect)
+
+    LaunchedEffect(Unit) {
+        viewModel.getSavedLocations()
+    }
+
+    LaunchedEffect(effect) {
+        effect.collect { action ->
+            when (action) {
+                is LocationEffect.NavigateToBack -> navigateToBack()
+                else -> Unit
             }
         }
+    }
+
+    LocationManagementScreen(
+        state = state,
+        onUpdateAllLocations = viewModel::updateAllSavedLocations,
+        onRemoveLocations = viewModel::removeSavedLocations,
+        navigateToBack = { viewModel.sendEffect(LocationEffect.NavigateToBack) }
+    )
+}
+
+@Composable
+fun LocationManagementScreen(
+    state: LocationState,
+    onUpdateAllLocations: (List<LocationInfo>) -> Unit,
+    onRemoveLocations: (Int) -> Unit,
+    navigateToBack: () -> Unit
+) {
+    val newList = state.localLocations.toMutableList()
+    val lazyListState = rememberLazyListState()
+    val dragAndDropListState = rememberDragAndDropListState(lazyListState = lazyListState, key = state.localLocations) { from, to ->
+        if (from != 0 && to != 0) {
+            newList.move(from, to)
+            onUpdateAllLocations(newList)
+        }
+    }
     val coroutineScope = rememberCoroutineScope()
     var overscrollJob by remember { mutableStateOf<Job?>(null) }
 
@@ -94,27 +133,27 @@ fun LocationManagementScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 itemsIndexed(
-                    items = list,
-                    key = { index, data ->
-                        data
+                    items = newList,
+                    key = { index, item ->
+                        item.title
                     }
                 ) { index, item ->
                     if (index == 0) {
                         LocationCard(
-                            location = item.toString(),
-                            significant = index.toString(),
+                            location = item.title,
+                            significant = "비 | 강수확률 90%",
                             isCurrentLocation = true,
                             isExtension = false
                         )
                     } else {
                         EditableLocationCard(
                             modifier = Modifier.dragModifier(index, dragAndDropListState),
-                            location = item.toString(),
-                            significant = index.toString(),
+                            location = item.title,
+                            significant = "비 | 강수확률 $index",
                             isCurrentLocation = true,
                             isExtension = false
                         ) {
-                            list.removeAt(index)
+                            onRemoveLocations(index)
                         }
                     }
                 }

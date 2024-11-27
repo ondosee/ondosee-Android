@@ -6,7 +6,9 @@ import com.ohnalmwo.common.result.Result
 import com.ohnalmwo.common.result.asResult
 import com.ohnalmwo.domain.usecase.location.GetLocationCoordinateUseCase
 import com.ohnalmwo.domain.usecase.location.GetSavedLocationsUseCase
+import com.ohnalmwo.domain.usecase.location.RemoveSavedLocationsUseCase
 import com.ohnalmwo.domain.usecase.location.SetSavedLocationsUseCase
+import com.ohnalmwo.domain.usecase.location.UpdateAllSavedLocationsUseCase
 import com.ohnalmwo.location.viewmodel.LocationScreenReducer.*
 import com.ohnalmwo.model.LocationInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +20,8 @@ class LocationViewModel @Inject constructor(
     private val getLocationCoordinateUseCase: GetLocationCoordinateUseCase,
     private val getSavedLocationsUseCase: GetSavedLocationsUseCase,
     private val setSavedLocationsUseCase: SetSavedLocationsUseCase,
+    private val updateAllSavedLocationsUseCase: UpdateAllSavedLocationsUseCase,
+    private val removeSavedLocationsUseCase: RemoveSavedLocationsUseCase,
 ) : BaseViewModel<LocationState, LocationEvent, LocationEffect>(
     initialState = LocationState.initial(),
     reducer = LocationScreenReducer()
@@ -49,5 +53,13 @@ class LocationViewModel @Inject constructor(
     fun setSavedLocations(location: LocationInfo) = viewModelScope.launch {
         setSavedLocationsUseCase(location = location)
         sendEvent(event = LocationEvent.SetSavedLocations)
+    }
+
+    fun updateAllSavedLocations(locations: List<LocationInfo>) = viewModelScope.launch {
+        updateAllSavedLocationsUseCase(locations = locations)
+    }
+
+    fun removeSavedLocations(index: Int?) = viewModelScope.launch {
+        removeSavedLocationsUseCase(index = index)
     }
 }
