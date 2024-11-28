@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.minstone.weekly_weather.navigation.weeklyWeatherScreen
 import com.ohnalmwo.location.navigation.*
 import com.ohnalmwo.main.navigation.mainScreen
 import com.ohnalmwo.model.enum.Route
@@ -33,9 +34,10 @@ fun OndoseeNavHost(
         )
         locationManagementScreen(navigateToBack = navController::popBackStack)
         addLocationScreen(navigateToBack = navController::popBackStack)
-        composable<Route.Weekly> {
-
-        }
+        weeklyWeatherScreen(
+            hazeState = hazeState,
+            navigateToLocation = navController::navigateToLocation
+        )
         settingScreen(
             hazeState = hazeState,
             navigateToSettingTheme = navController::navigateToSettingTheme,
