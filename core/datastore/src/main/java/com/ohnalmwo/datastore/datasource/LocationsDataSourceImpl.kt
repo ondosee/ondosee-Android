@@ -28,6 +28,15 @@ class LocationsDataSourceImpl @Inject constructor(
         }
     }
 
+    override suspend fun updateAllLocations(locations: List<LocationInfo>) {
+        this.locations.updateData {
+            it.toBuilder()
+                .clearLocation()
+                .addAllLocation(locations.map { it.toData() })
+                .build()
+        }
+    }
+
     override suspend fun removeLocations(index: Int) {
         locations.updateData {
             val builder = it.toBuilder()

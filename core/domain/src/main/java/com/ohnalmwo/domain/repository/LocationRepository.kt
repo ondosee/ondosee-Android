@@ -11,6 +11,8 @@ interface LocationRepository {
 
     suspend fun setLocations(location: LocationInfo)
 
+    suspend fun updateAllLocations(locations: List<LocationInfo>)
+
     suspend fun removeLocations(index: Int)
 
     suspend fun removeAllLocations()

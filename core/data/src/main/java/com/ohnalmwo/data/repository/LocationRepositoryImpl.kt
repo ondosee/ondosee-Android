@@ -25,6 +25,10 @@ class LocationRepositoryImpl @Inject constructor(
         localLocationDataSource.setLocations(location = location)
     }
 
+    override suspend fun updateAllLocations(locations: List<LocationInfo>) {
+        localLocationDataSource.updateAllLocations(locations = locations)
+    }
+
     override suspend fun removeLocations(index: Int) {
         localLocationDataSource.removeLocations(index = index)
     }

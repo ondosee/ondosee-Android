@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.ohnalmwo.location.AddLocationRoute
-import com.ohnalmwo.location.LocationManagementScreen
+import com.ohnalmwo.location.LocationManagementRoute
 import com.ohnalmwo.location.LocationRoute
 import com.ohnalmwo.model.enum.Route
 
@@ -35,7 +35,7 @@ fun NavGraphBuilder.locationManagementScreen(
     navigateToBack: () -> Unit
 ) {
     composable<Route.Location.LocationManagement> {
-        LocationManagementScreen(navigateToBack = navigateToBack)
+        LocationManagementRoute(navigateToBack = navigateToBack)
     }
 }
 
