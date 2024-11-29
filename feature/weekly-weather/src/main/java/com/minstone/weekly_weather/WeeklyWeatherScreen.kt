@@ -14,7 +14,8 @@ import androidx.compose.ui.unit.dp
 import com.minstone.weekly_weather.component.WeatherInformation
 import com.ohnalmwo.design_system.component.topbar.OndoseeTopBar
 import com.ohnalmwo.design_system.icons.MenuIcon
-import com.ohnalmwo.model.enum.BackgroundType
+import com.ohnalmwo.model.LocationInfo
+import com.ohnalmwo.model.enum.Significant
 import com.ohnalmwo.ui.getBackgroundColors
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
@@ -29,15 +30,14 @@ fun WeeklyWeatherScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = getBackgroundColors(type = BackgroundType.RAIN)
-                )
-            )
+            .background(brush = Brush.verticalGradient(colors = Significant.SNOW.getBackgroundColors()))
             .haze(state = hazeState)
             .statusBarsPadding()
     ) {
-        OndoseeTopBar(content = { MenuIcon() }) { navigateToLocation() }
+        OndoseeTopBar(
+            list = listOf(LocationInfo("광주광역시 광산구", "127", "37")),
+            content = { MenuIcon() }
+        ) { navigateToLocation() }
         Spacer(modifier = Modifier.height(20.dp))
         WeatherInformation(
             modifier = Modifier.padding(horizontal = 20.dp),
