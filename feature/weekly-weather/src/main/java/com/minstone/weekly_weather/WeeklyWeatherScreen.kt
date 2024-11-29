@@ -39,11 +39,13 @@ fun WeeklyWeatherScreen(
     ) {
         OndoseeTopBar(content = { MenuIcon() }) { navigateToLocation() }
         Spacer(modifier = Modifier.height(20.dp))
-        weatherDates.forEach { date ->
-            WeatherInformation(
-                modifier = Modifier.padding(horizontal = 20.dp),
-                date = date
-            )
-        }
+        WeatherInformation(
+            modifier = Modifier.padding(horizontal = 20.dp),
+            date = "오늘"
+        )
+        WeatherInformation(
+            modifier = Modifier.padding(horizontal = 20.dp),
+            date = "월"
+        )
     }
 }
