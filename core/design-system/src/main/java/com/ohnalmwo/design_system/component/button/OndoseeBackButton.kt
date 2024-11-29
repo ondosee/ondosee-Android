@@ -28,7 +28,7 @@ fun OndoseeBackButton(
         modifier = modifier
             .fillMaxWidth()
             .height(40.dp)
-            .padding(horizontal = 20.dp),
+            .padding(start = 20.dp, end = 5.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {

@@ -11,6 +11,7 @@ object DarkColor : ColorTheme() {
     override val SECONDARY = Color(0xBFFFFFFF)
     override val TERTIARY = Color(0x80FFFFFF)
 
+    override val BACKGROUND_CLEAR: List<Color> = listOf(Color(0xFF66A6FF), Color(0xFF85C9E0))
     override val BACKGROUND_RAIN: List<Color> = listOf(Color(0xFF7C8FA9), Color(0xFF2A3441))
     override val BACKGROUND_SNOW: List<Color> = listOf(Color(0xFFA6C5F1), Color(0xFF72ABF6))
     override val BACKGROUND_THUNDER: List<Color> = listOf(Color(0xFF43413D), Color(0xFF000B1A))
@@ -20,6 +21,7 @@ object DarkColor : ColorTheme() {
     override val BACKGROUND_MISE_BAD: List<Color> = listOf(Color(0xFFE0BD52), Color(0xFF806000))
     override val BACKGROUND_HEAT_WAVE: List<Color> = listOf(Color(0xFFF5883D), Color(0xFF993F00))
     override val BACKGROUND_HEAVE_SNOW: List<Color> = listOf(Color(0xFFA6C5F1), Color(0xFF72ABF6))
+    override val BACKGROUND_LOADING: List<Color> = listOf(Color(0xFF808080), Color(0xFF262626))
 
     override val RAIN = Color(0xFF33CCFF)
     override val SNOW = Color(0xFFFFFFFF)

@@ -7,4 +7,5 @@ plugins {
 dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.androidx.compose.runtime)
 }

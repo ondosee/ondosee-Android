@@ -11,11 +11,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 
 @Composable
-fun rememberDragAndDropListState(
+fun <T> rememberDragAndDropListState(
 	lazyListState: LazyListState,
+	key: List<T> = emptyList(),
 	onMove: (Int, Int) -> Unit
 ): DragAndDropListState {
-	return remember { DragAndDropListState(lazyListState, onMove) }
+	return remember(key) { DragAndDropListState(lazyListState, onMove) }
 }
 
 class DragAndDropListState(
@@ -87,15 +88,8 @@ class DragAndDropListState(
 			val endOffset = it.offsetEnd + draggingDistance
 
 			return@let when {
-				draggingDistance > 0 -> {
-					(endOffset - lazyListState.layoutInfo.viewportEndOffset).takeIf { diff -> diff > 0 }
-
-				}
-
-				draggingDistance < 0 -> {
-					(startOffset - lazyListState.layoutInfo.viewportStartOffset).takeIf { diff -> diff < 0 }
-				}
-
+				draggingDistance > 0 -> (endOffset - lazyListState.layoutInfo.viewportEndOffset).takeIf { diff -> diff > 0 }
+				draggingDistance < 0 -> (startOffset - lazyListState.layoutInfo.viewportStartOffset).takeIf { diff -> diff < 0 }
 				else -> null
 			}
 		} ?: 0f

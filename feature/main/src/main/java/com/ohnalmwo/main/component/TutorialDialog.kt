@@ -33,13 +33,9 @@ import com.ohnalmwo.design_system.component.picker.WheelPicker
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 import com.ohnalmwo.design_system.theme.font.FontFamily.freesentation
-import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.HazeStyle
-import dev.chrisbanes.haze.hazeChild
 
 @Composable
 fun TutorialDialog(
-    hazeState: HazeState,
     openDialog: Boolean,
     onStateChange: (Boolean) -> Unit,
     onDismissClick: () -> Unit,
@@ -57,7 +53,6 @@ fun TutorialDialog(
             properties = DialogProperties(usePlatformDefaultWidth = false)
         ) {
             DialogContent(
-                hazeState = hazeState,
                 isTimeSetting = isTimeSetting,
                 hour = hour,
                 minute = minute,
@@ -77,7 +72,6 @@ fun TutorialDialog(
 
 @Composable
 private fun DialogContent(
-    hazeState: HazeState,
     isTimeSetting: Boolean,
     hour: Int,
     minute: Int,
@@ -92,14 +86,6 @@ private fun DialogContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .hazeChild(
-                state = hazeState,
-                shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
-                style = HazeStyle(
-                    tint = colors.BLACK.copy(.1f),
-                    blurRadius = 10.dp
-                )
-            )
             .navigationBarsPadding()
             .padding(horizontal = 20.dp, vertical = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,

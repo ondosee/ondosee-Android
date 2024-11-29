@@ -32,13 +32,13 @@ fun NavGraphBuilder.settingScreen(
 }
 
 fun NavController.navigateToSettingTheme(navOptions: NavOptions? = null) {
-    this.navigate(Route.SettingTheme, navOptions)
+    this.navigate(Route.Setting.SettingTheme, navOptions)
 }
 
 fun NavGraphBuilder.settingThemeScreen(
     navigateToBack: () -> Unit
 ) {
-    composable<Route.SettingTheme> {
+    composable<Route.Setting.SettingTheme> {
         SettingThemeScreen(
             navigateToBack = navigateToBack
         )
@@ -46,13 +46,13 @@ fun NavGraphBuilder.settingThemeScreen(
 }
 
 fun NavController.navigateToSettingFont(navOptions: NavOptions? = null) {
-    this.navigate(Route.SettingFont, navOptions)
+    this.navigate(Route.Setting.SettingFont, navOptions)
 }
 
 fun NavGraphBuilder.settingFontScreen(
     navigateToBack: () -> Unit
 ) {
-    composable<Route.SettingFont> {
+    composable<Route.Setting.SettingFont> {
         SettingFontScreen(
             navigateToBack = navigateToBack
         )
@@ -60,13 +60,13 @@ fun NavGraphBuilder.settingFontScreen(
 }
 
 fun NavController.navigateToSettingAlarm(navOptions: NavOptions? = null) {
-    this.navigate(Route.SettingAlarm, navOptions)
+    this.navigate(Route.Setting.SettingAlarm, navOptions)
 }
 
 fun NavGraphBuilder.settingAlarmScreen(
     navigateToBack: () -> Unit
 ) {
-    composable<Route.SettingAlarm> {
+    composable<Route.Setting.SettingAlarm> {
         SettingAlarmScreen(
             navigateToBack = navigateToBack
         )

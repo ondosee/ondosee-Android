@@ -29,25 +29,18 @@
         end: ['parent', 'end'],
         top: ['weatherConditionText', 'bottom', 4],
       },
-      weatherForecastCardFirst: {
+      weatherForecastCard: {
         width: 'spread',
         height: 'wrap',
         start: ['parent', 'start', 20],
         end: ['parent', 'end', 20],
         top: ['weatherConditionDescriptionText', 'bottom', 32],
       },
-      weatherForecastCardSecond: {
-        width: 'spread',
-        height: 'wrap',
-        start: ['parent', 'start', 20],
-        end: ['parent', 'end', 20],
-        top: ['weatherForecastCardFirst', 'bottom', 16],
-      }
     },
     end: {
       significantWeatherText: {
         top: ['parent', 'top'],
-        end: ['parent', 'end'],
+        end: ['parent', 'end', -20],
         scaleX: .6,
         scaleY: .6
       },
@@ -72,20 +65,13 @@
         top: ['weatherConditionText', 'bottom', 4],
         end: ['significantWeatherText', 'start', 0]
       },
-      weatherForecastCardFirst: {
+      weatherForecastCard: {
         width: 'spread',
         height: 'wrap',
         start: ['parent', 'start', 20],
         end: ['parent', 'end', 20],
         top: ['weatherConditionDescriptionText', 'bottom', 24],
       },
-      weatherForecastCardSecond: {
-        width: 'spread',
-        height: 'wrap',
-        start: ['parent', 'start', 20],
-        end: ['parent', 'end', 20],
-        top: ['weatherForecastCardFirst', 'bottom', 16],
-      }
     }
   },
   Transitions: {
