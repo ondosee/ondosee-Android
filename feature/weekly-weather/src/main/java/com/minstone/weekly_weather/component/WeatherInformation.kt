@@ -35,8 +35,8 @@ fun WeatherInformation(
 
         Temperature(
             modifier = Modifier.padding(start = 48.dp),
-            low = 20,
-            high = 25
+            minTemperature = 20,
+            maxTemperature = 25
         )
     }
 
@@ -65,11 +65,13 @@ fun WeatherInformationItem(
             fontWeight = FontWeight.Medium,
             color = colors.WHITE.copy(.75f)
         )
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             CloudIcon()
+
             Text(
                 text = content,
                 style = typography.caption,

@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import com.minstone.weekly_weather.component.TodayWeatherInformation
 import com.minstone.weekly_weather.component.WeatherInformation
 import com.ohnalmwo.design_system.component.topbar.OndoseeTopBar
 import com.ohnalmwo.design_system.icons.MenuIcon
@@ -25,7 +26,7 @@ fun WeeklyWeatherScreen(
     hazeState: HazeState,
     navigateToLocation: () -> Unit
 ) {
-    val weatherDates = listOf("오늘", "화", "수", "목", "금", "토", "일", "월")
+    val weatherDates = listOf("화", "수", "목", "금", "토", "일", "월")
 
     Column(
         modifier = Modifier
@@ -38,7 +39,13 @@ fun WeeklyWeatherScreen(
             list = listOf(LocationInfo("광주광역시 광산구", "127", "37")),
             content = { MenuIcon() }
         ) { navigateToLocation() }
+
         Spacer(modifier = Modifier.height(20.dp))
+
+        TodayWeatherInformation(
+            modifier = Modifier.padding(horizontal = 20.dp),
+        )
+
         weatherDates.forEach { date ->
             WeatherInformation(
                 modifier = Modifier.padding(horizontal = 20.dp),
