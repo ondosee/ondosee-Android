@@ -157,3 +157,5 @@ fun String.appendMicrogramsPerCubicMeter(): String = "${this}μg/m³"
 fun String.appendPercent(): String = "${this}%"
 
 fun String.appendCelsius(): String = "${this}°C"
+
+fun String.appendCelsiusSymbol(): String = "${this}°"

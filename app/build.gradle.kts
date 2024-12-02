@@ -22,6 +22,7 @@ dependencies {
     implementation(project(":feature:main"))
     implementation(project(":feature:location"))
     implementation(project(":feature:setting"))
+    implementation(project(":feature:weekly-weather"))
 
     implementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext)
