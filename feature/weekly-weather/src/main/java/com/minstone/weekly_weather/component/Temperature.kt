@@ -20,8 +20,8 @@ import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 @Composable
 fun Temperature(
     modifier: Modifier,
-    low: Int,
-    high: Int
+    minTemperature: Int,
+    maxTemperature: Int
 ) {
     Row(
         modifier = modifier,
@@ -29,7 +29,7 @@ fun Temperature(
     ) {
         Text(
             modifier = Modifier.padding(end = 8.dp),
-            text = "${low}°",
+            text = "${minTemperature}°",
             style = typography.textMedium,
             color = colors.THEME_WHITE.copy(alpha = 0.5f),
             fontWeight = FontWeight.Bold
@@ -49,7 +49,7 @@ fun Temperature(
 
         Text(
             modifier = Modifier.padding(start = 8.dp, end = 16.dp),
-            text = "${high}°",
+            text = "${maxTemperature}°",
             style = typography.textMedium,
             color = colors.THEME_WHITE,
             fontWeight = FontWeight.Bold

@@ -39,13 +39,11 @@ fun WeeklyWeatherScreen(
             content = { MenuIcon() }
         ) { navigateToLocation() }
         Spacer(modifier = Modifier.height(20.dp))
-        WeatherInformation(
-            modifier = Modifier.padding(horizontal = 20.dp),
-            date = "오늘"
-        )
-        WeatherInformation(
-            modifier = Modifier.padding(horizontal = 20.dp),
-            date = "월"
-        )
+        weatherDates.forEach { date ->
+            WeatherInformation(
+                modifier = Modifier.padding(horizontal = 20.dp),
+                date = date
+            )
+        }
     }
 }
