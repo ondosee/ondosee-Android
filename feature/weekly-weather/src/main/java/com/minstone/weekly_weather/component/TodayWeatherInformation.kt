@@ -65,20 +65,20 @@ fun TodayWeatherInformation(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row {
-                significantText(
+                SignificantText(
                     modifier = Modifier.padding(end = 24.dp),
                     title = "강수 확률",
                     content = "90".appendPercent()
                 )
 
-                significantText(
+                SignificantText(
                     modifier = Modifier,
                     title = "미세먼지 농도",
                     content = "200".appendMicrograms()
                 )
             }
 
-            significantText(
+            SignificantText(
                 modifier = Modifier,
                 alignment = Alignment.End,
                 title = "오늘의 특이사항",
@@ -96,7 +96,7 @@ fun TodayWeatherInformation(
 }
 
 @Composable
-private fun significantText(
+private fun SignificantText(
     modifier: Modifier,
     alignment: Alignment.Horizontal = Alignment.Start,
     title: String,
