@@ -44,7 +44,17 @@ fun TodayWeatherInformation(
                 fontWeight = FontWeight.Medium,
                 color = colors.WHITE.copy(.75f)
             )
-            CloudIcon()
+            Row {
+                Text(
+                    modifier = Modifier.padding(end = 8.dp),
+                    text = "구름",
+                    style = typography.titleSmall,
+                    fontWeight = FontWeight.Medium,
+                    color = colors.WHITE.copy(.75f)
+                )
+
+                CloudIcon()
+            }
         }
 
         TodayTemperature(
