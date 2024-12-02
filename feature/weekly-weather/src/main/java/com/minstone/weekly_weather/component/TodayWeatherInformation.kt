@@ -103,47 +103,6 @@ fun TodayWeatherInformation(
 }
 
 @Composable
-private fun TodayTemperature(
-    modifier: Modifier,
-    nowTemperature: Int,
-    minTemperature: Int,
-    maxTemperature: Int
-) {
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            modifier = Modifier.padding(end = 8.dp),
-            text = minTemperature.toString().appendCelsiusSymbol(),
-            style = typography.textMedium,
-            color = colors.THEME_WHITE.copy(alpha = 0.5f),
-            fontWeight = FontWeight.Bold
-        )
-
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .height(4.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .background(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(colors.WHITE.copy(alpha = 0.5f), colors.WHITE)
-                    )
-                )
-        )
-
-        Text(
-            modifier = Modifier.padding(start = 8.dp),
-            text = maxTemperature.toString().appendCelsiusSymbol(),
-            style = typography.textMedium,
-            color = colors.THEME_WHITE,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}
-
-@Composable
 private fun significantText(
     modifier: Modifier,
     title: String,
