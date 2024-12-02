@@ -2,26 +2,19 @@ package com.minstone.weekly_weather.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.ohnalmwo.design_system.icons.CloudIcon
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
-import com.ohnalmwo.ui.appendCelsiusSymbol
 import com.ohnalmwo.ui.appendMicrograms
 import com.ohnalmwo.ui.appendPercent
 
@@ -58,9 +51,7 @@ fun TodayWeatherInformation(
         }
 
         TodayTemperature(
-            modifier = Modifier
-                .padding(top = 20.dp, bottom = 16.dp)
-                .padding(horizontal = 16.dp),
+            modifier = Modifier.padding(start = 16.dp),
             nowTemperature = 23,
             minTemperature = 20,
             maxTemperature = 25
