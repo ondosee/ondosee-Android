@@ -38,7 +38,7 @@ fun TodayTemperature(
         Row {
             Text(
                 modifier = Modifier.padding(end = 4.dp),
-                text = "최저: " + minTemperature.toString().appendCelsiusSymbol(),
+                text = "최저: ${minTemperature.toString().appendCelsiusSymbol()}",
                 style = typography.textMedium,
                 color = colors.THEME_WHITE.copy(alpha = 0.75f),
                 fontWeight = FontWeight.Normal
@@ -46,7 +46,7 @@ fun TodayTemperature(
 
             Text(
                 modifier = Modifier.padding(end = 16.dp),
-                text = "최고: " + maxTemperature.toString().appendCelsiusSymbol(),
+                text = "최고: ${maxTemperature.toString().appendCelsiusSymbol()}",
                 style = typography.textMedium,
                 color = colors.THEME_WHITE.copy(alpha = 0.75f),
                 fontWeight = FontWeight.Normal
