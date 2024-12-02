@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -79,6 +80,7 @@ fun TodayWeatherInformation(
 
             significantText(
                 modifier = Modifier,
+                alignment = Alignment.End,
                 title = "오늘의 특이사항",
                 content = "비,미세먼지"
             )
@@ -96,10 +98,13 @@ fun TodayWeatherInformation(
 @Composable
 private fun significantText(
     modifier: Modifier,
+    alignment: Alignment.Horizontal = Alignment.Start,
     title: String,
     content: String
 ) {
-    Column {
+    Column(
+        horizontalAlignment = alignment
+    ) {
         Text(
             modifier = modifier.padding(bottom = 4.dp),
             text = title,
