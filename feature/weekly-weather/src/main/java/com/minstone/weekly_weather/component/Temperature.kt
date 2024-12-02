@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
+import com.ohnalmwo.ui.appendCelsiusSymbol
 
 @Composable
 fun Temperature(
@@ -29,7 +30,7 @@ fun Temperature(
     ) {
         Text(
             modifier = Modifier.padding(end = 8.dp),
-            text = "${minTemperature}°",
+            text = minTemperature.toString().appendCelsiusSymbol(),
             style = typography.textMedium,
             color = colors.THEME_WHITE.copy(alpha = 0.5f),
             fontWeight = FontWeight.Bold
@@ -49,7 +50,7 @@ fun Temperature(
 
         Text(
             modifier = Modifier.padding(start = 8.dp, end = 16.dp),
-            text = "${maxTemperature}°",
+            text = maxTemperature.toString().appendCelsiusSymbol(),
             style = typography.textMedium,
             color = colors.THEME_WHITE,
             fontWeight = FontWeight.Bold
