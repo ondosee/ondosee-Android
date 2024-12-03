@@ -63,7 +63,6 @@ fun SettingAlarmScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 48.dp, bottom = 48.dp),
-            icon = Unit,
             text = "알림 시간 설정",
             alarmTime = "8:00 PM",
             isTimeSetting = isTimeSetting
