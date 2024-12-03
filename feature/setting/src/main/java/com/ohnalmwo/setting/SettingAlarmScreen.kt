@@ -66,7 +66,7 @@ fun SettingAlarmScreen(
             icon = Unit,
             text = "알림 시간 설정",
             alarmTime = "8:00 PM",
-            isAlarmOn = isAlarmOn
+            isTimeSetting = isTimeSetting
         )
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             TimePickerSection(
@@ -87,7 +87,6 @@ fun SettingAlarmScreen(
             fontWeight = FontWeight.Medium,
             state = ButtonState.Primary
         ) {}
-
         OndoseeButton(
             modifier = Modifier
                 .fillMaxWidth()

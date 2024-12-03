@@ -1,5 +1,6 @@
 package com.ohnalmwo.setting.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -16,10 +17,9 @@ import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 @Composable
 fun SettingAlarmTimeButton(
     modifier: Modifier,
-    icon: Unit,
     text: String,
     alarmTime: String,
-    isAlarmOn: Boolean
+    isTimeSetting: Boolean
 ) {
     Row(
         modifier = modifier.padding(horizontal = 20.dp),
@@ -41,7 +41,7 @@ fun SettingAlarmTimeButton(
         Text(
             text = alarmTime,
             style = typography.textLarge,
-            color = if(isAlarmOn) colors.PRIMARY else colors.THEME_BLACK,
+            color = if(isTimeSetting) colors.PRIMARY else colors.THEME_BLACK,
             fontWeight = FontWeight.Normal
         )
     }
