@@ -57,44 +57,50 @@ fun SettingAlarmScreen(
         SettingSwitchButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 36.dp), icon = Unit, text = "푸시 알림 설정", isSwitchOn = isAlarmOn
+                .padding(top = 36.dp),
+            text = "푸시 알림 설정",
+            isSwitchOn = isAlarmOn,
+            onCheckedChanged = { isAlarmOn = it }
         )
-        SettingAlarmTimeButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 48.dp, bottom = 48.dp),
-            text = "알림 시간 설정",
-            alarmTime = "8:00 PM",
-            isTimeSetting = isTimeSetting
-        )
-        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-            TimePickerSection(
-                hour = hour,
-                minute = minute,
-                amPm = amPm,
-                onHourChange = { hour = it },
-                onMinuteChange = { minute = it },
-                onAmPmChange = { amPm = it },
+
+        if (isAlarmOn) {
+            SettingAlarmTimeButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 48.dp, bottom = 48.dp),
+                text = "알림 시간 설정",
+                alarmTime = "8:00 PM",
+                isTimeSetting = isTimeSetting
             )
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                TimePickerSection(
+                    hour = hour,
+                    minute = minute,
+                    amPm = amPm,
+                    onHourChange = { hour = it },
+                    onMinuteChange = { minute = it },
+                    onAmPmChange = { amPm = it },
+                )
+            }
+            OndoseeButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 40.dp, start = 20.dp, end = 20.dp),
+                text = "적용",
+                style = typography.textLarge,
+                fontWeight = FontWeight.Medium,
+                state = ButtonState.Primary
+            ) {}
+            OndoseeButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp, start = 20.dp, end = 20.dp),
+                text = "취소",
+                style = typography.textLarge,
+                fontWeight = FontWeight.Medium,
+                state = ButtonState.NormalDark
+            ) {}
         }
-        OndoseeButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 40.dp, start = 20.dp, end = 20.dp),
-            text = "적용",
-            style = typography.textLarge,
-            fontWeight = FontWeight.Medium,
-            state = ButtonState.Primary
-        ) {}
-        OndoseeButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp, start = 20.dp, end = 20.dp),
-            text = "취소",
-            style = typography.textLarge,
-            fontWeight = FontWeight.Medium,
-            state = ButtonState.NormalDark
-        ) {}
     }
 }
 
