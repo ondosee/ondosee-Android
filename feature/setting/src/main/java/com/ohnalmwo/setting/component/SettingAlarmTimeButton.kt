@@ -19,10 +19,13 @@ fun SettingAlarmTimeButton(
     modifier: Modifier,
     text: String,
     alarmTime: String,
-    isTimeSetting: Boolean
+    isTimeSetting: Boolean,
+    onCheckedChanged: (Boolean) -> Unit
 ) {
     Row(
-        modifier = modifier.padding(horizontal = 20.dp),
+        modifier = modifier
+            .padding(horizontal = 20.dp)
+            .clickable { onCheckedChanged(!isTimeSetting) },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

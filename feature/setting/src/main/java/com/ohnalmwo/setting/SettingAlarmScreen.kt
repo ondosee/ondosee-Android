@@ -39,7 +39,7 @@ fun SettingAlarmScreen(
     var hour by remember { mutableIntStateOf(8) }
     var minute by remember { mutableIntStateOf(0) }
     var amPm by remember { mutableStateOf("PM") }
-    var isTimeSetting by remember { mutableStateOf(false) }
+    var isTimeSetting by remember { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
@@ -51,17 +51,14 @@ fun SettingAlarmScreen(
             modifier = Modifier.padding(top = 16.dp)
         ) { navigateToBack() }
         SettingTitle(
-            modifier = Modifier.padding(top = 24.dp),
-            title = "푸시 알림 설정"
+            modifier = Modifier.padding(top = 24.dp), title = "푸시 알림 설정"
         )
-        SettingSwitchButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 36.dp),
+        SettingSwitchButton(modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 36.dp),
             text = "푸시 알림 설정",
             isSwitchOn = isAlarmOn,
-            onCheckedChanged = { isAlarmOn = it }
-        )
+            onCheckedChanged = { isAlarmOn = it })
 
         if (isAlarmOn) {
             SettingAlarmTimeButton(
@@ -69,37 +66,41 @@ fun SettingAlarmScreen(
                     .fillMaxWidth()
                     .padding(top = 48.dp, bottom = 48.dp),
                 text = "알림 시간 설정",
-                alarmTime = "8:00 PM",
-                isTimeSetting = isTimeSetting
+                alarmTime = "${hour}:${"%02d".format(minute)} PM",
+                isTimeSetting = isTimeSetting,
+                onCheckedChanged = { isTimeSetting = it }
             )
-            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                TimePickerSection(
-                    hour = hour,
-                    minute = minute,
-                    amPm = amPm,
-                    onHourChange = { hour = it },
-                    onMinuteChange = { minute = it },
-                    onAmPmChange = { amPm = it },
-                )
+
+            if (isTimeSetting) {
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    TimePickerSection(
+                        hour = hour,
+                        minute = minute,
+                        amPm = amPm,
+                        onHourChange = { hour = it },
+                        onMinuteChange = { minute = it },
+                        onAmPmChange = { amPm = it },
+                    )
+                }
+                OndoseeButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 40.dp, start = 20.dp, end = 20.dp),
+                    text = "적용",
+                    style = typography.textLarge,
+                    fontWeight = FontWeight.Medium,
+                    state = ButtonState.Primary
+                ) { isTimeSetting = false }
+                OndoseeButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp, start = 20.dp, end = 20.dp),
+                    text = "취소",
+                    style = typography.textLarge,
+                    fontWeight = FontWeight.Medium,
+                    state = ButtonState.NormalDark
+                ) { isTimeSetting = false }
             }
-            OndoseeButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 40.dp, start = 20.dp, end = 20.dp),
-                text = "적용",
-                style = typography.textLarge,
-                fontWeight = FontWeight.Medium,
-                state = ButtonState.Primary
-            ) {}
-            OndoseeButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp, start = 20.dp, end = 20.dp),
-                text = "취소",
-                style = typography.textLarge,
-                fontWeight = FontWeight.Medium,
-                state = ButtonState.NormalDark
-            ) {}
         }
     }
 }
@@ -118,28 +119,23 @@ private fun TimePickerSection(
         horizontalArrangement = Arrangement.spacedBy(48.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        InfiniteWheelPicker(
-            width = 48.dp,
+        InfiniteWheelPicker(width = 48.dp,
             itemHeight = 52.dp,
             items = (1..12).toList(),
             initialItem = hour,
             textStyle = typography.titleLarge,
             textColor = colors.THEME_BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
-            onItemSelected = { _, item -> onHourChange(item) }
-        )
-        InfiniteWheelPicker(
-            width = 48.dp,
+            onItemSelected = { _, item -> onHourChange(item) })
+        InfiniteWheelPicker(width = 48.dp,
             itemHeight = 52.dp,
             items = (0..59).map { "%02d".format(it) },
             initialItem = "%02d".format(minute),
             textStyle = typography.titleLarge,
             textColor = colors.THEME_BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
-            onItemSelected = { _, item -> onMinuteChange(item.toInt()) }
-        )
-        WheelPicker(
-            width = 48.dp,
+            onItemSelected = { _, item -> onMinuteChange(item.toInt()) })
+        WheelPicker(width = 48.dp,
             itemHeight = 52.dp,
             items = listOf("AM", "PM"),
             initialItem = amPm,
@@ -147,7 +143,6 @@ private fun TimePickerSection(
             textColor = colors.THEME_BLACK.copy(.2f),
             selectedTextColor = colors.PRIMARY,
             numberOfDisplayedItems = 3,
-            onItemSelected = { _, item -> onAmPmChange(item) }
-        )
+            onItemSelected = { _, item -> onAmPmChange(item) })
     }
 }
