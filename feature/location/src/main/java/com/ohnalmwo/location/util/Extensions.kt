@@ -4,6 +4,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.zIndex
+import com.ohnalmwo.model.LocationInfo
 
 fun <T> MutableList<T>.move(from: Int, to: Int) {
     if (from == to) return
@@ -22,4 +23,10 @@ fun Modifier.dragModifier(index: Int, dragAndDropListState: DragAndDropListState
             scaleX = if (isDragging) 1.05f else 1f
             scaleY = if (isDragging) 1.05f else 1f
         }
+}
+
+fun List<LocationInfo>.toCoordinates(): List<Pair<Double, Double>> {
+    return this.map { location ->
+        Pair(location.x.toDouble(), location.y.toDouble())
+    }
 }
