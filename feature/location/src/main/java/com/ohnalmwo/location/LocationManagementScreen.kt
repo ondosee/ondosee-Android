@@ -141,7 +141,8 @@ fun LocationManagementScreen(
                     if (index == 0) {
                         LocationCard(
                             location = item.title,
-                            significant = "비 | 강수확률 90%",
+                            weathers = state.locationsWeatherSignificant[index].weathers,
+                            significant = state.locationsWeatherSignificant[index].weathers[0].significant,
                             isCurrentLocation = true,
                             isExtension = false
                         )
@@ -149,7 +150,8 @@ fun LocationManagementScreen(
                         EditableLocationCard(
                             modifier = Modifier.dragModifier(index, dragAndDropListState),
                             location = item.title,
-                            significant = "비 | 강수확률 $index",
+                            weathers = state.locationsWeatherSignificant[index].weathers,
+                            significant = state.locationsWeatherSignificant[index].weathers[0].significant,
                             isCurrentLocation = true,
                             isExtension = false
                         ) {
