@@ -9,9 +9,15 @@ import com.ohnalmwo.domain.usecase.location.GetSavedLocationsUseCase
 import com.ohnalmwo.domain.usecase.location.RemoveSavedLocationsUseCase
 import com.ohnalmwo.domain.usecase.location.SetSavedLocationsUseCase
 import com.ohnalmwo.domain.usecase.location.UpdateAllSavedLocationsUseCase
+import com.ohnalmwo.domain.usecase.weather.GetWeatherSignificantUseCase
+import com.ohnalmwo.location.util.toCoordinates
 import com.ohnalmwo.location.viewmodel.LocationScreenReducer.*
 import com.ohnalmwo.model.LocationInfo
+import com.ohnalmwo.model.Weather
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,6 +28,7 @@ class LocationViewModel @Inject constructor(
     private val setSavedLocationsUseCase: SetSavedLocationsUseCase,
     private val updateAllSavedLocationsUseCase: UpdateAllSavedLocationsUseCase,
     private val removeSavedLocationsUseCase: RemoveSavedLocationsUseCase,
+    private val getWeatherSignificantUseCase: GetWeatherSignificantUseCase
 ) : BaseViewModel<LocationState, LocationEvent, LocationEffect>(
     initialState = LocationState.initial(),
     reducer = LocationScreenReducer()
@@ -44,8 +51,11 @@ class LocationViewModel @Inject constructor(
             .collect { result ->
                 when (result) {
                     is Result.Loading -> sendEvent(event = LocationEvent.GetSavedLocations(isLoading = true, localLocations = currentState.localLocations))
-                    is Result.Success -> { sendEvent(event = LocationEvent.GetSavedLocations(isLoading = false, localLocations = result.data)) }
-                    is Result.Error -> { sendEvent(event = LocationEvent.GetSavedLocations(isLoading = false, localLocations = currentState.localLocations)) }
+                    is Result.Success -> {
+                        sendEvent(event = LocationEvent.GetSavedLocations(isLoading = false, localLocations = result.data))
+                        getMultipleWeatherSignificant(result.data.toCoordinates())
+                    }
+                    is Result.Error -> sendEvent(event = LocationEvent.GetSavedLocations(isLoading = false, localLocations = currentState.localLocations))
                 }
             }
     }
@@ -61,5 +71,23 @@ class LocationViewModel @Inject constructor(
 
     fun removeSavedLocations(index: Int?) = viewModelScope.launch {
         removeSavedLocationsUseCase(index = index)
+    }
+
+    fun getMultipleWeatherSignificant(coordinates: List<Pair<Double, Double>>) = viewModelScope.launch {
+        val deferredResults = coordinates.map { (x, y) ->
+            async {
+                getWeatherSignificantUseCase(x = x, y = y)
+                    .asResult()
+                    .first()
+            }
+        }
+
+        val results = deferredResults.awaitAll()
+
+        when {
+            results.all { it is Result.Loading } -> sendEvent(event = LocationEvent.GetMultipleWeatherSignificant(isLoading = true, locationsWeatherSignificant = currentState.locationsWeatherSignificant))
+            results.any { it is Result.Error } -> sendEvent(event = LocationEvent.GetMultipleWeatherSignificant(isLoading = false, locationsWeatherSignificant = currentState.locationsWeatherSignificant))
+            else -> sendEvent(event = LocationEvent.GetMultipleWeatherSignificant(isLoading = false, locationsWeatherSignificant = results.filterIsInstance<Result.Success<Weather>>().map { it.data }))
+        }
     }
 }

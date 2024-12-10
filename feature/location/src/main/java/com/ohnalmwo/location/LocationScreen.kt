@@ -29,6 +29,7 @@ import com.ohnalmwo.location.component.LocationCountText
 import com.ohnalmwo.location.component.LocationText
 import com.ohnalmwo.location.viewmodel.LocationScreenReducer.*
 import com.ohnalmwo.location.viewmodel.LocationViewModel
+import com.ohnalmwo.ui.getSignificantWeatherText
 import com.ohnalmwo.ui.rememberFlowWithLifecycle
 
 @Composable
@@ -74,64 +75,67 @@ fun LocationScreen(
         mutableStateOf(false)
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = colors.BACKGROUND)
-            .statusBarsPadding()
-            .padding(top = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        OndoseeBackButton(
-            content = {
-                HamburgerIcon(tint = colors.PRIMARY)
-            },
-            onContentClick = {
-                openBottomSheet = true
-            }
-        ) {
-            navigateToBack()
-        }
+    if (!state.isLoading) {
         Column(
-            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = colors.BACKGROUND)
+                .statusBarsPadding()
+                .padding(top = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalAlignment = Alignment.Bottom
+            OndoseeBackButton(
+                content = {
+                    HamburgerIcon(tint = colors.PRIMARY)
+                },
+                onContentClick = {
+                    openBottomSheet = true
+                }
             ) {
-                LocationText(text = "위치")
-                LocationCountText(size = state.localLocations.size)
+                navigateToBack()
             }
-            LazyColumn(
+            Column(
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                itemsIndexed(
-                    items = state.localLocations,
-                    key = { index, item ->
-                        item.title
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.Bottom
+                ) {
+                    LocationText(text = "위치")
+                    LocationCountText(size = state.localLocations.size)
+                }
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    itemsIndexed(
+                        items = state.localLocations,
+                        key = { index, item ->
+                            item.title
+                        }
+                    ) { index, item ->
+                        LocationCard(
+                            location = item.title,
+                            weathers = state.locationsWeatherSignificant[index].weathers,
+                            significant = state.locationsWeatherSignificant[index].weathers[0].significant,
+                            isCurrentLocation = index == 0,
+                            isExtension = true
+                        )
                     }
-                ) { index, item ->
-                    LocationCard(
-                        location = item.title,
-                        significant = "비 | 강수확률 90%",
-                        isCurrentLocation = index == 0,
-                        isExtension = true
-                    )
                 }
             }
-        }
 
-        if (openBottomSheet) {
-            OptionBottomSheet(
-                closeSheet = { openBottomSheet = false },
-                navigateToLocationManagement = {
-                    navigateToLocationManagement()
-                },
-                navigateToAddLocation = {
-                    navigateToAddLocation()
-                }
-            )
+            if (openBottomSheet) {
+                OptionBottomSheet(
+                    closeSheet = { openBottomSheet = false },
+                    navigateToLocationManagement = {
+                        navigateToLocationManagement()
+                    },
+                    navigateToAddLocation = {
+                        navigateToAddLocation()
+                    }
+                )
+            }
         }
     }
 }

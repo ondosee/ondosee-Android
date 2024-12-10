@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,17 +26,23 @@ import com.ohnalmwo.design_system.icons.HamburgerIcon
 import com.ohnalmwo.design_system.icons.SettingDunghillIcon
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
 import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
+import com.ohnalmwo.model.WeatherDetail
 import com.ohnalmwo.model.enum.Significant
 import com.ohnalmwo.ui.getBackgroundColors
+import com.ohnalmwo.ui.getSignificantWeatherLocationText
 
 @Composable
 fun LocationCard(
     modifier: Modifier = Modifier,
     location: String,
-    significant: String,
+    weathers: List<WeatherDetail>,
+    significant: Significant,
     isCurrentLocation: Boolean,
     isExtension: Boolean
 ) {
+    val data = remember(weathers) { weathers[0].timeZone.maxByOrNull { it.value.toIntOrNull() ?: Int.MIN_VALUE }?.value.toString() }
+    val text = remember(significant, data) { significant.getSignificantWeatherLocationText(data) }
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -61,7 +68,7 @@ fun LocationCard(
                         color = colors.WHITE
                     )
                     Text(
-                        text = significant,
+                        text = text,
                         style = typography.textLarge,
                         fontWeight = FontWeight.Medium,
                         color = colors.WHITE.copy(.75f)
@@ -97,7 +104,7 @@ fun LocationCard(
                     color = colors.WHITE
                 )
                 Text(
-                    text = significant,
+                    text = text,
                     style = typography.textLarge,
                     fontWeight = FontWeight.Medium,
                     color = colors.WHITE.copy(.75f)
@@ -111,7 +118,8 @@ fun LocationCard(
 fun EditableLocationCard(
     modifier: Modifier = Modifier,
     location: String,
-    significant: String,
+    weathers: List<WeatherDetail>,
+    significant: Significant,
     isCurrentLocation: Boolean,
     isExtension: Boolean,
     onClick: () -> Unit
@@ -127,6 +135,7 @@ fun EditableLocationCard(
         LocationCard(
             modifier = Modifier.weight(1f),
             location = location,
+            weathers = weathers,
             significant = significant,
             isCurrentLocation = isCurrentLocation,
             isExtension = isExtension
