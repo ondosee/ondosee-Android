@@ -1,5 +1,6 @@
 package com.ohnalmwo.setting
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -14,17 +16,48 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
+import com.ohnalmwo.model.enum.Switch
 import com.ohnalmwo.setting.component.AlarmTimeSection
 import com.ohnalmwo.setting.component.SettingSwitchButton
 import com.ohnalmwo.setting.component.SettingTitle
+import com.ohnalmwo.setting.viewmodel.SettingScreenReducer.SettingState
+import com.ohnalmwo.setting.viewmodel.SettingViewModel
+import com.ohnalmwo.ui.rememberFlowWithLifecycle
+
+@Composable
+fun SettingAlarmRoute(
+    navigateToBack: () -> Unit,
+    viewModel: SettingViewModel = hiltViewModel()
+) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val effect = rememberFlowWithLifecycle(viewModel.effect)
+
+    LaunchedEffect(Unit) {
+        viewModel.getAlarmState()
+    }
+
+    SettingAlarmScreen(
+        state = state,
+        navigateToBack = {
+            if(it != state.isAlarmOn) viewModel.setAlarmState(it)
+            navigateToBack()
+        }
+    )
+}
 
 @Composable
 fun SettingAlarmScreen(
-    navigateToBack: () -> Unit
+    state: SettingState,
+    navigateToBack: (Switch) -> Unit
 ) {
-    var isAlarmOn by remember { mutableStateOf(true) }
+    var isAlarmOn by remember { mutableStateOf(false) }
+    LaunchedEffect(state.isAlarmOn) {
+        isAlarmOn = (state.isAlarmOn == Switch.ON)
+    }
 
     var hour by remember { mutableIntStateOf(8) }
     var minute by remember { mutableIntStateOf(0) }
@@ -38,7 +71,7 @@ fun SettingAlarmScreen(
     ) {
         OndoseeBackButton(
             modifier = Modifier.padding(top = 16.dp)
-        ) { navigateToBack() }
+        ) { navigateToBack(if(isAlarmOn) Switch.ON else Switch.OFF) }
         SettingTitle(
             modifier = Modifier.padding(top = 24.dp), title = "푸시 알림 설정"
         )
@@ -47,7 +80,11 @@ fun SettingAlarmScreen(
             .padding(top = 36.dp),
             text = "푸시 알림 설정",
             isSwitchOn = isAlarmOn,
-            onCheckedChanged = { isAlarmOn = it })
+            onCheckedChanged = {
+                Log.d("testt", it.toString())
+                isAlarmOn = it
+            }
+        )
 
         if (isAlarmOn) {
             AlarmTimeSection(

@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.ohnalmwo.model.enum.Route
+import com.ohnalmwo.setting.SettingAlarmRoute
 import com.ohnalmwo.setting.SettingAlarmScreen
 import com.ohnalmwo.setting.SettingFontScreen
 import com.ohnalmwo.setting.SettingScreen
@@ -67,7 +68,7 @@ fun NavGraphBuilder.settingAlarmScreen(
     navigateToBack: () -> Unit
 ) {
     composable<Route.Setting.SettingAlarm> {
-        SettingAlarmScreen(
+        SettingAlarmRoute(
             navigateToBack = navigateToBack
         )
     }
