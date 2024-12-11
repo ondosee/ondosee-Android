@@ -1,4 +1,4 @@
-package com.ohnalmwo.datastore.datasource
+package com.ohnalmwo.datastore.datasource.location
 
 import androidx.datastore.core.DataStore
 import com.ohnalmwo.datastore.Locations

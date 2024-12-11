@@ -1,4 +1,4 @@
-package com.ohnalmwo.datastore.datasource
+package com.ohnalmwo.datastore.datasource.location
 
 import com.ohnalmwo.model.LocationInfo
 import kotlinx.coroutines.flow.Flow
