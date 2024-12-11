@@ -24,7 +24,7 @@ import com.ohnalmwo.model.enum.Switch
 import com.ohnalmwo.setting.component.AlarmTimeSection
 import com.ohnalmwo.setting.component.SettingSwitchButton
 import com.ohnalmwo.setting.component.SettingTitle
-import com.ohnalmwo.setting.viewmodel.SettingScreenReducer.SettingState
+import com.ohnalmwo.setting.viewmodel.SettingScreenReducer.*
 import com.ohnalmwo.setting.viewmodel.SettingViewModel
 import com.ohnalmwo.ui.rememberFlowWithLifecycle
 
@@ -40,11 +40,19 @@ fun SettingAlarmRoute(
         viewModel.getAlarmState()
     }
 
+    LaunchedEffect(effect) {
+        effect.collect { action ->
+            when (action) {
+                is SettingEffect.NavigateToBack -> navigateToBack()
+            }
+        }
+    }
+
     SettingAlarmScreen(
         state = state,
+        onAlarmStateChange = { viewModel.sendEvent(SettingEvent.OnChangeAlarmState(it))},
         navigateToBack = {
-            if(it != state.isAlarmOn) viewModel.setAlarmState(it)
-            navigateToBack()
+                viewModel.sendEffect(SettingEffect.NavigateToBack)
         }
     )
 }
@@ -52,13 +60,9 @@ fun SettingAlarmRoute(
 @Composable
 fun SettingAlarmScreen(
     state: SettingState,
-    navigateToBack: (Switch) -> Unit
+    onAlarmStateChange: (Boolean) -> Unit,
+    navigateToBack: () -> Unit
 ) {
-    var isAlarmOn by remember { mutableStateOf(false) }
-    LaunchedEffect(state.isAlarmOn) {
-        isAlarmOn = (state.isAlarmOn == Switch.ON)
-    }
-
     var hour by remember { mutableIntStateOf(8) }
     var minute by remember { mutableIntStateOf(0) }
     var amPm by remember { mutableStateOf("PM") }
@@ -71,7 +75,7 @@ fun SettingAlarmScreen(
     ) {
         OndoseeBackButton(
             modifier = Modifier.padding(top = 16.dp)
-        ) { navigateToBack(if(isAlarmOn) Switch.ON else Switch.OFF) }
+        ) { navigateToBack() }
         SettingTitle(
             modifier = Modifier.padding(top = 24.dp), title = "푸시 알림 설정"
         )
@@ -79,14 +83,13 @@ fun SettingAlarmScreen(
             .fillMaxWidth()
             .padding(top = 36.dp),
             text = "푸시 알림 설정",
-            isSwitchOn = isAlarmOn,
+            isSwitchOn = state.alarmState,
             onCheckedChanged = {
-                Log.d("testt", it.toString())
-                isAlarmOn = it
+                onAlarmStateChange(it)
             }
         )
 
-        if (isAlarmOn) {
+        if (state.alarmState) {
             AlarmTimeSection(
                 hour = hour,
                 minute = minute,

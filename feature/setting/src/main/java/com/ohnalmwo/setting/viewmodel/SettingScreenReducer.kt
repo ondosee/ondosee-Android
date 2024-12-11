@@ -15,20 +15,25 @@ class SettingScreenReducer :
     sealed class SettingEvent : Reducer.ViewEvent {
         data object SetAlarmState : SettingEvent()
         data class GetAlarmState(val isLoading: Boolean, val isAlarmOn: Switch) : SettingEvent()
+        data class OnChangeAlarmState(val alarmState: Boolean) : SettingEvent()
     }
 
     @Immutable
-    sealed class SettingEffect : Reducer.ViewEffect {}
+    sealed class SettingEffect : Reducer.ViewEffect {
+        data object NavigateToBack : SettingEffect()
+    }
 
     @Immutable
     data class SettingState(
         val isLoading: Boolean,
         val isAlarmOn: Switch,
+        val alarmState: Boolean
     ) : Reducer.ViewState {
         companion object {
             fun initial() = SettingState(
                 isLoading = true,
                 isAlarmOn = Switch.OFF,
+                alarmState = false
             )
         }
     }
@@ -39,13 +44,19 @@ class SettingScreenReducer :
     ): Pair<SettingState, SettingEffect?> =
         when (event) {
             is SettingEvent.SetAlarmState -> {
-                previousState to null
+                previousState to SettingEffect.NavigateToBack
             }
 
             is SettingEvent.GetAlarmState -> {
                 previousState.copy(
                     isLoading = event.isLoading,
                     isAlarmOn = event.isAlarmOn
+                ) to null
+            }
+
+            is SettingEvent.OnChangeAlarmState -> {
+                previousState.copy(
+                    alarmState = event.alarmState
                 ) to null
             }
         }
