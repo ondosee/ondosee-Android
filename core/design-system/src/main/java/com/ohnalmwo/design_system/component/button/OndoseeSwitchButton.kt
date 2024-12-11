@@ -60,11 +60,10 @@ fun OndoseeSwitchButton(
     val anchors = mapOf(0f to stateOff, sizePx to stateOn)
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect("init") {
-        if(initialValue == stateOn) {
-            clickListener = true
-            isActivation = true
-        }
+    LaunchedEffect(initialValue) {
+        swipeableState.snapTo(initialValue)
+        clickListener = initialValue == stateOn
+        isActivation = clickListener
     }
 
     LaunchedEffect(isActivation) {
