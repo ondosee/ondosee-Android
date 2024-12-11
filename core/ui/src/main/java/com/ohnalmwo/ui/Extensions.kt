@@ -138,6 +138,24 @@ fun Significant.getForecastType(): ForecastType {
     }
 }
 
+fun Significant.getSignificantWeatherLocationText(data: String): String {
+    return when (this) {
+        Significant.HEAT_WAVE -> "폭염주의보"
+        Significant.COLD_WAVE -> "한파주의보"
+        Significant.DROUGHT -> ""
+        Significant.SNOW -> "눈 ㅣ ${data.appendPercent()}"
+        Significant.RAIN -> "비 ㅣ ${data.appendPercent()}"
+        Significant.GALE -> ""
+        Significant.BEST_10, Significant.BEST_25,
+        Significant.GOOD_10, Significant.GOOD_25,
+        Significant.FAIR_10, Significant.FAIR_25 -> "날씨 좋음"
+        Significant.AVERAGE_10, Significant.AVERAGE_25 -> "미세먼지 보통"
+        Significant.POOR_10, Significant.POOR_25 -> "미세먼지 나쁨"
+        Significant.BAD_10, Significant.BAD_25 -> "미세먼지 매우나쁨"
+        Significant.WORST_10, Significant.WORST_25 -> "미세먼지 최악"
+    }
+}
+
 fun LocalTime.toKoreanHourFormat(): String {
     val hour = when {
         this.hour == 0 -> 12
