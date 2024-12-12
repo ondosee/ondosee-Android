@@ -25,7 +25,6 @@ class SettingDataSourceImpl @Inject constructor (
 
     override fun getAlarmState(): Flow<Switch> =
         settingInfo.data.map {
-            Log.d("testt", it.alarm)
             when (it.alarm) {
                 Switch.ON.value -> Switch.ON
                 Switch.OFF.value -> Switch.OFF
