@@ -23,6 +23,7 @@ class SettingViewModel @Inject constructor(
 ) {
     fun setAlarmState(alarmState: Switch) = viewModelScope.launch {
         setAlarmStateUseCase(alarmState = alarmState.value)
+        sendEvent(SettingEvent.SetAlarmState)
     }
 
     fun getAlarmState() = viewModelScope.launch {

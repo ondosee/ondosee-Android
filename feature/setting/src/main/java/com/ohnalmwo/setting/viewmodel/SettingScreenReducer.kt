@@ -50,7 +50,8 @@ class SettingScreenReducer :
             is SettingEvent.GetAlarmState -> {
                 previousState.copy(
                     isLoading = event.isLoading,
-                    isAlarmOn = event.isAlarmOn
+                    isAlarmOn = event.isAlarmOn,
+                    alarmState = event.isAlarmOn == Switch.ON
                 ) to null
             }
 

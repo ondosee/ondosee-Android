@@ -52,6 +52,10 @@ fun SettingAlarmRoute(
         state = state,
         onAlarmStateChange = { viewModel.sendEvent(SettingEvent.OnChangeAlarmState(it))},
         navigateToBack = {
+            val desiredAlarmState = if (state.alarmState) Switch.ON else Switch.OFF
+
+            if (desiredAlarmState != state.isAlarmOn)
+                viewModel.setAlarmState(desiredAlarmState) else
                 viewModel.sendEffect(SettingEffect.NavigateToBack)
         }
     )
