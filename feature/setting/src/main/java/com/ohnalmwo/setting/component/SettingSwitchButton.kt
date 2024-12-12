@@ -17,9 +17,9 @@ import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 @Composable
 fun SettingSwitchButton(
     modifier: Modifier,
-    icon: Unit,
     text: String,
     isSwitchOn: Boolean,
+    onCheckedChanged: (Boolean) -> Unit
 ) {
     Row(
         modifier = modifier.padding(horizontal = 20.dp),
@@ -41,7 +41,7 @@ fun SettingSwitchButton(
             stateOn = 1,
             stateOff = 0,
             initialValue = if (isSwitchOn) 1 else 0,
-            onCheckedChanged = {}
+            onCheckedChanged = onCheckedChanged
         )
     }
 }

@@ -1,6 +1,6 @@
 package com.ohnalmwo.data.repository
 
-import com.ohnalmwo.datastore.datasource.LocationsDataSource
+import com.ohnalmwo.datastore.datasource.location.LocationsDataSource
 import com.ohnalmwo.domain.repository.LocationRepository
 import com.ohnalmwo.model.Location
 import com.ohnalmwo.model.LocationInfo
