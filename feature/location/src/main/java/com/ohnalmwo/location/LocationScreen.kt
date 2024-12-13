@@ -24,6 +24,7 @@ import com.ohnalmwo.design_system.component.bottomsheet.OptionBottomSheet
 import com.ohnalmwo.design_system.component.button.OndoseeBackButton
 import com.ohnalmwo.design_system.icons.HamburgerIcon
 import com.ohnalmwo.design_system.theme.OndoseeTheme.colors
+import com.ohnalmwo.location.component.LoadingLocationCard
 import com.ohnalmwo.location.component.LocationCard
 import com.ohnalmwo.location.component.LocationCountText
 import com.ohnalmwo.location.component.LocationText
@@ -75,29 +76,44 @@ fun LocationScreen(
         mutableStateOf(false)
     }
 
-    if (!state.isLoading) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colors.BACKGROUND)
+            .statusBarsPadding()
+            .padding(top = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        OndoseeBackButton(
+            content = {
+                HamburgerIcon(tint = colors.PRIMARY)
+            },
+            onContentClick = {
+                openBottomSheet = true
+            }
+        ) {
+            navigateToBack()
+        }
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = colors.BACKGROUND)
-                .statusBarsPadding()
-                .padding(top = 16.dp),
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            OndoseeBackButton(
-                content = {
-                    HamburgerIcon(tint = colors.PRIMARY)
-                },
-                onContentClick = {
-                    openBottomSheet = true
+            if (state.isLoading) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.Bottom
+                ) {
+                    LocationText(text = "위치")
+                    LocationCountText(size = 4)
                 }
-            ) {
-                navigateToBack()
-            }
-            Column(
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(count = 4) { item ->
+                        LoadingLocationCard(isCurrentLocation = item == 0)
+                    }
+                }
+            } else {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.Bottom
@@ -124,18 +140,18 @@ fun LocationScreen(
                     }
                 }
             }
+        }
 
-            if (openBottomSheet) {
-                OptionBottomSheet(
-                    closeSheet = { openBottomSheet = false },
-                    navigateToLocationManagement = {
-                        navigateToLocationManagement()
-                    },
-                    navigateToAddLocation = {
-                        navigateToAddLocation()
-                    }
-                )
-            }
+        if (openBottomSheet) {
+            OptionBottomSheet(
+                closeSheet = { openBottomSheet = false },
+                navigateToLocationManagement = {
+                    navigateToLocationManagement()
+                },
+                navigateToAddLocation = {
+                    navigateToAddLocation()
+                }
+            )
         }
     }
 }
