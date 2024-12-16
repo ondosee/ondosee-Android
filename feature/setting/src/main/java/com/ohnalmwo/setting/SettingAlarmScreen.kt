@@ -50,7 +50,12 @@ fun SettingAlarmRoute(
 
     SettingAlarmScreen(
         state = state,
-        onAlarmStateChange = { viewModel.sendEvent(SettingEvent.OnChangeAlarmState(it))},
+        onAlarmStateChange = { viewModel.sendEvent(SettingEvent.OnChangeAlarmState(it)) },
+        onSetAlarmTime = { updatedHour, updatedMinute, updatedAmPm ->
+            viewModel.sendEvent(
+                SettingEvent.OnChangeAlarmTime(hour = updatedHour, minute = updatedMinute, amPm = updatedAmPm)
+            )
+        },
         navigateToBack = {
             val desiredAlarmState = if (state.alarmState) Switch.ON else Switch.OFF
 
@@ -65,12 +70,9 @@ fun SettingAlarmRoute(
 fun SettingAlarmScreen(
     state: SettingState,
     onAlarmStateChange: (Boolean) -> Unit,
+    onSetAlarmTime: (Int, Int, String) -> Unit,
     navigateToBack: () -> Unit
 ) {
-    var hour by remember { mutableIntStateOf(8) }
-    var minute by remember { mutableIntStateOf(0) }
-    var amPm by remember { mutableStateOf("PM") }
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -95,13 +97,11 @@ fun SettingAlarmScreen(
 
         if (state.alarmState) {
             AlarmTimeSection(
-                hour = hour,
-                minute = minute,
-                amPm = amPm,
+                hour = state.hour,
+                minute = state.minute,
+                amPm = state.amPm,
                 onTimeUpdated = { updatedHour, updatedMinute, updatedAmPm ->
-                    hour = updatedHour
-                    minute = updatedMinute
-                    amPm = updatedAmPm
+                    onSetAlarmTime(updatedHour, updatedMinute, updatedAmPm)
                 }
             )
         }

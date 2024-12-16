@@ -16,6 +16,7 @@ class SettingScreenReducer :
         data object SetAlarmState : SettingEvent()
         data class GetAlarmState(val isLoading: Boolean, val isAlarmOn: Switch) : SettingEvent()
         data class OnChangeAlarmState(val alarmState: Boolean) : SettingEvent()
+        data class OnChangeAlarmTime(val hour: Int, val minute: Int, val amPm: String) : SettingEvent()
     }
 
     @Immutable
@@ -27,13 +28,19 @@ class SettingScreenReducer :
     data class SettingState(
         val isLoading: Boolean,
         val isAlarmOn: Switch,
-        val alarmState: Boolean
+        val alarmState: Boolean,
+        val hour: Int,
+        val minute: Int,
+        val amPm: String
     ) : Reducer.ViewState {
         companion object {
             fun initial() = SettingState(
                 isLoading = true,
                 isAlarmOn = Switch.OFF,
-                alarmState = false
+                alarmState = false,
+                hour = 8,
+                minute = 0,
+                amPm = "PM"
             )
         }
     }
@@ -58,6 +65,14 @@ class SettingScreenReducer :
             is SettingEvent.OnChangeAlarmState -> {
                 previousState.copy(
                     alarmState = event.alarmState
+                ) to null
+            }
+
+            is SettingEvent.OnChangeAlarmTime -> {
+                previousState.copy(
+                    hour = event.hour,
+                    minute = event.minute,
+                    amPm = event.amPm
                 ) to null
             }
         }
