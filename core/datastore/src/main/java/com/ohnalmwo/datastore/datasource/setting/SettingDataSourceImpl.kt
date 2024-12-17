@@ -31,4 +31,12 @@ class SettingDataSourceImpl @Inject constructor (
                 else -> Switch.OFF
             }
         }
+
+    override suspend fun setAlarmTime(alarmTime: String) {
+        settingInfo.updateData {
+            it.toBuilder()
+                .setAlarm(alarmTime)
+                .build()
+        }
+    }
 }
