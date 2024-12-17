@@ -16,4 +16,8 @@ class SettingRepositoryImpl @Inject constructor(
     override fun getAlarmState(): Flow<Switch> {
         return localSettingDataSource.getAlarmState()
     }
+
+    override suspend fun setAlarmTime(alarmTime: String) {
+        localSettingDataSource.setAlarmTime(alarmTime = alarmTime)
+    }
 }
