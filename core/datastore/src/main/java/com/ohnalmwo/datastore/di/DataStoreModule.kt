@@ -5,8 +5,10 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
 import com.ohnalmwo.datastore.Locations
+import com.ohnalmwo.datastore.NotificationTime
 import com.ohnalmwo.datastore.SettingInfo
 import com.ohnalmwo.datastore.serializer.LocationsSerializer
+import com.ohnalmwo.datastore.serializer.NotificationTimeSerializer
 import com.ohnalmwo.datastore.serializer.SettingSerializer
 import dagger.Module
 import dagger.Provides
@@ -38,6 +40,18 @@ object DataStoreModule {
     ): DataStore<SettingInfo> =
         DataStoreFactory.create(
             serializer = settingSerializer,
+        ) {
+            context.dataStoreFile("settingInfo.pb")
+        }
+
+    @Provides
+    @Singleton
+    fun provideNotificationDataStore(
+        @ApplicationContext context: Context,
+        notificationTimeSerializer: NotificationTimeSerializer
+    ): DataStore<NotificationTime> =
+        DataStoreFactory.create(
+            serializer = notificationTimeSerializer,
         ) {
             context.dataStoreFile("settingInfo.pb")
         }

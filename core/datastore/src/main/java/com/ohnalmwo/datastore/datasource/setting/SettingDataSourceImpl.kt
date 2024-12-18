@@ -3,9 +3,11 @@ package com.ohnalmwo.datastore.datasource.setting
 import android.util.Log
 import androidx.datastore.core.DataStore
 import com.ohnalmwo.datastore.Locations
+import com.ohnalmwo.datastore.NotificationTime
 import com.ohnalmwo.datastore.SettingInfo
 import com.ohnalmwo.datastore.mapper.toData
 import com.ohnalmwo.datastore.mapper.toDomain
+import com.ohnalmwo.datastore.serializer.NotificationTimeSerializer
 import com.ohnalmwo.model.LocationInfo
 import com.ohnalmwo.model.enum.Switch
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +15,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SettingDataSourceImpl @Inject constructor (
-    private val settingInfo: DataStore<SettingInfo>
+    private val settingInfo: DataStore<SettingInfo>,
+    private val notificationTime: DataStore<NotificationTime>,
 ) : SettingDataSource {
     override suspend fun setAlarmState(alarmState: String) {
         settingInfo.updateData {
@@ -33,9 +36,9 @@ class SettingDataSourceImpl @Inject constructor (
         }
 
     override suspend fun setAlarmTime(alarmTime: String) {
-        settingInfo.updateData {
+        notificationTime.updateData {
             it.toBuilder()
-                .setAlarm(alarmTime)
+                .setTime(alarmTime)
                 .build()
         }
     }
