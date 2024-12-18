@@ -30,6 +30,7 @@ fun MainRoute(
     LaunchedEffect(Unit) {
         viewModel.getWeatherSignificant(x = 126.85250, y = 35.15944)
         viewModel.getSavedLocations()
+        viewModel.getTutorialDialogState()
     }
 
     LaunchedEffect(effect) {
@@ -43,6 +44,7 @@ fun MainRoute(
     MainScreen(
         hazeState = hazeState,
         state = state,
+        onDismissClick = viewModel::setTutorialDialogState,
         navigateToLocation = { viewModel.sendEffect(MainEffect.NavigateToLocation) }
     )
 }
@@ -51,6 +53,7 @@ fun MainRoute(
 fun MainScreen(
     hazeState: HazeState,
     state: MainState,
+    onDismissClick: (Boolean) -> Unit,
     navigateToLocation: () -> Unit
 ) {
     val context = LocalContext.current
@@ -60,7 +63,6 @@ fun MainScreen(
             .readBytes()
             .decodeToString()
     }
-    var openDialog by remember { mutableStateOf(true) }
     val weathers = state.significant.weathers
 
     if (state.isLoading) {
@@ -75,12 +77,12 @@ fun MainScreen(
         )
     }
 
-    if (openDialog) {
+    if (state.openDialog) {
         TutorialDialog(
-            openDialog = openDialog,
-            onStateChange = { openDialog = it },
-            onDismissClick = { openDialog = false },
-            onCheckClick = { openDialog = false }
+            openDialog = state.openDialog,
+            onStateChange = onDismissClick,
+            onDismissClick = { onDismissClick(false) },
+            onCheckClick = { onDismissClick(false) }
         )
     }
 }

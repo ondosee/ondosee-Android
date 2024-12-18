@@ -58,33 +58,3 @@ fun LoadingLocationCard(
         }
     }
 }
-
-@Composable
-private fun LoadingWeatherForecastCard(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(160.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(color = colors.WHITE.copy(alpha = .2f))
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
-    ) {
-        Text(
-            text = "시간 별 일기예보",
-            style = typography.textSmall,
-            fontWeight = FontWeight.Bold,
-            color = colors.WHITE.copy(.75f)
-        )
-        ShimmerBox(
-            Modifier
-                .fillMaxWidth(.8f)
-                .height(16.dp)
-        )
-        ShimmerBox(
-            Modifier
-                .fillMaxWidth(.5f)
-                .height(16.dp)
-        )
-    }
-}
