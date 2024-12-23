@@ -53,6 +53,6 @@ object DataStoreModule {
         DataStoreFactory.create(
             serializer = notificationTimeSerializer,
         ) {
-            context.dataStoreFile("settingInfo.pb")
+            context.dataStoreFile("notificationTime.pb")
         }
 }
