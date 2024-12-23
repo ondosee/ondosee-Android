@@ -2,6 +2,8 @@ package com.ohnalmwo.datastore.di
 
 import com.ohnalmwo.datastore.datasource.location.LocationsDataSource
 import com.ohnalmwo.datastore.datasource.location.LocationsDataSourceImpl
+import com.ohnalmwo.datastore.datasource.main.MainDataSource
+import com.ohnalmwo.datastore.datasource.main.MainDataSourceImpl
 import com.ohnalmwo.datastore.datasource.setting.SettingDataSource
 import com.ohnalmwo.datastore.datasource.setting.SettingDataSourceImpl
 import dagger.Binds
@@ -18,6 +20,12 @@ abstract class LocalDataSourceModule {
     abstract fun bindLocationsDataSource(
         locationsDataSourceImpl: LocationsDataSourceImpl
     ): LocationsDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindMainDataSource(
+        mainDataSourceImpl: MainDataSourceImpl
+    ): MainDataSource
 
     @Binds
     @Singleton
