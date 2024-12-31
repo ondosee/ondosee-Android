@@ -9,4 +9,6 @@ interface SettingRepository {
     fun getAlarmState(): Flow<Switch>
 
     suspend fun setAlarmTime(alarmTime: String)
+
+    fun getAlarmTime(): Flow<String>
 }
