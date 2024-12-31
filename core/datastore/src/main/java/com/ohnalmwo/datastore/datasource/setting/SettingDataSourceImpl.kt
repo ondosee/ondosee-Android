@@ -42,4 +42,9 @@ class SettingDataSourceImpl @Inject constructor (
                 .build()
         }
     }
+
+    override fun getAlarmTime(): Flow<String> =
+        notificationTime.data.map {
+            it.time ?: "00:00"
+        }
 }
