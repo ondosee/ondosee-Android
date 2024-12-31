@@ -8,6 +8,7 @@ import com.ohnalmwo.common.result.asResult
 import com.ohnalmwo.domain.usecase.location.GetSavedLocationsUseCase
 import com.ohnalmwo.domain.usecase.notification.SaveDeviceTokenUseCase
 import com.ohnalmwo.domain.usecase.setting.GetAlarmStateUseCase
+import com.ohnalmwo.domain.usecase.setting.GetAlarmTimeUseCase
 import com.ohnalmwo.domain.usecase.setting.SetAlarmStateUseCase
 import com.ohnalmwo.domain.usecase.setting.SetAlarmTimeUseCase
 import com.ohnalmwo.model.enum.Switch
@@ -20,7 +21,8 @@ import javax.inject.Inject
 class SettingViewModel @Inject constructor(
     private val setAlarmStateUseCase: SetAlarmStateUseCase,
     private val getAlarmStateUseCase: GetAlarmStateUseCase,
-    private val setAlarmTimeUseCase: SetAlarmTimeUseCase
+    private val setAlarmTimeUseCase: SetAlarmTimeUseCase,
+    private val getAlarmTimeUseCase: GetAlarmTimeUseCase
 ) : BaseViewModel<SettingState, SettingEvent, SettingEffect>(
     initialState = SettingState.initial(),
     reducer = SettingScreenReducer()
@@ -47,11 +49,35 @@ class SettingViewModel @Inject constructor(
         sendEvent(SettingEvent.SetAlarmState)
     }
 
+    fun getAlarmTime() = viewModelScope.launch {
+        getAlarmTimeUseCase()
+            .asResult()
+            .collect { result ->
+                when (result) {
+                    is Result.Loading -> Unit
+                    is Result.Success -> convertTime(result.data)
+                    is Result.Error -> Unit
+                }
+            }
+    }
+
     private fun formatAlarmTime(hour: Int, minute: Int, amPm: String): String {
         val formattedHour = if (amPm == "PM" && hour < 12) hour + 12
                             else if (amPm == "AM" && hour == 12) 0
                             else hour
 
         return "%02d:%02d".format(formattedHour, minute)
+    }
+
+    private fun convertTime(time: String) {
+        val parts = time.split(":")
+
+        val hour = parts[0].toInt()
+        val minute = parts[1].toInt()
+
+        val amPm = if (hour >= 12) "PM" else "AM"
+        val adjustedHour = if (hour % 12 == 0) 12 else hour % 12
+
+        sendEvent(SettingEvent.OnChangeAlarmTime(hour = adjustedHour, minute = minute, amPm = amPm))
     }
 }

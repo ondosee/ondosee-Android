@@ -38,6 +38,7 @@ fun SettingAlarmRoute(
 
     LaunchedEffect(Unit) {
         viewModel.getAlarmState()
+        viewModel.getAlarmTime()
     }
 
     LaunchedEffect(effect) {
