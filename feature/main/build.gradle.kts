@@ -12,4 +12,5 @@ dependencies {
     implementation(libs.accompanist.permission)
     implementation(libs.haze)
     implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.location)
 }
