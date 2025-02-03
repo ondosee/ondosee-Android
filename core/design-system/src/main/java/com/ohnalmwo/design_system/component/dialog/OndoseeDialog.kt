@@ -28,13 +28,12 @@ import com.ohnalmwo.design_system.theme.OndoseeTheme.typography
 @Composable
 fun OndoseeDialog(
     openDialog: Boolean,
-    onStateChange: (Boolean) -> Unit,
     title: String,
     content: String,
     firstText: String,
     secondText: String?,
-    onDismissClick: () -> Unit,
-    onCheckClick: () -> Unit
+    onFirstClick: () -> Unit,
+    onSecondClick: () -> Unit
 ) {
     var openDialog by remember { mutableStateOf(openDialog) }
 
@@ -80,7 +79,7 @@ fun OndoseeDialog(
                                 .height(60.dp),
                             onClick = {
                                 openDialog = false
-                                onDismissClick()
+                                onFirstClick()
                             }
                         ) {
                             Text(
@@ -97,7 +96,7 @@ fun OndoseeDialog(
                                     .height(60.dp),
                                 onClick = {
                                     openDialog = false
-                                    onCheckClick()
+                                    onSecondClick()
                                 }
                             ) {
                                 Text(
@@ -112,7 +111,5 @@ fun OndoseeDialog(
                 }
             }
         }
-    } else {
-        onStateChange(openDialog)
     }
 }
