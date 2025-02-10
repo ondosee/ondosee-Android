@@ -20,7 +20,7 @@ class LocationsDataSourceImpl @Inject constructor(
         locations.updateData {
             val builder = it.toBuilder()
 
-            if (builder.locationList.size < 4 && builder.locationList.none { it.toDomain() == location }) {
+            if (builder.locationList.size <= 4 && builder.locationList.none { it.toDomain() == location }) {
                 builder.addLocation(location.toData())
             }
 
