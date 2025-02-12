@@ -46,19 +46,20 @@ fun OndoseeDialog(
                 Column(modifier = Modifier.background(colors.BACKGROUND)) {
                     Column(
                         modifier = Modifier
+                            .fillMaxWidth()
                             .background(colors.BACKGROUND)
-                            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                            .padding(top = 16.dp, start = 16.dp, end = 16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
                             text = title,
-                            modifier = Modifier.fillMaxWidth(),
-                            color = colors.WHITE,
+                            color = colors.THEME_BLACK,
                             style = typography.textLarge,
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
                             text = content,
-                            modifier = Modifier.fillMaxWidth(),
                             color = colors.SECONDARY,
                             style = typography.textLarge,
                             fontWeight = FontWeight.Normal,
