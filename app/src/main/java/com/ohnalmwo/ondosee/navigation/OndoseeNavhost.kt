@@ -33,7 +33,10 @@ fun OndoseeNavHost(
             navigateToBack = navController::popBackStack
         )
         locationManagementScreen(navigateToBack = navController::popBackStack)
-        addLocationScreen(navigateToBack = navController::popBackStack)
+        addLocationScreen(
+            navigateToLocationManagement = navController::navigateToLocationManagement,
+            navigateToBack = navController::popBackStack
+        )
         weeklyWeatherScreen(
             hazeState = hazeState,
             navigateToLocation = navController::navigateToLocation
