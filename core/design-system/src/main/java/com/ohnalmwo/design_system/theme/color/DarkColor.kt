@@ -41,4 +41,5 @@ object DarkColor : ColorTheme() {
     override val WHITE = Color(0xFFFFFFFF)
 
     override var BACKGROUND = Color(0xFF171717)
+    override var INFORMATION = Color(0xFF2573F3)
 }

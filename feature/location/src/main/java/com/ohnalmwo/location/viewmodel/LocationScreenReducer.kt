@@ -13,6 +13,7 @@ class LocationScreenReducer : Reducer<LocationScreenReducer.LocationState, Locat
         data class GetLocationCoordinate(val isLoading: Boolean, val locations: Location) : LocationEvent()
         data class GetSavedLocations(val isLoading: Boolean, val localLocations: List<LocationInfo>) : LocationEvent()
         data object SetSavedLocations : LocationEvent()
+        data class SetLogoutDialog(val openDialog: Boolean) : LocationEvent()
         data class GetMultipleWeatherSignificant(val isLoading: Boolean, val locationsWeatherSignificant: List<Weather>) : LocationEvent()
         data class OnSearchValueChange(val search: String) : LocationEvent()
     }
@@ -30,7 +31,8 @@ class LocationScreenReducer : Reducer<LocationScreenReducer.LocationState, Locat
         val locations: Location,
         val localLocations: List<LocationInfo>,
         val locationsWeatherSignificant: List<Weather>,
-        val search: String
+        val search: String,
+        val openDialog: Boolean,
     ) : Reducer.ViewState {
         companion object {
             fun initial() = LocationState(
@@ -38,7 +40,8 @@ class LocationScreenReducer : Reducer<LocationScreenReducer.LocationState, Locat
                 locations = Location.default(),
                 localLocations = emptyList(),
                 locationsWeatherSignificant = listOf(Weather.default()),
-                search = ""
+                search = "",
+                openDialog = false
             )
         }
     }
@@ -62,6 +65,11 @@ class LocationScreenReducer : Reducer<LocationScreenReducer.LocationState, Locat
             }
             is LocationEvent.SetSavedLocations -> {
                 previousState to LocationEffect.NavigateToBack
+            }
+            is LocationEvent.SetLogoutDialog -> {
+                previousState.copy(
+                    openDialog = event.openDialog
+                ) to null
             }
             is LocationEvent.GetMultipleWeatherSignificant -> {
                 previousState.copy(

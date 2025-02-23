@@ -44,9 +44,13 @@ fun NavController.navigateToAddLocation(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.addLocationScreen(
+    navigateToLocationManagement: () -> Unit,
     navigateToBack: () -> Unit
 ) {
     composable<Route.Location.AddLocation> {
-        AddLocationRoute(navigateToBack = navigateToBack)
+        AddLocationRoute(
+            navigateToLocationManagement = navigateToLocationManagement,
+            navigateToBack = navigateToBack
+        )
     }
 }
